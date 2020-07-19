@@ -1,7 +1,6 @@
 "use strict";
 var zauberbild;
 (function (zauberbild) {
-    let canvas;
     let crc2;
     let figures = [];
     let backgroundColor;
@@ -26,14 +25,20 @@ var zauberbild;
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
-        if (smallCanvas.classList.contains("#format1")) {
-            crc2.canvas.setAttribute("height: 200px", "width: 200px");
-        }
-        if (smallCanvas.classList.contains("#format2")) {
-            crc2.canvas.setAttribute("height: 500px", "width: 500px");
-        }
-        if (smallCanvas.classList.contains("#format3")) {
-            crc2.canvas.setAttribute("height: 700px", "width: 700px");
+        let target = _event.target;
+        let id = target.id;
+        let canvasDraw;
+        switch (id) {
+            case "format1":
+                canvasDraw = document.querySelector("#canvas");
+                crc2.canvas.setAttribute("height: 200px", "width: 200px");
+                break;
+            case "format2":
+                crc2.canvas.setAttribute("height: 500px", "width: 500px");
+                break;
+            case "format3":
+                crc2.canvas.setAttribute("height: 700px", "width: 700px");
+                break;
         }
     }
 })(zauberbild || (zauberbild = {}));

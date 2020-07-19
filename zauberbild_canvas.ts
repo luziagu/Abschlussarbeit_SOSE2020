@@ -1,6 +1,6 @@
 namespace zauberbild {
 
-    let canvas: HTMLCanvasElement;
+    
     let crc2: CanvasRenderingContext2D; 
     let figures: Form [] = [];
 
@@ -48,23 +48,26 @@ namespace zauberbild {
     function chooseCanvas(_event: Event): void {
  
         console.log("ich wurde geklickt"); 
+        let target: HTMLElement = <HTMLElement>_event.target; 
+        let id: string = target.id;
+        let canvasDraw: HTMLElement; 
 
-        
-        if (smallCanvas.classList.contains("#format1")) {
-            crc2.canvas.setAttribute("height: 200px", "width: 200px"); 
-       
+
+        switch (id) {
+            case "format1":
+               canvasDraw = <HTMLElement>document.querySelector("#canvas"); 
+               crc2.canvas.setAttribute("height: 200px", "width: 200px");
+               
+               break;
+            case "format2":
+                crc2.canvas.setAttribute("height: 500px", "width: 500px"); 
+                break; 
+            case "format3":
+                crc2.canvas.setAttribute("height: 700px", "width: 700px"); 
+                break; 
+
         }
-        
 
-        if (smallCanvas.classList.contains("#format2")) {
-            crc2.canvas.setAttribute("height: 500px", "width: 500px"); 
-
-        }
-        if (smallCanvas.classList.contains("#format3")) {
-            crc2.canvas.setAttribute("height: 700px", "width: 700px"); 
-
-        }
-      
       
       
     }
