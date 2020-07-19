@@ -17,6 +17,7 @@ var zauberbild;
         bigCanvas.addEventListener("click", chooseCanvas);
     }
     function chooseCanvas(_event) {
+        console.log("ich wurde geklickt");
         if (smallCanvas.classList.contains("#format1")) {
             crc2.canvas.setAttribute("height: 200px", "width: 200px");
             let background = document.createElement("canvas").getContext("2d");
