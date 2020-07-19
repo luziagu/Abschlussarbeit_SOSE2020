@@ -1,0 +1,133 @@
+body{
+    font-family: arial;
+    font-size: small;
+    color: rgb(56, 56, 56); 
+    background-color:white;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+
+    border: solid  black 0.4px; 
+}
+
+#gridContainer{
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto)
+   
+    
+}
+
+#canvas{
+
+    position: absolute;
+    height: 500px; 
+    width: 500px;
+    left: 350px; 
+    top: 120px; 
+    
+}
+#symbolOne{
+
+    grid-column: 1 ;
+    grid-row: 1;
+  
+}
+#symbolTwo{
+    grid-column: 2;
+    grid-row: 1;
+    
+    
+}
+#symbolThree{
+
+    grid-column: 1;
+    grid-row: 2;
+   
+}
+#symbolFour{
+
+    grid-column: 2;
+    grid-row: 2;
+   
+}
+
+
+#chooseFormat {
+    position: relative;
+    top: 20px; 
+    left: 20px; 
+    height: 150px; 
+    width: 180px;
+}
+
+input, label {
+    top: 10px; 
+    position: relative;
+    font-size: 20px; 
+    left: -5px;
+    
+}
+
+#chooseBackground{
+
+    position: relative;
+    top: 40px; 
+    left: 20px; 
+    height: 150px; 
+    width: 180px;
+}
+#chooseSymbol{
+
+    position: relative;
+    top: 60px; 
+    left: 20px; 
+    height: 257px; 
+    width: 180px;
+
+}
+
+.buttonOk {
+    position: relative;
+    top: 40px; 
+    left: 0px; 
+}
+
+#savedPictures {
+
+    position: fixed;
+    top: 115px; 
+    left: 900px; 
+    height: 506px; 
+    width: 260px;
+    float: right;
+
+}
+
+#titlePicture {
+    
+    position: relative;
+    top: 120px; 
+
+}
+
+#buttonSafe {
+
+    position: relative;
+    left: -225px; 
+    top: 150px; 
+}
+
+#buttonDelete {
+
+    position: relative;
+    left: -245px; 
+    top: 100px; 
+}

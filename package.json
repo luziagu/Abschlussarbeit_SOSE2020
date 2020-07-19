@@ -1,0 +1,22 @@
+{
+  "name": "haushaltshilfe-app",
+  "version": "1.0.0",
+  "description": "Haushaltshilfe",
+  "main": "",
+  "scripts": {
+    "start": "node Haushaltshilfe-Update/Server/Server.js remote"
+  },
+  "repository": {
+    "type": "git",
+    "url": "EIA2"
+  },
+  "keywords": [
+    "haushaltshilfe"
+  ],
+  "author": "Luzia Gunzenhauser",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="zauberbild.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script src="zauberbild_canvas.js"></script>
+    <title>Zauberbild</title>
+</head>
+<body>
+
+    <p>Abschlussarbeit von Luzia Gunzenhauser</p>
+    <h1>Zauberbild</h1>
+
+    <div id="chooseFormat">
+
+        <input type="radio" name="Radiogroup" value="radio1" id="format1" />
+        <label for="format1">Format 1</label> <br>
+        <input type="radio" name="Radiogroup" value="radio2" id="format2" />
+        <label for="format1">Format 2</label> <br>
+        <input type="radio" name="Radiogroup" value="radio3" id="format3" />
+        <label for="format1">Format 3</label> <br>
+
+        <button class="buttonOk">OK</button>
+
+    </div>
+
+    <div id="chooseBackground">
+        <h3>Wähle deinen Hintergrund</h3>
+
+        <select name="" id=""></select>
+
+        <button class="buttonOk">OK</button>
+
+    </div>
+
+    <div id="chooseSymbol">
+
+        <h3>Und jetzt das Symbol</h3>
+        <div id="gridContainer">
+            <div id="symbolOne"></div>
+            <div id="symbolTwo"></div>
+            <div id="symbolThree"></div>
+            <div id="symbolFour"></div>
+
+        </div>
+        <button class="buttonOk">OK</button>
+
+    </div>
+
+    <button id="buttonDelete"> Bild löschen</button>
+
+    <div id="canvas">
+        <canvas height="200" width="200"></canvas>
+    </div>
+
+    <div id="savedPictures">
+
+        <h3>Gespeicherte Bilder</h3>
+    </div>
+
+    <span>
+        <input type="text" name="Title" value="" placeholder="Title of your picture" id="titlePicture">
+        <button id="buttonSafe">Speichern</button>
+    </span>
+    
+
+
+    
+</body>
+</html>
