@@ -1,14 +1,15 @@
 "use strict";
 var zauberbild;
 (function (zauberbild) {
+    console.log("verknüpft");
     let crc2;
-    let figures = [];
-    let backgroundColor;
+    //let figures: Form [] = [];
+    //let backgroundColor: HTMLInputElement; 
     let bigCanvas;
     let middleCanvas;
     let smallCanvas;
-    let backgroundIMage;
-    let save;
+    //let backgroundIMage: ImageData; 
+    //let save: HTMLButtonElement; 
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         smallCanvas = document.querySelector("#format1");
@@ -27,17 +28,18 @@ var zauberbild;
         console.log("ich wurde geklickt");
         let target = _event.target;
         let id = target.id;
-        let canvasDraw;
         switch (id) {
             case "format1":
-                canvasDraw = document.querySelector("#canvas");
-                crc2.canvas.setAttribute("height: 200px", "width: 200px");
+                crc2.canvas.width = 200;
+                crc2.canvas.height = 200;
                 break;
             case "format2":
-                crc2.canvas.setAttribute("height: 500px", "width: 500px");
+                crc2.canvas.width = 200;
+                crc2.canvas.height = 500;
                 break;
             case "format3":
-                crc2.canvas.setAttribute("height: 700px", "width: 700px");
+                crc2.canvas.width = 500;
+                crc2.canvas.height = 500;
                 break;
         }
     }
