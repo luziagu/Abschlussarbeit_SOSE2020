@@ -24,27 +24,16 @@ namespace zauberbild {
 
 
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
-      
-        
-       
-
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
     
        
-        let mainCanvas: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("#mainCanvas"); 
-        if (!mainCanvas)
-            return; 
+        let mainCanvas: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("#mainCanvasDraw"); 
         crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
 
-        let canvasStar: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("#star"); 
-        if (!canvasStar)
-            return; 
+        let canvasStar: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("#star"); 
         crc3 = <CanvasRenderingContext2D>canvasStar.getContext("2d"); 
 
-        let canvasCircle: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("#circle"); 
-        if (!canvasCircle)
-            return; 
-
+        let canvasCircle: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("#circle"); 
         crc4 = <CanvasRenderingContext2D>canvasCircle.getContext("2d"); 
 
         console.log("verknüpft"); 

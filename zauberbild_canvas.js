@@ -10,17 +10,11 @@ var zauberbild;
     function handleLoad(_event) {
         let form = document.querySelector("div#chooseFormat");
         backgroundColor = document.querySelector("#chooseColor");
-        let mainCanvas = document.querySelector("#mainCanvas");
-        if (!mainCanvas)
-            return;
+        let mainCanvas = document.getElementById("#mainCanvasDraw");
         zauberbild.crc2 = mainCanvas.getContext("2d");
-        let canvasStar = document.querySelector("#star");
-        if (!canvasStar)
-            return;
+        let canvasStar = document.getElementById("#star");
         zauberbild.crc3 = canvasStar.getContext("2d");
-        let canvasCircle = document.querySelector("#circle");
-        if (!canvasCircle)
-            return;
+        let canvasCircle = document.getElementById("#circle");
         zauberbild.crc4 = canvasCircle.getContext("2d");
         console.log("verknüpft");
         form.addEventListener("change", chooseCanvas);
