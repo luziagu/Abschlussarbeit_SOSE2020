@@ -20,24 +20,24 @@ namespace zauberbild {
 
         public draw(): void {
             
-            crc2.save();
-            crc2.translate(this.position.x, this.position.y); 
+            crc4.save();
+            crc4.translate(this.position.x, this.position.y); 
             
-            crc2.fillStyle = "yellow";
-            crc2.beginPath();
-            crc2.moveTo(108, 0.0);
-            crc2.lineTo(141, 70);
-            crc2.lineTo(218, 78.3);
-            crc2.lineTo(162, 131);
-            crc2.lineTo(175, 205);
-            crc2.lineTo(108, 170);
-            crc2.lineTo(41.2, 205);
-            crc2.lineTo(55, 131);
-            crc2.lineTo(1, 78);
-            crc2.lineTo(75, 68);
-            crc2.lineTo(108, 0);
-            crc2.closePath();
-            crc2.fill();
+            crc4.fillStyle = "yellow";
+            crc4.beginPath();
+            crc4.moveTo(108, 0.0);
+            crc4.lineTo(141, 70);
+            crc4.lineTo(218, 78.3);
+            crc4.lineTo(162, 131);
+            crc4.lineTo(175, 205);
+            crc4.lineTo(108, 170);
+            crc4.lineTo(41.2, 205);
+            crc4.lineTo(55, 131);
+            crc4.lineTo(1, 78);
+            crc4.lineTo(75, 68);
+            crc4.lineTo(108, 0);
+            crc4.closePath();
+            crc4.fill();
         }
 
 

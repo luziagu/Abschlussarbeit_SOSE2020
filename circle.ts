@@ -29,11 +29,11 @@ namespace zauberbild {
 
             crc3.beginPath();
             crc3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-            crc3.fillStyle = "blue";
+            crc3.fillStyle = "lightblue";
             crc3.closePath();
             crc3.fill();
-            crc3.lineWidth = 5;
-            crc3.strokeStyle = "#003300";
+            crc3.lineWidth = 0;
+            crc3.strokeStyle = "lightblue";
             crc3.stroke();
             
     

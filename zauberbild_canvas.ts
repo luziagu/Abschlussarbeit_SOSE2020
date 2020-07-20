@@ -4,14 +4,15 @@ namespace zauberbild {
     
     export let crc2: CanvasRenderingContext2D; 
     export let crc3: CanvasRenderingContext2D; 
+    export let crc4: CanvasRenderingContext2D; 
+
     let figures: Form [] = [];
 
 
     
    
     let backgroundColor: HTMLSelectElement;
-    let divFrame: HTMLDivElement;  
-    
+   
 
 
     let backgroundIMage: ImageData; 
@@ -23,18 +24,28 @@ namespace zauberbild {
 
 
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
-        divFrame = <HTMLDivElement>document.querySelector("div#canvas");
+      
         
        
 
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
     
        
-        let canvas: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("canvas"); 
-        if (!canvas)
+        let mainCanvas: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("#mainCanvas"); 
+        if (!mainCanvas)
             return; 
-        crc2 = <CanvasRenderingContext2D>canvas.getContext("2d"); 
-        crc3 = <CanvasRenderingContext2D>canvas.getContext("2d"); 
+        crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
+
+        let canvasStar: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("#star"); 
+        if (!canvasStar)
+            return; 
+        crc3 = <CanvasRenderingContext2D>canvasStar.getContext("2d"); 
+
+        let canvasCircle: HTMLCanvasElement = <HTMLCanvasElement> document.querySelector("#circle"); 
+        if (!canvasCircle)
+            return; 
+
+        crc4 = <CanvasRenderingContext2D>canvasCircle.getContext("2d"); 
 
         console.log("verknüpft"); 
        

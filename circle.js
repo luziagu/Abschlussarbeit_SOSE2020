@@ -20,11 +20,11 @@ var zauberbild;
             var radius = 70;
             zauberbild.crc3.beginPath();
             zauberbild.crc3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-            zauberbild.crc3.fillStyle = "blue";
+            zauberbild.crc3.fillStyle = "lightblue";
             zauberbild.crc3.closePath();
             zauberbild.crc3.fill();
-            zauberbild.crc3.lineWidth = 5;
-            zauberbild.crc3.strokeStyle = "#003300";
+            zauberbild.crc3.lineWidth = 0;
+            zauberbild.crc3.strokeStyle = "lightblue";
             zauberbild.crc3.stroke();
         }
     }

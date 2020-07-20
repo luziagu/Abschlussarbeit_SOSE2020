@@ -4,19 +4,24 @@ var zauberbild;
     console.log("verknüpft");
     let figures = [];
     let backgroundColor;
-    let divFrame;
     let backgroundIMage;
     //let save: HTMLButtonElement; 
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         let form = document.querySelector("div#chooseFormat");
-        divFrame = document.querySelector("div#canvas");
         backgroundColor = document.querySelector("#chooseColor");
-        let canvas = document.querySelector("canvas");
-        if (!canvas)
+        let mainCanvas = document.querySelector("#mainCanvas");
+        if (!mainCanvas)
             return;
-        zauberbild.crc2 = canvas.getContext("2d");
-        zauberbild.crc3 = canvas.getContext("2d");
+        zauberbild.crc2 = mainCanvas.getContext("2d");
+        let canvasStar = document.querySelector("#star");
+        if (!canvasStar)
+            return;
+        zauberbild.crc3 = canvasStar.getContext("2d");
+        let canvasCircle = document.querySelector("#circle");
+        if (!canvasCircle)
+            return;
+        zauberbild.crc4 = canvasCircle.getContext("2d");
         console.log("verknüpft");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("click", chooseBackground);
