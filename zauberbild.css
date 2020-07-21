@@ -42,10 +42,15 @@ div {
     border: none; 
     
 }
+
+#symbolOne:hover, #symbolTwo:hover,#symbolThree:hover,#symbolFour:hover {
+    background-color: burlywood; 
+}
 #symbolOne{
 
     grid-column: 1 ;
     grid-row: 1;
+
   
 }
 #symbolTwo{

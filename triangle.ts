@@ -18,20 +18,20 @@ namespace zauberbild {
             this.velocity = Vector.getRandom(5, 10);
         }
 
-        public draw(): void {
+        public draw(_crc: CanvasRenderingContext2D): void {
 
             
-            crc5.save();
+            _crc.save();
           
-            crc5.scale(0.9, 0.9); 
+            _crc.scale(0.9, 0.9); 
             
-            crc5.translate(this.position.x, this.position.y); 
-            crc5.fillStyle = "pink";
-            crc5.beginPath();
-            crc5.moveTo(50, 50);
-            crc5.lineTo(100, 90);
-            crc5.lineTo(100, 10);
-            crc5.fill();
+            _crc.translate(this.position.x, this.position.y); 
+            _crc.fillStyle = "pink";
+            _crc.beginPath();
+            _crc.moveTo(50, 50);
+            _crc.lineTo(100, 90);
+            _crc.lineTo(100, 10);
+            _crc.fill();
         }
 
 

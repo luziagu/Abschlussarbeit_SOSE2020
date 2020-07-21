@@ -12,21 +12,21 @@ var zauberbild;
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
-        draw() {
-            zauberbild.crc3.save();
-            zauberbild.crc3.scale(0.7, 0.7);
-            zauberbild.crc3.translate(this.position.x, this.position.y);
+        draw(_crc) {
+            _crc.save();
+            _crc.scale(0.7, 0.7);
+            _crc.translate(this.position.x, this.position.y);
             var centerX = zauberbild.crc2.canvas.width / 2;
             var centerY = zauberbild.crc2.canvas.height / 2;
             var radius = 30;
-            zauberbild.crc3.beginPath();
-            zauberbild.crc3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-            zauberbild.crc3.fillStyle = "lightblue";
-            zauberbild.crc3.closePath();
-            zauberbild.crc3.fill();
-            zauberbild.crc3.lineWidth = 0;
-            zauberbild.crc3.strokeStyle = "lightblue";
-            zauberbild.crc3.stroke();
+            _crc.beginPath();
+            _crc.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+            _crc.fillStyle = "lightblue";
+            _crc.closePath();
+            _crc.fill();
+            _crc.lineWidth = 0;
+            _crc.strokeStyle = "lightblue";
+            _crc.stroke();
         }
     }
     zauberbild.Circle = Circle;

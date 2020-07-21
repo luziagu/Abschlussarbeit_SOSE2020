@@ -18,24 +18,24 @@ namespace zauberbild {
             this.velocity = Vector.getRandom(5, 10);
         }
 
-        public draw(): void {
+        draw (_crc: CanvasRenderingContext2D): void {
             
 
-            crc3.save();
-            crc3.scale(0.7, 0.7); 
-            crc3.translate(this.position.x, this.position.y); 
+            _crc.save();
+            _crc.scale(0.7, 0.7); 
+            _crc.translate(this.position.x, this.position.y); 
             var centerX = crc2.canvas.width / 2;
             var centerY = crc2.canvas.height / 2;
             var radius: number = 30;
 
-            crc3.beginPath();
-            crc3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-            crc3.fillStyle = "lightblue";
-            crc3.closePath();
-            crc3.fill();
-            crc3.lineWidth = 0;
-            crc3.strokeStyle = "lightblue";
-            crc3.stroke();
+            _crc.beginPath();
+            _crc.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+            _crc.fillStyle = "lightblue";
+            _crc.closePath();
+            _crc.fill();
+            _crc.lineWidth = 0;
+            _crc.strokeStyle = "lightblue";
+            _crc.stroke();
             
     
         }

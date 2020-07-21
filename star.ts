@@ -20,30 +20,30 @@ namespace zauberbild {
             this.velocity = Vector.getRandom(5, 10);
         }
 
-        public draw(): void {
+        public draw(crc: CanvasRenderingContext2D): void {
             
             //if (drawSymbol = true){
             //    CanvasRenderingContext2D
             //}
-            crc4.save(); 
-            crc4.scale(0.4, 0.4); 
-            crc4.translate(this.position.x, this.position.y);
+            crc.save(); 
+            crc.scale(0.3, 0.3); 
+            crc.translate(this.position.x, this.position.y);
             
-            crc4.fillStyle = "yellow";
-            crc4.beginPath();
-            crc4.moveTo(108, 0.0);
-            crc4.lineTo(141, 70);
-            crc4.lineTo(218, 78.3);
-            crc4.lineTo(162, 131);
-            crc4.lineTo(175, 205);
-            crc4.lineTo(108, 170);
-            crc4.lineTo(41.2, 205);
-            crc4.lineTo(55, 131);
-            crc4.lineTo(1, 78);
-            crc4.lineTo(75, 68);
-            crc4.lineTo(108, 0);
-            crc4.closePath();
-            crc4.fill();
+            crc.fillStyle = "darkorange";
+            crc.beginPath();
+            crc.moveTo(108, 0.0);
+            crc.lineTo(141, 70);
+            crc.lineTo(218, 78.3);
+            crc.lineTo(162, 131);
+            crc.lineTo(175, 205);
+            crc.lineTo(108, 170);
+            crc.lineTo(41.2, 205);
+            crc.lineTo(55, 131);
+            crc.lineTo(1, 78);
+            crc.lineTo(75, 68);
+            crc.lineTo(108, 0);
+            crc.closePath();
+            crc.fill();
         }
 
 

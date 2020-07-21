@@ -19,7 +19,7 @@ namespace zauberbild {
             
         }
 
-        public  abstract draw(): void;
+        public  abstract draw(_crc: CanvasRenderingContext2D): void;
 
         public move(_timeslice: number): void {
 

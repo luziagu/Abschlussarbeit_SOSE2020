@@ -88,11 +88,11 @@ var zauberbild;
     function createForms() {
         let symbol = 1;
         //Stern
-        let x = 20;
-        let y = 10;
+        let x = 55;
+        let y = 50;
         let position = new zauberbild.Vector(x, y);
         let star = new zauberbild.Star(position);
-        star.draw();
+        star.draw(zauberbild.crc4);
         figures.push(star);
         //Circle
         for (let i = 0; i < symbol; i++) {
@@ -100,25 +100,25 @@ var zauberbild;
             let y = 0;
             let position = new zauberbild.Vector(x, y);
             let circle = new zauberbild.Circle(position);
-            circle.draw();
-            figures.push(circle);
+            circle.draw(zauberbild.crc3);
+            //figures.push(circle);
         }
         //Dreieck
         for (let i = 0; i < symbol; i++) {
-            let x = -20;
-            let y = 0;
+            let x = -25;
+            let y = 5;
             let position = new zauberbild.Vector(x, y);
             let triangle = new zauberbild.Triangle(position);
-            triangle.draw();
+            triangle.draw(zauberbild.crc5);
             figures.push(triangle);
         }
         //Herz
         for (let i = 0; i < symbol; i++) {
             let x = 30;
-            let y = 0;
+            let y = 20;
             let position = new zauberbild.Vector(x, y);
             let heart = new zauberbild.Heart(position);
-            heart.draw();
+            heart.draw(zauberbild.crc6);
             figures.push(heart);
         }
     }
@@ -133,25 +133,25 @@ var zauberbild;
             case "star":
                 let positionStar = new zauberbild.Vector(0, 0);
                 let star = new zauberbild.Star(positionStar);
-                star.draw();
+                star.draw(zauberbild.crc2);
                 figures.push(star);
                 break;
             case "circle":
                 let positionCircle = new zauberbild.Vector(0, 0);
-                let circle = new zauberbild.Heart(positionCircle);
-                circle.draw();
+                let circle = new zauberbild.Circle(positionCircle);
+                circle.draw(zauberbild.crc2);
                 figures.push(circle);
                 break;
             case "heart":
                 let positionHeart = new zauberbild.Vector(0, 0);
                 let heart = new zauberbild.Heart(positionHeart);
-                heart.draw();
+                heart.draw(zauberbild.crc2);
                 figures.push(heart);
                 break;
             case "triangle":
                 let position = new zauberbild.Vector(0, 0);
                 let triangle = new zauberbild.Triangle(position);
-                triangle.draw();
+                triangle.draw(zauberbild.crc2);
                 figures.push(triangle);
                 break;
         }

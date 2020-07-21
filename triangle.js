@@ -12,16 +12,16 @@ var zauberbild;
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
-        draw() {
-            zauberbild.crc5.save();
-            zauberbild.crc5.scale(0.9, 0.9);
-            zauberbild.crc5.translate(this.position.x, this.position.y);
-            zauberbild.crc5.fillStyle = "pink";
-            zauberbild.crc5.beginPath();
-            zauberbild.crc5.moveTo(50, 50);
-            zauberbild.crc5.lineTo(100, 90);
-            zauberbild.crc5.lineTo(100, 10);
-            zauberbild.crc5.fill();
+        draw(_crc) {
+            _crc.save();
+            _crc.scale(0.9, 0.9);
+            _crc.translate(this.position.x, this.position.y);
+            _crc.fillStyle = "pink";
+            _crc.beginPath();
+            _crc.moveTo(50, 50);
+            _crc.lineTo(100, 90);
+            _crc.lineTo(100, 10);
+            _crc.fill();
         }
     }
     zauberbild.Triangle = Triangle;
