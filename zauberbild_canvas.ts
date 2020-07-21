@@ -13,6 +13,7 @@ namespace zauberbild {
 
     let figures: Form [] = [];
    
+     
     let backgroundColor: HTMLSelectElement;
     let circleDiv: HTMLDivElement; 
     let starDiv: HTMLDivElement; 
@@ -59,7 +60,7 @@ namespace zauberbild {
         form.addEventListener("change", chooseCanvas); 
 
         
-        backgroundColor.addEventListener("click", chooseBackground);
+        backgroundColor.addEventListener("change", chooseBackground);
 
         createForms(); 
 
@@ -85,8 +86,7 @@ namespace zauberbild {
             case "format1":
                 crc2.canvas.width = 200; 
                 crc2.canvas.height = 200; 
-                //divFrame.setAttribute("width", "200"); 
-                //divFrame.setAttribute("height", "200"); 
+                
 
 
                 break;
@@ -112,6 +112,45 @@ namespace zauberbild {
     function chooseBackground (_event: Event): void {
 
         console.log("choose color"); 
+
+        let target: HTMLSelectElement = <HTMLSelectElement>_event.target; 
+        let value: string = target.value;
+        
+
+        switch (value) {
+            
+            case "yellow":
+                crc2.fillStyle = "lightyellow"; 
+                crc2.fill(); 
+                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                
+
+
+                break;
+            case "green":
+                crc2.fillStyle = "lightgreen"; 
+                crc2.fill(); 
+                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                    
+                break; 
+            case "pink":
+                crc2.fillStyle = "lightpink"; 
+                crc2.fill(); 
+                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                        
+                
+                break; 
+            case "lightblue":
+           
+                crc2.fillStyle = "lightblue"; 
+                crc2.fill(); 
+                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                                                
+                break; 
+        
+
+        }
+
 
 
     }

@@ -32,7 +32,7 @@ var zauberbild;
         zauberbild.crc6 = canvasHeart.getContext("2d");
         console.log("verknüpft");
         form.addEventListener("change", chooseCanvas);
-        backgroundColor.addEventListener("click", chooseBackground);
+        backgroundColor.addEventListener("change", chooseBackground);
         createForms();
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -47,8 +47,6 @@ var zauberbild;
             case "format1":
                 zauberbild.crc2.canvas.width = 200;
                 zauberbild.crc2.canvas.height = 200;
-                //divFrame.setAttribute("width", "200"); 
-                //divFrame.setAttribute("height", "200"); 
                 break;
             case "format2":
                 zauberbild.crc2.canvas.width = 200;
@@ -62,6 +60,30 @@ var zauberbild;
     }
     function chooseBackground(_event) {
         console.log("choose color");
+        let target = _event.target;
+        let value = target.value;
+        switch (value) {
+            case "yellow":
+                zauberbild.crc2.fillStyle = "lightyellow";
+                zauberbild.crc2.fill();
+                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                break;
+            case "green":
+                zauberbild.crc2.fillStyle = "lightgreen";
+                zauberbild.crc2.fill();
+                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                break;
+            case "pink":
+                zauberbild.crc2.fillStyle = "lightpink";
+                zauberbild.crc2.fill();
+                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                break;
+            case "lightblue":
+                zauberbild.crc2.fillStyle = "lightblue";
+                zauberbild.crc2.fill();
+                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                break;
+        }
     }
     function createForms() {
         let symbol = 1;

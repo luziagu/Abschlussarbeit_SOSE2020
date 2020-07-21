@@ -26,6 +26,12 @@ div {
     
 }
 
+
+#mainCanvasDraw{
+
+    border: solid  black 0.4px; 
+}
+
 #mainCanvas{
 
     position: absolute;
@@ -33,6 +39,7 @@ div {
     width: 500px;
     left: 350px; 
     top: 120px; 
+    border: none; 
     
 }
 #symbolOne{
