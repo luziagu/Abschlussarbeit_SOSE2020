@@ -14,6 +14,9 @@ var zauberbild;
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
         draw() {
+            //if (drawSymbol = true){
+            //    CanvasRenderingContext2D
+            //}
             zauberbild.crc4.save();
             zauberbild.crc4.scale(0.4, 0.4);
             zauberbild.crc4.translate(this.position.x, this.position.y);

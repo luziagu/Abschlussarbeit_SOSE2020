@@ -171,9 +171,9 @@ namespace zauberbild {
         let target: HTMLElement = <HTMLElement>_event.target; 
         let id: string = target.id; 
 
-        if (target.id) { 
-            drawSymbol = true; 
-        }
+        //if (target.id) { 
+        //    drawSymbol = true; 
+        //}
         
 
 

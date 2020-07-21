@@ -104,9 +104,9 @@ var zauberbild;
         console.log("Ein Symbol wurde geklickt");
         let target = _event.target;
         let id = target.id;
-        if (target.id) {
-            zauberbild.drawSymbol = true;
-        }
+        //if (target.id) { 
+        //    drawSymbol = true; 
+        //}
         switch (id) {
             case "star":
                 let positionStar = new zauberbild.Vector(0, 0);

@@ -22,7 +22,9 @@ namespace zauberbild {
 
         public draw(): void {
             
-            
+            //if (drawSymbol = true){
+            //    CanvasRenderingContext2D
+            //}
             crc4.save(); 
             crc4.scale(0.4, 0.4); 
             crc4.translate(this.position.x, this.position.y);
