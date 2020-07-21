@@ -22,10 +22,11 @@ namespace zauberbild {
             
 
             crc3.save();
+            crc3.scale(0.7, 0.7); 
             crc3.translate(this.position.x, this.position.y); 
             var centerX = crc2.canvas.width / 2;
             var centerY = crc2.canvas.height / 2;
-            var radius: number = 70;
+            var radius: number = 30;
 
             crc3.beginPath();
             crc3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);

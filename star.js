@@ -4,6 +4,7 @@ var zauberbild;
     class Star extends zauberbild.Form {
         constructor(_position) {
             super(_position);
+            this.drawSymbol = true;
             if (_position)
                 this.position = _position.copy();
             else
@@ -14,6 +15,7 @@ var zauberbild;
         }
         draw() {
             zauberbild.crc4.save();
+            zauberbild.crc4.scale(0.4, 0.4);
             zauberbild.crc4.translate(this.position.x, this.position.y);
             zauberbild.crc4.fillStyle = "yellow";
             zauberbild.crc4.beginPath();

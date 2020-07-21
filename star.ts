@@ -1,6 +1,8 @@
 namespace zauberbild {
     export class Star extends Form { 
 
+        drawSymbol: boolean = true; 
+
         constructor(_position?: Vector) {
 
             super(_position); 
@@ -20,8 +22,10 @@ namespace zauberbild {
 
         public draw(): void {
             
-            crc4.save();
-            crc4.translate(this.position.x, this.position.y); 
+            
+            crc4.save(); 
+            crc4.scale(0.4, 0.4); 
+            crc4.translate(this.position.x, this.position.y);
             
             crc4.fillStyle = "yellow";
             crc4.beginPath();

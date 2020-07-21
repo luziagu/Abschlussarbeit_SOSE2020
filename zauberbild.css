@@ -20,12 +20,13 @@ div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto)
+    grid-auto-rows: minmax(100px, auto);
+    border: none; 
    
     
 }
 
-#canvas{
+#mainCanvas{
 
     position: absolute;
     height: 500px; 
@@ -90,7 +91,8 @@ input, label {
     top: 60px; 
     left: 20px; 
     height: 257px; 
-    width: 180px;
+    width: 220px;
+    border: solid  black 0.4px; 
 
 }
 

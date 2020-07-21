@@ -14,10 +14,11 @@ var zauberbild;
         }
         draw() {
             zauberbild.crc3.save();
+            zauberbild.crc3.scale(0.7, 0.7);
             zauberbild.crc3.translate(this.position.x, this.position.y);
             var centerX = zauberbild.crc2.canvas.width / 2;
             var centerY = zauberbild.crc2.canvas.height / 2;
-            var radius = 70;
+            var radius = 30;
             zauberbild.crc3.beginPath();
             zauberbild.crc3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
             zauberbild.crc3.fillStyle = "lightblue";
