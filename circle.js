@@ -27,6 +27,10 @@ var zauberbild;
             _crc.lineWidth = 0;
             _crc.strokeStyle = "lightblue";
             _crc.stroke();
+            _crc.restore();
+        }
+        draggable() {
+            let isdragged = true;
         }
     }
     zauberbild.Circle = Circle;

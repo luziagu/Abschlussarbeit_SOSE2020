@@ -7,12 +7,25 @@ body{
 }
 
 h1 {
+    position: fixed;
+    left: 610px; 
+    top: 10px; 
     text-align: center;
+    font-size: 40px;
+}
+h1:hover{
+    color: rgb(255, 183, 88); 
+}
+
+p:hover{
+
+    color: rgb(67, 119, 179); 
+
 }
 
 div {
 
-    border: solid  black 0.4px; 
+    border: solid  rgb(197, 228, 161) 0.4px; 
 }
 
 #gridContainer{
@@ -29,7 +42,7 @@ div {
 
 #mainCanvasDraw{
 
-    border: solid  black 0.4px; 
+    border: solid  rgb(197, 228, 161) 0.4px; 
 }
 
 #mainCanvas{
@@ -44,7 +57,7 @@ div {
 }
 
 #symbolOne:hover, #symbolTwo:hover,#symbolThree:hover,#symbolFour:hover {
-    background-color: burlywood; 
+    background-color: rgb(255, 183, 88); 
 }
 #symbolOne{
 
@@ -104,7 +117,7 @@ input, label {
     left: 20px; 
     height: 257px; 
     width: 220px;
-    border: solid  black 0.4px; 
+    border: solid  rgb(197, 228, 161) 0.4px; 
 
 }
 
@@ -127,21 +140,41 @@ input, label {
 
 #titlePicture {
     
-    position: relative;
-    top: 120px; 
+    position: fixed;
+    top: 700px; 
+    left: 500px; 
 
+}
+
+button{
+    transition-duration: 0.4s;
+    border-radius: 12px;
+    border: rgb(255, 183, 88); 
+    padding: 10px 24px;
+    font-size: 16px;
+    color:white; 
+    background-color: rgb(255, 183, 88);
+    
+}
+
+button:hover{
+    color: black; 
+    background-color:white;
+    border-color:  rgb(255, 183, 88); 
+    
+  
 }
 
 #buttonSafe {
 
-    position: relative;
-    left: -225px; 
-    top: 150px; 
+    position: fixed; 
+    left: 500px; 
+    top: 650px; 
 }
 
 #buttonDelete {
 
-    position: relative;
-    left: -245px; 
-    top: 100px; 
+    position: fixed;
+    left: 360px; 
+    top: 650px; 
 }

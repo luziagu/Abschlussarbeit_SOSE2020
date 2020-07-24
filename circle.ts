@@ -5,6 +5,7 @@ namespace zauberbild {
 
             super(_position); 
     
+        
     
             if (_position)
             this.position = _position.copy();
@@ -36,8 +37,19 @@ namespace zauberbild {
             _crc.lineWidth = 0;
             _crc.strokeStyle = "lightblue";
             _crc.stroke();
+
+            _crc.restore(); 
+
             
     
+        }
+
+        draggable(): void {
+            let isdragged: boolean = true; 
+            
+
+
+            
         }
 
         

@@ -11,25 +11,28 @@ namespace zauberbild {
 
     let mainCanvas: HTMLCanvasElement; 
 
-    let figures: Form [] = [];
    
+   
+    let deleteButton: HTMLButtonElement;
      
     let backgroundColor: HTMLSelectElement;
     let circleDiv: HTMLDivElement; 
     let starDiv: HTMLDivElement; 
     let triangleDiv: HTMLDivElement; 
     let heartDiv: HTMLDivElement; 
-    export let drawSymbol: boolean = true; 
+    let deleteForm: boolean; 
 
-   
-    let backgroundIMage: ImageData; 
+    let figures: Form [] = [];
+    let backgroundImage: ImageData; 
     //let save: HTMLButtonElement; 
     
     window.addEventListener("load", handleLoad);
 
     function handleLoad(_event: Event): void {
 
+        console.log("verknüpft");
 
+        deleteForm = true; 
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
     
@@ -55,8 +58,8 @@ namespace zauberbild {
         let canvasHeart: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("heart"); 
         crc6 = <CanvasRenderingContext2D>canvasHeart.getContext("2d"); 
 
-        console.log("verknüpft"); 
-       
+
+        deleteButton = <HTMLButtonElement>document.getElementById("buttonDelete");
         
 
         form.addEventListener("change", chooseCanvas); 
@@ -65,13 +68,20 @@ namespace zauberbild {
         backgroundColor.addEventListener("change", chooseBackground);
 
         createForms(); 
-
-        
-
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
+        deleteButton.addEventListener("click", clearCanvas); 
+       
+        chooseBackground(_event); 
+
+        setInterval(frame, 100);
+        mainCanvas.addEventListener("click", deleteSymbol);
+        
+
+       
+        
 
 
     }
@@ -153,9 +163,17 @@ namespace zauberbild {
 
         }
 
+        backgroundImage = crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+
 
 
     }
+
+    
+
+    /*function animation() {
+        return setInterval(createForms, 50);
+    }*/
 
     function createForms (): void {
        
@@ -215,6 +233,9 @@ namespace zauberbild {
         //if (target.id) { 
         //    drawSymbol = true; 
         //}
+
+        let x: number = 50; 
+        let y: number = 50; 
         
 
 
@@ -222,7 +243,7 @@ namespace zauberbild {
             case "star":
         
                 
-                let positionStar: Vector = new Vector(0, 0);
+                let positionStar: Vector = new Vector(x, y);
                 let star:  Star = new Star(positionStar); 
                 
                 star.draw(crc2);
@@ -232,7 +253,8 @@ namespace zauberbild {
                 break;
             case "circle":
 
-                let positionCircle: Vector = new Vector(0, 0);
+               
+                let positionCircle: Vector = new Vector(x, y);
                 let circle:  Circle = new Circle(positionCircle);
                 circle.draw(crc2);
                 figures.push(circle);
@@ -243,7 +265,7 @@ namespace zauberbild {
             case "heart":
 
             
-                let positionHeart: Vector = new Vector(0, 0);
+                let positionHeart: Vector = new Vector(x, y);
                 let heart:  Heart = new Heart(positionHeart);
                 heart.draw(crc2);
                 figures.push(heart);
@@ -253,7 +275,7 @@ namespace zauberbild {
                 break; 
             case "triangle":
                     
-                let position: Vector = new Vector(0, 0);
+                let position: Vector = new Vector(x, y);
                 let triangle:  Triangle = new Triangle(position);
                 triangle.draw(crc2);
                 figures.push(triangle);     
@@ -263,6 +285,77 @@ namespace zauberbild {
 
 
     }
+
+    function frame(): void {
+        
+        crc2.putImageData(backgroundImage, 0, 0);
+        //drawTriangle();
+        
+        for (let i: number = 0; i < figures.length; i++) {
+          figures[i].move(1 / 50);
+          figures[i].draw(crc2);
+        }
+    }
+
+    function deleteSymbol(_event: MouseEvent): void {
+
+        let mousePosY: number = _event.clientY; 
+        let mousePosX: number = _event.clientX; 
+        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect(); 
+
+        let offsetX: number = mousePosX - canvasRect.left; 
+        let offsetY: number = mousePosY - canvasRect.top; 
+
+        console.log(offsetX, offsetY); 
+
+        for (let figur of figures) {
+
+            if (figur.position.x - figur.radius < offsetX && 
+                figur.position.x + figur.radius > offsetX &&
+                figur.position.y - figur.radius < offsetY &&
+                figur.position.y + figur.radius > offsetY) {
+
+                let index: number = figures.indexOf(figur); 
+                figures.splice(index, 1);
+
+                console.log("Es funktioniert"); 
+
+                console.log(index); 
+            }
+                
+                
+              
+
+            
+        }
+    }
+
+  
+
+    function clearCanvas(): void {
+
+
+       crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);   
+          
+    }
+
+    //function selectSymbol(_event: MouseEvent): void {
+        //console.log("Der MainCanvas wurde geklickt"); 
+
+        /*let target: HTMLElement = <HTMLElement>_event.target; 
+        let symbol  = target.appendChild; 
+
+        
+        if (symbol) {
+
+            let newSymbol: Triangle = new Triangle();
+            newSymbol.draw(crc2); 
+        }*/
+       
+        
+
+
+    //}
 
    
 

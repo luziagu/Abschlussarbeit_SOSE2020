@@ -26,6 +26,7 @@ var zauberbild;
             _crc.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
             _crc.bezierCurveTo(85, 25, 75, 37, 75, 40);
             _crc.fill();
+            _crc.restore();
         }
     }
     zauberbild.Heart = Heart;

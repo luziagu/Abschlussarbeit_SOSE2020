@@ -3,6 +3,8 @@ namespace zauberbild {
     export class Vector {
         public x: number; 
         public y: number; 
+        public draggable: true; 
+        
 
         constructor(_x: number, _y: number) {
             this.x = _x; 

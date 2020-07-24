@@ -22,6 +22,7 @@ var zauberbild;
             _crc.lineTo(100, 90);
             _crc.lineTo(100, 10);
             _crc.fill();
+            _crc.restore();
         }
     }
     zauberbild.Triangle = Triangle;

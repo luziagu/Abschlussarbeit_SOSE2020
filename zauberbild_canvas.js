@@ -3,17 +3,20 @@ var zauberbild;
 (function (zauberbild) {
     console.log("verknüpft");
     let mainCanvas;
-    let figures = [];
+    let deleteButton;
     let backgroundColor;
     let circleDiv;
     let starDiv;
     let triangleDiv;
     let heartDiv;
-    zauberbild.drawSymbol = true;
-    let backgroundIMage;
+    let deleteForm;
+    let figures = [];
+    let backgroundImage;
     //let save: HTMLButtonElement; 
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
+        console.log("verknüpft");
+        deleteForm = true;
         let form = document.querySelector("div#chooseFormat");
         backgroundColor = document.querySelector("#chooseColor");
         circleDiv = document.getElementById("symbolOne");
@@ -30,7 +33,7 @@ var zauberbild;
         zauberbild.crc5 = canvasTriangle.getContext("2d");
         let canvasHeart = document.getElementById("heart");
         zauberbild.crc6 = canvasHeart.getContext("2d");
-        console.log("verknüpft");
+        deleteButton = document.getElementById("buttonDelete");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
         createForms();
@@ -38,6 +41,10 @@ var zauberbild;
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
+        deleteButton.addEventListener("click", clearCanvas);
+        chooseBackground(_event);
+        setInterval(frame, 100);
+        mainCanvas.addEventListener("click", deleteSymbol);
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
@@ -84,7 +91,11 @@ var zauberbild;
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
                 break;
         }
+        backgroundImage = zauberbild.crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
+    /*function animation() {
+        return setInterval(createForms, 50);
+    }*/
     function createForms() {
         let symbol = 1;
         //Stern
@@ -129,27 +140,29 @@ var zauberbild;
         //if (target.id) { 
         //    drawSymbol = true; 
         //}
+        let x = 50;
+        let y = 50;
         switch (id) {
             case "star":
-                let positionStar = new zauberbild.Vector(0, 0);
+                let positionStar = new zauberbild.Vector(x, y);
                 let star = new zauberbild.Star(positionStar);
                 star.draw(zauberbild.crc2);
                 figures.push(star);
                 break;
             case "circle":
-                let positionCircle = new zauberbild.Vector(0, 0);
+                let positionCircle = new zauberbild.Vector(x, y);
                 let circle = new zauberbild.Circle(positionCircle);
                 circle.draw(zauberbild.crc2);
                 figures.push(circle);
                 break;
             case "heart":
-                let positionHeart = new zauberbild.Vector(0, 0);
+                let positionHeart = new zauberbild.Vector(x, y);
                 let heart = new zauberbild.Heart(positionHeart);
                 heart.draw(zauberbild.crc2);
                 figures.push(heart);
                 break;
             case "triangle":
-                let position = new zauberbild.Vector(0, 0);
+                let position = new zauberbild.Vector(x, y);
                 let triangle = new zauberbild.Triangle(position);
                 triangle.draw(zauberbild.crc2);
                 figures.push(triangle);
@@ -157,5 +170,47 @@ var zauberbild;
         }
     }
     zauberbild.drawSymbolInMainCanvas = drawSymbolInMainCanvas;
+    function frame() {
+        zauberbild.crc2.putImageData(backgroundImage, 0, 0);
+        //drawTriangle();
+        for (let i = 0; i < figures.length; i++) {
+            figures[i].move(1 / 50);
+            figures[i].draw(zauberbild.crc2);
+        }
+    }
+    function deleteSymbol(_event) {
+        let mousePosY = _event.clientY;
+        let mousePosX = _event.clientX;
+        let canvasRect = mainCanvas.getBoundingClientRect();
+        let offsetX = mousePosX - canvasRect.left;
+        let offsetY = mousePosY - canvasRect.top;
+        console.log(offsetX, offsetY);
+        for (let figur of figures) {
+            if (figur.position.x - figur.radius < offsetX &&
+                figur.position.x + figur.radius > offsetX &&
+                figur.position.y - figur.radius < offsetY &&
+                figur.position.y + figur.radius > offsetY) {
+                let index = figures.indexOf(figur);
+                figures.splice(index, 1);
+                console.log("Es funktioniert");
+                console.log(index);
+            }
+        }
+    }
+    function clearCanvas() {
+        zauberbild.crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+    }
+    //function selectSymbol(_event: MouseEvent): void {
+    //console.log("Der MainCanvas wurde geklickt"); 
+    /*let target: HTMLElement = <HTMLElement>_event.target;
+    let symbol  = target.appendChild;
+
+    
+    if (symbol) {
+
+        let newSymbol: Triangle = new Triangle();
+        newSymbol.draw(crc2);
+    }*/
+    //}
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=zauberbild_canvas.js.map
