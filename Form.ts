@@ -14,7 +14,7 @@ namespace zauberbild {
             else 
             this.velocity = new Vector(0, 0);
 
-            this.radius = 5;
+            this.radius = 15;
             this.velocity = new Vector(0, 0);
             
         }

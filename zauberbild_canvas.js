@@ -105,7 +105,7 @@ var zauberbild;
         let position = new zauberbild.Vector(x, y);
         let star = new zauberbild.Star(position);
         star.draw(zauberbild.crc4);
-        //figures.push(star);
+        figures.push(star);
         //Circle
         for (let i = 0; i < symbol; i++) {
             let x = -80;
@@ -113,7 +113,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let circle = new zauberbild.Circle(position);
             circle.draw(zauberbild.crc3);
-            //figures.push(circle);
+            figures.push(circle);
         }
         //Dreieck
         for (let i = 0; i < symbol; i++) {
@@ -122,7 +122,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let triangle = new zauberbild.Triangle(position);
             triangle.draw(zauberbild.crc5);
-            //figures.push(triangle);
+            figures.push(triangle);
         }
         //Herz
         for (let i = 0; i < symbol; i++) {
@@ -131,7 +131,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let heart = new zauberbild.Heart(position);
             heart.draw(zauberbild.crc6);
-            //figures.push(heart);
+            figures.push(heart);
         }
     }
     function drawSymbolInMainCanvas(_event) {
