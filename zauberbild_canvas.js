@@ -36,14 +36,14 @@ var zauberbild;
         deleteButton = document.getElementById("buttonDelete");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
-        createForms();
+        chooseBackground(_event);
+        setInterval(frame, 100);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas);
-        chooseBackground(_event);
-        setInterval(frame, 100);
+        createForms();
         mainCanvas.addEventListener("click", deleteSymbol);
     }
     function chooseCanvas(_event) {
@@ -67,6 +67,7 @@ var zauberbild;
     }
     function chooseBackground(_event) {
         console.log("choose color");
+        console.log(figures);
         let target = _event.target;
         let value = target.value;
         switch (value) {
@@ -104,7 +105,7 @@ var zauberbild;
         let position = new zauberbild.Vector(x, y);
         let star = new zauberbild.Star(position);
         star.draw(zauberbild.crc4);
-        figures.push(star);
+        //figures.push(star);
         //Circle
         for (let i = 0; i < symbol; i++) {
             let x = -80;
@@ -121,7 +122,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let triangle = new zauberbild.Triangle(position);
             triangle.draw(zauberbild.crc5);
-            figures.push(triangle);
+            //figures.push(triangle);
         }
         //Herz
         for (let i = 0; i < symbol; i++) {
@@ -130,7 +131,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let heart = new zauberbild.Heart(position);
             heart.draw(zauberbild.crc6);
-            figures.push(heart);
+            //figures.push(heart);
         }
     }
     function drawSymbolInMainCanvas(_event) {

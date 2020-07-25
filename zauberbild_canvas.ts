@@ -67,23 +67,21 @@ namespace zauberbild {
         
         backgroundColor.addEventListener("change", chooseBackground);
 
-        createForms(); 
+        chooseBackground(_event);
+        setInterval(frame, 100); 
+        
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas); 
-       
-        chooseBackground(_event); 
+        createForms(); 
+        
 
-        setInterval(frame, 100);
+        
         mainCanvas.addEventListener("click", deleteSymbol);
         
-
-       
         
-
-
     }
 
     function chooseCanvas(_event: Event): void {
@@ -124,6 +122,9 @@ namespace zauberbild {
     function chooseBackground (_event: Event): void {
 
         console.log("choose color"); 
+         
+        console.log(figures); 
+
 
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target; 
         let value: string = target.value;
@@ -186,7 +187,7 @@ namespace zauberbild {
 
         let star: Star = new Star(position);
         star.draw(crc4);
-        figures.push(star);
+        //figures.push(star);
 
         //Circle
         for (let i: number = 0; i < symbol; i++) {
@@ -205,7 +206,7 @@ namespace zauberbild {
             let position: Vector = new Vector(x, y);
             let triangle:  Triangle = new Triangle(position);
             triangle.draw(crc5);
-            figures.push(triangle);
+            //figures.push(triangle);
             }
     
     
@@ -216,7 +217,7 @@ namespace zauberbild {
             let position: Vector = new Vector(x, y);
             let heart:  Heart = new Heart (position);
             heart.draw(crc6);
-            figures.push(heart);
+            //figures.push(heart);
             }
 
     }
