@@ -187,7 +187,7 @@ namespace zauberbild {
 
         let star: Star = new Star(position);
         star.draw(crc4);
-        figures.push(star);
+        //figures.push(star);
 
         //Circle
         for (let i: number = 0; i < symbol; i++) {
@@ -196,7 +196,7 @@ namespace zauberbild {
         let position: Vector = new Vector(x, y);
         let circle:  Circle = new Circle(position);
         circle.draw(crc3);
-        figures.push(circle);
+        //figures.push(circle);
         }
 
         //Dreieck
@@ -206,7 +206,7 @@ namespace zauberbild {
             let position: Vector = new Vector(x, y);
             let triangle:  Triangle = new Triangle(position);
             triangle.draw(crc5);
-            figures.push(triangle);
+            //figures.push(triangle);
             }
     
     
@@ -217,7 +217,7 @@ namespace zauberbild {
             let position: Vector = new Vector(x, y);
             let heart:  Heart = new Heart (position);
             heart.draw(crc6);
-            figures.push(heart);
+            //figures.push(heart);
             }
 
     }
@@ -296,9 +296,9 @@ namespace zauberbild {
             if (Form instanceof Heart || Form instanceof Star)
                 Form.move(1 / 20); 
             else if (Form instanceof Triangle)
-                Form.move(1 / 20); 
+                Form.move(1 / 10); 
             else if (Form instanceof Circle)
-                Form.move (1 / 80 ); 
+                Form.move (1 / 20 ); 
             Form.draw(crc2); 
         }
     }
@@ -341,6 +341,12 @@ namespace zauberbild {
     function clearCanvas(): void {
 
        crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);   
+       figures = []; 
+       crc2.fillStyle = "white"; 
+       crc2.fill(); 
+       crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+       crc2.save(); 
+
           
     }
 

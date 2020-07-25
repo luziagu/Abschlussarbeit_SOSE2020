@@ -105,7 +105,7 @@ var zauberbild;
         let position = new zauberbild.Vector(x, y);
         let star = new zauberbild.Star(position);
         star.draw(zauberbild.crc4);
-        figures.push(star);
+        //figures.push(star);
         //Circle
         for (let i = 0; i < symbol; i++) {
             let x = -80;
@@ -113,7 +113,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let circle = new zauberbild.Circle(position);
             circle.draw(zauberbild.crc3);
-            figures.push(circle);
+            //figures.push(circle);
         }
         //Dreieck
         for (let i = 0; i < symbol; i++) {
@@ -122,7 +122,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let triangle = new zauberbild.Triangle(position);
             triangle.draw(zauberbild.crc5);
-            figures.push(triangle);
+            //figures.push(triangle);
         }
         //Herz
         for (let i = 0; i < symbol; i++) {
@@ -131,7 +131,7 @@ var zauberbild;
             let position = new zauberbild.Vector(x, y);
             let heart = new zauberbild.Heart(position);
             heart.draw(zauberbild.crc6);
-            figures.push(heart);
+            //figures.push(heart);
         }
     }
     function drawSymbolInMainCanvas(_event) {
@@ -177,9 +177,9 @@ var zauberbild;
             if (Form instanceof zauberbild.Heart || Form instanceof zauberbild.Star)
                 Form.move(1 / 20);
             else if (Form instanceof zauberbild.Triangle)
-                Form.move(1 / 20);
+                Form.move(1 / 10);
             else if (Form instanceof zauberbild.Circle)
-                Form.move(1 / 80);
+                Form.move(1 / 20);
             Form.draw(zauberbild.crc2);
         }
     }
@@ -204,6 +204,11 @@ var zauberbild;
     }
     function clearCanvas() {
         zauberbild.crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        figures = [];
+        zauberbild.crc2.fillStyle = "white";
+        zauberbild.crc2.fill();
+        zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+        zauberbild.crc2.save();
     }
     //function selectSymbol(_event: MouseEvent): void {
     //console.log("Der MainCanvas wurde geklickt"); 

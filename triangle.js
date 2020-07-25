@@ -8,7 +8,7 @@ var zauberbild;
                 this.position = _position.copy();
             else
                 this.velocity = new zauberbild.Vector(0, 0);
-            this.radius = 5;
+            this.radius = 25;
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
