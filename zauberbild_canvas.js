@@ -37,7 +37,7 @@ var zauberbild;
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
         chooseBackground(_event);
-        setInterval(frame, 100);
+        setInterval(animate, 100);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -171,12 +171,16 @@ var zauberbild;
         }
     }
     zauberbild.drawSymbolInMainCanvas = drawSymbolInMainCanvas;
-    function frame() {
+    function animate() {
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
-        //drawTriangle();
-        for (let i = 0; i < figures.length; i++) {
-            figures[i].move(1 / 50);
-            figures[i].draw(zauberbild.crc2);
+        for (let Form of figures) {
+            if (Form instanceof zauberbild.Heart || Form instanceof zauberbild.Star)
+                Form.move(1 / 20);
+            else if (Form instanceof zauberbild.Triangle)
+                Form.move(1 / 20);
+            else if (Form instanceof zauberbild.Circle)
+                Form.move(1 / 80);
+            Form.draw(zauberbild.crc2);
         }
     }
     function deleteSymbol(_event) {

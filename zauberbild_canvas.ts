@@ -68,7 +68,7 @@ namespace zauberbild {
         backgroundColor.addEventListener("change", chooseBackground);
 
         chooseBackground(_event);
-        setInterval(frame, 100); 
+        setInterval(animate, 100); 
         
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -287,14 +287,19 @@ namespace zauberbild {
 
     }
 
-    function frame(): void {
+    function animate(): void {
 
+       
         crc2.putImageData(backgroundImage, 0, 0);
-        //drawTriangle();
-        
-        for (let i: number = 0; i < figures.length; i++) {
-          figures[i].move(1 / 50);
-          figures[i].draw(crc2);
+
+        for (let Form of figures) {
+            if (Form instanceof Heart || Form instanceof Star)
+                Form.move(1 / 20); 
+            else if (Form instanceof Triangle)
+                Form.move(1 / 20); 
+            else if (Form instanceof Circle)
+                Form.move (1 / 80 ); 
+            Form.draw(crc2); 
         }
     }
 

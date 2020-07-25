@@ -8,7 +8,7 @@ var zauberbild;
                 this.position = _position.copy();
             else
                 this.velocity = new zauberbild.Vector(0, 0);
-            this.radius = 15;
+            this.radius = 25;
             this.velocity = new zauberbild.Vector(0, 0);
         }
         move(_timeslice) {
