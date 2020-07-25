@@ -3,6 +3,7 @@ var zauberbild;
 (function (zauberbild) {
     console.log("verknüpft");
     let mainCanvas;
+    let saveButton;
     let deleteButton;
     let backgroundColor;
     let circleDiv;
@@ -34,6 +35,7 @@ var zauberbild;
         let canvasHeart = document.getElementById("heart");
         zauberbild.crc6 = canvasHeart.getContext("2d");
         deleteButton = document.getElementById("buttonDelete");
+        saveButton = document.getElementById("buttonSafe");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
         chooseBackground(_event);
@@ -43,8 +45,12 @@ var zauberbild;
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas);
+        saveButton.addEventListener("click", saveImage);
         createForms();
         mainCanvas.addEventListener("click", deleteSymbol);
+    }
+    function saveImage(_event) {
+        let nameOfPicture = prompt("Bennene dein Zauberbild: ");
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
@@ -108,8 +114,8 @@ var zauberbild;
         //figures.push(star);
         //Circle
         for (let i = 0; i < symbol; i++) {
-            let x = -80;
-            let y = 0;
+            let x = 35;
+            let y = 35;
             let position = new zauberbild.Vector(x, y);
             let circle = new zauberbild.Circle(position);
             circle.draw(zauberbild.crc3);
@@ -173,14 +179,14 @@ var zauberbild;
     zauberbild.drawSymbolInMainCanvas = drawSymbolInMainCanvas;
     function animate() {
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
-        for (let Form of figures) {
-            if (Form instanceof zauberbild.Heart || Form instanceof zauberbild.Star)
-                Form.move(1 / 20);
-            else if (Form instanceof zauberbild.Triangle)
-                Form.move(1 / 10);
-            else if (Form instanceof zauberbild.Circle)
-                Form.move(1 / 20);
-            Form.draw(zauberbild.crc2);
+        for (let symbol of figures) {
+            if (symbol instanceof zauberbild.Heart || symbol instanceof zauberbild.Star)
+                symbol.move(1 / 20);
+            else if (zauberbild.Form instanceof zauberbild.Triangle)
+                symbol.move(1 / 10);
+            else if (zauberbild.Form instanceof zauberbild.Circle)
+                symbol.move(1 / 20);
+            symbol.draw(zauberbild.crc2);
         }
     }
     function deleteSymbol(_event) {

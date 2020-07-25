@@ -12,6 +12,7 @@ namespace zauberbild {
     let mainCanvas: HTMLCanvasElement; 
 
    
+    let saveButton: HTMLButtonElement; 
    
     let deleteButton: HTMLButtonElement;
      
@@ -60,7 +61,7 @@ namespace zauberbild {
 
 
         deleteButton = <HTMLButtonElement>document.getElementById("buttonDelete");
-        
+        saveButton = <HTMLButtonElement>document.getElementById("buttonSafe"); 
 
         form.addEventListener("change", chooseCanvas); 
 
@@ -75,6 +76,7 @@ namespace zauberbild {
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas); 
+        saveButton.addEventListener("click", saveImage); 
         createForms(); 
         
 
@@ -82,6 +84,12 @@ namespace zauberbild {
         mainCanvas.addEventListener("click", deleteSymbol);
         
         
+    }
+
+    function saveImage(_event: MouseEvent): void {
+        let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+        
+
     }
 
     function chooseCanvas(_event: Event): void {
@@ -191,8 +199,8 @@ namespace zauberbild {
 
         //Circle
         for (let i: number = 0; i < symbol; i++) {
-        let x: number = -80; 
-        let y: number = 0; 
+        let x: number = 35; 
+        let y: number = 35; 
         let position: Vector = new Vector(x, y);
         let circle:  Circle = new Circle(position);
         circle.draw(crc3);
@@ -292,14 +300,14 @@ namespace zauberbild {
        
         crc2.putImageData(backgroundImage, 0, 0);
 
-        for (let Form of figures) {
-            if (Form instanceof Heart || Form instanceof Star)
-                Form.move(1 / 20); 
+        for (let symbol of figures) {
+            if (symbol instanceof Heart || symbol instanceof Star)
+            symbol.move(1 / 20); 
             else if (Form instanceof Triangle)
-                Form.move(1 / 10); 
+            symbol.move(1 / 10); 
             else if (Form instanceof Circle)
-                Form.move (1 / 20 ); 
-            Form.draw(crc2); 
+            symbol.move (1 / 20 ); 
+            symbol.draw(crc2); 
         }
     }
 
