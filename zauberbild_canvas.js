@@ -181,12 +181,14 @@ var zauberbild;
     function animate() {
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
         for (let symbol of figures) {
-            if (symbol instanceof zauberbild.Heart || symbol instanceof zauberbild.Star)
+            if (symbol instanceof zauberbild.Heart)
                 symbol.move(1 / 20);
             else if (zauberbild.Form instanceof zauberbild.Triangle)
-                symbol.move(1 / 20);
+                symbol.move(1 / 90);
             else if (zauberbild.Form instanceof zauberbild.Circle)
-                symbol.move(1 / 20);
+                symbol.move(1 / 50);
+            else if (zauberbild.Form instanceof zauberbild.Star)
+                symbol.move(1 / 90);
             symbol.draw(zauberbild.crc2);
         }
     }
