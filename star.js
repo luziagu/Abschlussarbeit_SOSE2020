@@ -5,6 +5,7 @@ var zauberbild;
         constructor(_position) {
             super(_position);
             this.drawSymbol = true;
+            this.rotation = 0;
             if (_position)
                 this.position = _position.copy();
             else
@@ -25,7 +26,7 @@ var zauberbild;
             _crc.save();
             _crc.scale(0.3, 0.3);
             _crc.translate(this.position.x, this.position.y);
-            _crc.rotate(this.rotation * Math.PI / 180);
+            _crc.rotate(this.rotation * Math.PI / 70);
             _crc.fillStyle = "rgb(253, 224, 144)";
             _crc.moveTo(108, 0.0);
             _crc.lineTo(141, 70);
@@ -41,6 +42,7 @@ var zauberbild;
             _crc.closePath();
             _crc.fill();
             _crc.restore();
+            _crc.arc(this.position.x, this.position.y, 20, 0, 2 * Math.PI, false);
         }
     }
     zauberbild.Star = Star;
