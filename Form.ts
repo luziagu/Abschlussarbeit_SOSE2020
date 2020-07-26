@@ -4,7 +4,7 @@ namespace zauberbild {
 
         public position: Vector;
         public rotation: number; 
-        public radius: number;  
+        public radius: number;   
         public velocity: Vector;
 
         constructor(_position?: Vector) {
@@ -17,6 +17,7 @@ namespace zauberbild {
 
             this.radius = 25;
             this.velocity = new Vector(0, 0);
+            this.rotation = 0; 
             
         }
 

@@ -10,6 +10,7 @@ var zauberbild;
                 this.velocity = new zauberbild.Vector(0, 0);
             this.radius = 25;
             this.velocity = new zauberbild.Vector(0, 0);
+            this.rotation = 0;
         }
         move(_timeslice) {
             let offset = this.velocity.copy();

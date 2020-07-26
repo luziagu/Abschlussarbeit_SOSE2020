@@ -9,7 +9,7 @@ namespace zauberbild {
 
             super(_position); 
             
-            this.rotation = 0; 
+            //this.rotation = 0; 
     
             if (_position)
             this.position = _position.copy();
