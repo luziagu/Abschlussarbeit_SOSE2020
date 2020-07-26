@@ -68,8 +68,7 @@ namespace zauberbild {
         
         backgroundColor.addEventListener("change", chooseBackground);
 
-        chooseBackground(_event);
-        setInterval(animate, 100); 
+        
         
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -77,11 +76,14 @@ namespace zauberbild {
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas); 
         saveButton.addEventListener("click", saveImage); 
+        chooseBackground(_event);
+        setInterval(animate, 100); 
         createForms(); 
         
 
         
         mainCanvas.addEventListener("click", deleteSymbol);
+        mainCanvas.addEventListener("mousedown", mooveSymbol); 
         
         
     }
@@ -304,11 +306,22 @@ namespace zauberbild {
             if (symbol instanceof Heart || symbol instanceof Star)
             symbol.move(1 / 20); 
             else if (Form instanceof Triangle)
-            symbol.move(1 / 10); 
+            symbol.move(1 / 20); 
             else if (Form instanceof Circle)
             symbol.move (1 / 20 ); 
             symbol.draw(crc2); 
         }
+    }
+
+    function mooveSymbol(_event: MouseEvent): void {
+
+        console.log("Mousedowm"); 
+       
+       
+
+            
+        
+
     }
 
     function deleteSymbol(_event: MouseEvent): void {
@@ -350,10 +363,12 @@ namespace zauberbild {
 
        crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);   
        figures = []; 
+       crc2.save(); 
+       
        crc2.fillStyle = "white"; 
        crc2.fill(); 
        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-       crc2.save(); 
+       crc2.restore(); 
 
           
     }

@@ -38,16 +38,17 @@ var zauberbild;
         saveButton = document.getElementById("buttonSafe");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
-        chooseBackground(_event);
-        setInterval(animate, 100);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas);
         saveButton.addEventListener("click", saveImage);
+        chooseBackground(_event);
+        setInterval(animate, 100);
         createForms();
         mainCanvas.addEventListener("click", deleteSymbol);
+        mainCanvas.addEventListener("mousedown", mooveSymbol);
     }
     function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
@@ -183,11 +184,14 @@ var zauberbild;
             if (symbol instanceof zauberbild.Heart || symbol instanceof zauberbild.Star)
                 symbol.move(1 / 20);
             else if (zauberbild.Form instanceof zauberbild.Triangle)
-                symbol.move(1 / 10);
+                symbol.move(1 / 20);
             else if (zauberbild.Form instanceof zauberbild.Circle)
                 symbol.move(1 / 20);
             symbol.draw(zauberbild.crc2);
         }
+    }
+    function mooveSymbol(_event) {
+        console.log("Mousedowm");
     }
     function deleteSymbol(_event) {
         let mousePosY = _event.clientY;
@@ -211,10 +215,11 @@ var zauberbild;
     function clearCanvas() {
         zauberbild.crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         figures = [];
+        zauberbild.crc2.save();
         zauberbild.crc2.fillStyle = "white";
         zauberbild.crc2.fill();
         zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
-        zauberbild.crc2.save();
+        zauberbild.crc2.restore();
     }
     //function selectSymbol(_event: MouseEvent): void {
     //console.log("Der MainCanvas wurde geklickt"); 
