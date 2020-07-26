@@ -182,13 +182,14 @@ var zauberbild;
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
         for (let symbol of figures) {
             if (symbol instanceof zauberbild.Heart)
-                symbol.move(1 / 20);
-            else if (zauberbild.Form instanceof zauberbild.Triangle)
                 symbol.move(1 / 90);
-            else if (zauberbild.Form instanceof zauberbild.Circle)
+            else if (symbol instanceof zauberbild.Triangle)
+                symbol.move(1 / 30);
+            else if (symbol instanceof zauberbild.Circle)
                 symbol.move(1 / 50);
-            else if (zauberbild.Form instanceof zauberbild.Star)
+            else if (symbol instanceof zauberbild.Star)
                 symbol.move(1 / 90);
+            symbol.rotate(1 / 20);
             symbol.draw(zauberbild.crc2);
         }
     }

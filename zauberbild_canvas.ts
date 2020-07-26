@@ -304,13 +304,14 @@ namespace zauberbild {
 
         for (let symbol of figures) {
             if (symbol instanceof Heart) 
-            symbol.move(1 / 20); 
-            else if (Form instanceof Triangle)
             symbol.move(1 / 90); 
-            else if (Form instanceof Circle)
+            else if (symbol instanceof Triangle)
+            symbol.move(1 / 30); 
+            else if (symbol instanceof Circle)
             symbol.move (1 / 50 ); 
-            else if (Form instanceof Star)
+            else if (symbol instanceof Star)
             symbol.move (1 / 90 );
+            symbol.rotate( 1 / 20); 
             symbol.draw(crc2); 
         }
     }
