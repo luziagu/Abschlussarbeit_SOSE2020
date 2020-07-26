@@ -13,15 +13,19 @@ var zauberbild;
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
+        rotate() {
+            this.rotation += 1;
+        }
         draw(_crc) {
             //if (drawSymbol = true){
             //    CanvasRenderingContext2D
             //}
+            this.rotate();
             _crc.beginPath();
             _crc.save();
             _crc.scale(0.3, 0.3);
             _crc.translate(this.position.x, this.position.y);
-            _crc.rotate((this.rotation += 1) * Math.PI / 180);
+            _crc.rotate(this.rotation * Math.PI / 180);
             _crc.fillStyle = "rgb(253, 224, 144)";
             _crc.moveTo(108, 0.0);
             _crc.lineTo(141, 70);

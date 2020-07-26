@@ -21,16 +21,25 @@ namespace zauberbild {
             this.velocity = Vector.getRandom(5, 10);
         }
 
+
+        public rotate(): void {
+
+            
+            this.rotation += 1; 
+
+        }
+
         public draw(_crc: CanvasRenderingContext2D): void {
             
             //if (drawSymbol = true){
             //    CanvasRenderingContext2D
             //}
+            this.rotate(); 
             _crc.beginPath();
             _crc.save(); 
             _crc.scale(0.3, 0.3); 
             _crc.translate(this.position.x, this.position.y);
-            _crc.rotate((this.rotation += 1 ) * Math.PI / 180); 
+            _crc.rotate(this.rotation * Math.PI / 180); 
             
             _crc.fillStyle = "rgb(253, 224, 144)";
             
@@ -50,6 +59,9 @@ namespace zauberbild {
 
             _crc.restore(); 
         }
+
+
+        
 
        
 

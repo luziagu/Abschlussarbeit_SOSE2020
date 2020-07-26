@@ -4,7 +4,7 @@ namespace zauberbild {
 
         public position: Vector;
         public rotation: number; 
-        public radius: number; 
+        public radius: number;  
         public velocity: Vector;
 
         constructor(_position?: Vector) {
