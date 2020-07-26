@@ -107,8 +107,8 @@ var zauberbild;
     function createForms() {
         let symbol = 1;
         //Stern
-        let x = 55;
-        let y = 50;
+        let x = 80;
+        let y = 20;
         let position = new zauberbild.Vector(x, y);
         let star = new zauberbild.Star(position);
         star.draw(zauberbild.crc4);
@@ -124,8 +124,8 @@ var zauberbild;
         }
         //Dreieck
         for (let i = 0; i < symbol; i++) {
-            let x = -25;
-            let y = 5;
+            let x = 50;
+            let y = 47;
             let position = new zauberbild.Vector(x, y);
             let triangle = new zauberbild.Triangle(position);
             triangle.draw(zauberbild.crc5);
@@ -182,14 +182,13 @@ var zauberbild;
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
         for (let symbol of figures) {
             if (symbol instanceof zauberbild.Heart)
-                symbol.move(1 / 90);
+                symbol.move(1 / 20);
             else if (symbol instanceof zauberbild.Triangle)
-                symbol.move(1 / 30);
+                symbol.move(1 / 20);
             else if (symbol instanceof zauberbild.Circle)
                 symbol.move(1 / 50);
             else if (symbol instanceof zauberbild.Star)
-                symbol.move(1 / 90);
-            symbol.rotate(1 / 20);
+                symbol.move(1 / 20);
             symbol.draw(zauberbild.crc2);
         }
     }

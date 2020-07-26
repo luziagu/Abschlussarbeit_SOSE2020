@@ -3,6 +3,7 @@ namespace zauberbild {
     export abstract class Form {
 
         public position: Vector;
+        public rotation: number; 
         public radius: number; 
         public velocity: Vector;
 
@@ -40,9 +41,9 @@ namespace zauberbild {
 
         }
 
-        public rotate(_timeslice: number): void {
+        /*public rotate(_timeslice: number): void {
 
-            let rotateAngle: number = 0.005; 
+            let rotateAngle: number = 0.001; 
 
             for (var angle: number = 0; angle < 2 * Math.PI; angle += 0.01 ) {
                 var x: number = 200 * Math.cos(2 * angle ) * Math.cos(angle);
@@ -51,7 +52,7 @@ namespace zauberbild {
             }
 
             crc2.rotate(rotateAngle); 
-        }
+        }*/
 
     }
 

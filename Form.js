@@ -26,15 +26,6 @@ var zauberbild;
             if (this.position.y > zauberbild.crc2.canvas.height)
                 this.position.y -= zauberbild.crc2.canvas.height;
         }
-        rotate(_timeslice) {
-            let rotateAngle = 0.005;
-            for (var angle = 0; angle < 2 * Math.PI; angle += 0.01) {
-                var x = 200 * Math.cos(2 * angle) * Math.cos(angle);
-                var y = 200 * Math.cos(2 * angle) * Math.sin(angle);
-                zauberbild.crc2.lineTo(x, y);
-            }
-            zauberbild.crc2.rotate(rotateAngle);
-        }
     }
     zauberbild.Form = Form;
 })(zauberbild || (zauberbild = {}));

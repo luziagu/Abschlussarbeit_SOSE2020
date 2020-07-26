@@ -17,11 +17,12 @@ var zauberbild;
             //if (drawSymbol = true){
             //    CanvasRenderingContext2D
             //}
+            _crc.beginPath();
             _crc.save();
             _crc.scale(0.3, 0.3);
             _crc.translate(this.position.x, this.position.y);
+            _crc.rotate((this.rotation += 1) * Math.PI / 180);
             _crc.fillStyle = "rgb(253, 224, 144)";
-            _crc.beginPath();
             _crc.moveTo(108, 0.0);
             _crc.lineTo(141, 70);
             _crc.lineTo(218, 78.3);

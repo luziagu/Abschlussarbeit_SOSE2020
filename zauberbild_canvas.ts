@@ -191,8 +191,8 @@ namespace zauberbild {
         let symbol: number = 1;
        //Stern
      
-        let x: number = 55; 
-        let y: number = 50; 
+        let x: number = 80; 
+        let y: number = 20; 
         let position: Vector = new Vector(x, y);
 
         let star: Star = new Star(position);
@@ -211,8 +211,8 @@ namespace zauberbild {
 
         //Dreieck
         for (let i: number = 0; i < symbol; i++) {
-            let x: number = -25; 
-            let y: number = 5; 
+            let x: number = 50; 
+            let y: number = 47; 
             let position: Vector = new Vector(x, y);
             let triangle:  Triangle = new Triangle(position);
             triangle.draw(crc5);
@@ -304,14 +304,13 @@ namespace zauberbild {
 
         for (let symbol of figures) {
             if (symbol instanceof Heart) 
-            symbol.move(1 / 90); 
+            symbol.move(1 / 20); 
             else if (symbol instanceof Triangle)
-            symbol.move(1 / 30); 
+            symbol.move(1 / 20); 
             else if (symbol instanceof Circle)
             symbol.move (1 / 50 ); 
             else if (symbol instanceof Star)
-            symbol.move (1 / 90 );
-            symbol.rotate( 1 / 20); 
+            symbol.move (1 / 20 );
             symbol.draw(crc2); 
         }
     }
