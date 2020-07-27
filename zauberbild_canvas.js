@@ -3,6 +3,8 @@ var zauberbild;
 (function (zauberbild) {
     console.log("verknüpft");
     let mainCanvas;
+    let dragDrop = false;
+    let objectDragDrop;
     let saveButton;
     let deleteButton;
     let backgroundColor;
@@ -49,6 +51,7 @@ var zauberbild;
         createForms();
         mainCanvas.addEventListener("click", deleteSymbol);
         mainCanvas.addEventListener("mousedown", mooveSymbol);
+        mainCanvas.addEventListener("mouseup", placeSymbol);
     }
     function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
@@ -178,7 +181,7 @@ var zauberbild;
         }
     }
     zauberbild.drawSymbolInMainCanvas = drawSymbolInMainCanvas;
-    function animate() {
+    function animate(_event) {
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
         for (let symbol of figures) {
             if (symbol instanceof zauberbild.Heart)
@@ -191,9 +194,35 @@ var zauberbild;
                 symbol.move(1 / 20);
             symbol.draw(zauberbild.crc2);
         }
+        if (dragDrop == true) {
+            objectDragDrop.position.x = _event.clientX;
+            objectDragDrop.position.y = _event.clientY;
+            objectDragDrop.draw(zauberbild.crc2);
+        }
     }
     function mooveSymbol(_event) {
         console.log("Mousedowm");
+        dragDrop = true;
+        let mousePosY = _event.clientY;
+        let mousePosX = _event.clientX;
+        let canvasRect = mainCanvas.getBoundingClientRect();
+        let offsetX = mousePosX - canvasRect.left;
+        let offsetY = mousePosY - canvasRect.top;
+        console.log(offsetX, offsetY);
+        for (let figur of figures) {
+            if (figur.position.x - figur.radius < offsetX &&
+                figur.position.x + figur.radius > offsetX &&
+                figur.position.y - figur.radius < offsetY &&
+                figur.position.y + figur.radius > offsetY) {
+                let index = figures.indexOf(figur);
+                figures.splice(index, 1);
+                objectDragDrop = figur;
+            }
+        }
+    }
+    function placeSymbol(_event) {
+        dragDrop = false;
+        figures.push(objectDragDrop);
     }
     function deleteSymbol(_event) {
         let mousePosY = _event.clientY;

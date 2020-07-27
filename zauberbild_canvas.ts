@@ -11,7 +11,8 @@ namespace zauberbild {
 
     let mainCanvas: HTMLCanvasElement; 
 
-   
+    let dragDrop: boolean = false; 
+    let objectDragDrop: Form;  
     let saveButton: HTMLButtonElement; 
    
     let deleteButton: HTMLButtonElement;
@@ -84,6 +85,7 @@ namespace zauberbild {
         
         mainCanvas.addEventListener("click", deleteSymbol);
         mainCanvas.addEventListener("mousedown", mooveSymbol); 
+        mainCanvas.addEventListener("mouseup", placeSymbol); 
         
         
     }
@@ -297,9 +299,9 @@ namespace zauberbild {
 
     }
 
-    function animate(): void {
+    function animate(_event: MouseEvent): void {
 
-       
+        
         crc2.putImageData(backgroundImage, 0, 0);
 
         for (let symbol of figures) {
@@ -313,16 +315,64 @@ namespace zauberbild {
             symbol.move (1 / 20 );
             symbol.draw(crc2); 
         }
+
+        if (dragDrop == true) {
+
+            objectDragDrop.position.x = _event.clientX; 
+            objectDragDrop.position.y = _event.clientY; 
+            objectDragDrop.draw(crc2); 
+
+            
+        }
     }
 
     function mooveSymbol(_event: MouseEvent): void {
-
         console.log("Mousedowm"); 
-       
-       
+
+
+        dragDrop = true; 
+
+        let mousePosY: number = _event.clientY; 
+        let mousePosX: number = _event.clientX; 
+        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect(); 
+
+        let offsetX: number = mousePosX - canvasRect.left; 
+        let offsetY: number = mousePosY - canvasRect.top; 
+
+        console.log(offsetX, offsetY); 
+
+        for (let figur of figures) {
+
+            if (figur.position.x - figur.radius < offsetX && 
+                figur.position.x + figur.radius > offsetX &&
+                figur.position.y - figur.radius < offsetY &&
+                figur.position.y + figur.radius > offsetY) {
+
+                let index: number = figures.indexOf(figur); 
+                figures.splice(index, 1);
+
+                objectDragDrop = figur; 
+
+                
+
+                
+            }        
+              
 
             
+        }
+
         
+              
+        
+
+    }
+
+    function placeSymbol(_event: MouseEvent): void {
+
+        dragDrop = false; 
+        figures.push(objectDragDrop); 
+
 
     }
 
