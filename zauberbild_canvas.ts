@@ -316,14 +316,7 @@ namespace zauberbild {
             symbol.draw(crc2); 
         }
 
-        if (dragDrop == true) {
-
-            objectDragDrop.position.x = _event.clientX; 
-            objectDragDrop.position.y = _event.clientY; 
-            objectDragDrop.draw(crc2); 
-
-            
-        }
+        
     }
 
     function mooveSymbol(_event: MouseEvent): void {
@@ -358,6 +351,15 @@ namespace zauberbild {
                 
             }        
               
+
+            
+        }
+
+        if (dragDrop == true) {
+
+            objectDragDrop.position.x = _event.clientX; 
+            objectDragDrop.position.y = _event.clientY; 
+            objectDragDrop.draw(crc2); 
 
             
         }

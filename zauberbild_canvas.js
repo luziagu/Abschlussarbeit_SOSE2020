@@ -194,11 +194,6 @@ var zauberbild;
                 symbol.move(1 / 20);
             symbol.draw(zauberbild.crc2);
         }
-        if (dragDrop == true) {
-            objectDragDrop.position.x = _event.clientX;
-            objectDragDrop.position.y = _event.clientY;
-            objectDragDrop.draw(zauberbild.crc2);
-        }
     }
     function mooveSymbol(_event) {
         console.log("Mousedowm");
@@ -218,6 +213,11 @@ var zauberbild;
                 figures.splice(index, 1);
                 objectDragDrop = figur;
             }
+        }
+        if (dragDrop == true) {
+            objectDragDrop.position.x = _event.clientX;
+            objectDragDrop.position.y = _event.clientY;
+            objectDragDrop.draw(zauberbild.crc2);
         }
     }
     function placeSymbol(_event) {

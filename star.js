@@ -5,7 +5,7 @@ var zauberbild;
         constructor(_position) {
             super(_position);
             this.drawSymbol = true;
-            //this.rotation = 0; 
+            this.rotation = 0;
             if (_position)
                 this.position = _position.copy();
             else
