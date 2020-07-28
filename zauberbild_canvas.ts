@@ -98,10 +98,16 @@ namespace zauberbild {
 
     async function saveImage(_event: MouseEvent): Promise<void> {
 
-        //let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+        let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
 
         safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
         safeMagicImage.push(backgroundColorSafe); 
+
+        if (nameOfPicture != null) {
+
+            safeMagicImage.push(nameOfPicture); 
+        }
+        
 
         for (let figur of figures) {
             safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString()); 

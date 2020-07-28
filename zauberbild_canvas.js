@@ -56,9 +56,12 @@ var zauberbild;
         mainCanvas.addEventListener("mousemove", dragSymbol);
     }
     async function saveImage(_event) {
-        //let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+        let nameOfPicture = prompt("Bennene dein Zauberbild: ");
         safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
         safeMagicImage.push(backgroundColorSafe);
+        if (nameOfPicture != null) {
+            safeMagicImage.push(nameOfPicture);
+        }
         for (let figur of figures) {
             safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString());
             if (figur instanceof zauberbild.Triangle) {
