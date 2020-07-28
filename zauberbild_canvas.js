@@ -56,7 +56,7 @@ var zauberbild;
         mainCanvas.addEventListener("mousemove", dragSymbol);
     }
     async function saveImage(_event) {
-        let nameOfPicture = prompt("Bennene dein Zauberbild: ");
+        //let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
         safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
         safeMagicImage.push(backgroundColorSafe);
         for (let figur of figures) {
@@ -75,7 +75,7 @@ var zauberbild;
             }
         }
         JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
-        let response = await fetch(url + safeMagicImage);
+        let response = await fetch(url + "?" + safeMagicImage);
         let texte = await response.text();
         console.log(texte);
         //let data: Data = JSON.parse(texte); 

@@ -33,7 +33,7 @@ namespace zauberbild {
     
     window.addEventListener("load", handleLoad);
 
-    async function handleLoad(_event: Event): Promise <void> {
+    async function handleLoad(_event: Event): Promise<void> {
 
         console.log("verknüpft");
 
@@ -96,7 +96,7 @@ namespace zauberbild {
         
     }
 
-    async function saveImage(_event: MouseEvent): Promise <void> {
+    async function saveImage(_event: MouseEvent): Promise<void> {
 
         //let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
 
