@@ -98,7 +98,7 @@ namespace zauberbild {
 
     async function saveImage(_event: MouseEvent): Promise <void> {
 
-        let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+        //let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
 
         safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
         safeMagicImage.push(backgroundColorSafe); 
@@ -129,7 +129,7 @@ namespace zauberbild {
         }
 
         JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
-        let response: Response = await fetch(url + safeMagicImage); 
+        let response: Response = await fetch(url + "?" + safeMagicImage); 
         let texte: string = await response.text(); 
         console.log(texte); 
         //let data: Data = JSON.parse(texte); 
@@ -438,7 +438,7 @@ namespace zauberbild {
         console.log("MouseUp"); 
 
        
-        if (dragDrop == true){
+        if (dragDrop == true) {
 
             dragDrop = false; 
             figures.push(objectDragDrop); 
