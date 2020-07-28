@@ -1,10 +1,10 @@
 {
-  "name": "haushaltshilfe-app",
+  "name": "haushaltshilfe",
   "version": "1.0.0",
-  "description": "Haushaltshilfe",
+  "description": "Zauberbild",
   "main": "",
   "scripts": {
-    "start": "node Haushaltshilfe-Update/Server/Server.js remote"
+    "start": "node Server/server.js remote"
   },
   "repository": {
     "type": "git",

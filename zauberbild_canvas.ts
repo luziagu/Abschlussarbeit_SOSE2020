@@ -9,6 +9,7 @@ namespace zauberbild {
     export let crc6: CanvasRenderingContext2D; 
 
 
+    let url: string = "https://haushaltshilfe-app.herokuapp.com/"; 
     let mainCanvas: HTMLCanvasElement; 
 
     let dragDrop: boolean = false; 
@@ -22,19 +23,23 @@ namespace zauberbild {
     let starDiv: HTMLDivElement; 
     let triangleDiv: HTMLDivElement; 
     let heartDiv: HTMLDivElement; 
-    let deleteForm: boolean; 
+    let backgroundColorSafe: string; 
+     
 
-    let figures: Form [] = [];
+    let figures: Form[] = [];
+    let safeMagicImage: string[] = []; 
     let backgroundImage: ImageData; 
     //let save: HTMLButtonElement; 
     
     window.addEventListener("load", handleLoad);
 
-    function handleLoad(_event: Event): void {
+    async function handleLoad(_event: Event): Promise <void> {
 
         console.log("verknüpft");
 
-        deleteForm = true; 
+        
+
+        
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
     
@@ -83,7 +88,7 @@ namespace zauberbild {
         
 
         
-        mainCanvas.addEventListener("click", deleteSymbol);
+        mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", mooveSymbol); 
         mainCanvas.addEventListener("mouseup", placeSymbol); 
         mainCanvas.addEventListener("mousemove", dragSymbol); 
@@ -91,8 +96,46 @@ namespace zauberbild {
         
     }
 
-    function saveImage(_event: MouseEvent): void {
+    async function saveImage(_event: MouseEvent): Promise <void> {
+
         let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+
+        safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
+        safeMagicImage.push(backgroundColorSafe); 
+
+        for (let figur of figures) {
+            safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString()); 
+
+            if (figur instanceof Triangle) {
+                safeMagicImage.push("triangle"); 
+
+            }
+
+            if (figur instanceof Star) {
+                safeMagicImage.push("star"); 
+
+            }
+
+            if (figur instanceof Circle) {
+                safeMagicImage.push("circle"); 
+
+            }
+
+            if (figur instanceof Heart) {
+                safeMagicImage.push("heart"); 
+
+            }
+
+        }
+
+        JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
+        let response: Response = await fetch(url + safeMagicImage); 
+        let texte: string = await response.text(); 
+        console.log(texte); 
+        //let data: Data = JSON.parse(texte); 
+
+
+
         
 
     }
@@ -157,12 +200,15 @@ namespace zauberbild {
                 crc2.fillStyle = "lightgreen"; 
                 crc2.fill(); 
                 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                backgroundColorSafe = "lightgreen"; 
+
                     
                 break; 
             case "pink":
                 crc2.fillStyle = "lightpink"; 
                 crc2.fill(); 
                 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                backgroundColorSafe = "lightpink"; 
                         
                 
                 break; 
@@ -171,11 +217,22 @@ namespace zauberbild {
                 crc2.fillStyle = "lightblue"; 
                 crc2.fill(); 
                 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                backgroundColorSafe = "lightblue"; 
                                                 
+                break; 
+            case "lavendel":
+           
+                crc2.fillStyle = "lightblue"; 
+                crc2.fill(); 
+                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+                backgroundColorSafe = "lavendel"; 
+                                                        
                 break; 
         
 
         }
+
+
 
         backgroundImage = crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
 
@@ -380,8 +437,14 @@ namespace zauberbild {
 
         console.log("MouseUp"); 
 
-        dragDrop = false; 
-        figures.push(objectDragDrop); 
+       
+        if (dragDrop == true){
+
+            dragDrop = false; 
+            figures.push(objectDragDrop); 
+
+        }
+        
 
 
     }

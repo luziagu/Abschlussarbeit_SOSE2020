@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
-var zauberbild;
-(function (zauberbild) {
+var haushaltshilfe;
+(function (haushaltshilfe) {
     let orders;
     let port = process.env.PORT;
     if (port == undefined)
@@ -67,5 +67,5 @@ var zauberbild;
     function storeOrder(_order) {
         orders.insert(_order);
     }
-})(zauberbild = exports.zauberbild || (exports.zauberbild = {}));
+})(haushaltshilfe = exports.haushaltshilfe || (exports.haushaltshilfe = {}));
 //# sourceMappingURL=server.js.map

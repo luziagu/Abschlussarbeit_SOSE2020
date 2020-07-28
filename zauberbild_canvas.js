@@ -2,6 +2,7 @@
 var zauberbild;
 (function (zauberbild) {
     console.log("verknüpft");
+    let url = "https://haushaltshilfe-app.herokuapp.com/";
     let mainCanvas;
     let dragDrop = false;
     let objectDragDrop;
@@ -12,14 +13,14 @@ var zauberbild;
     let starDiv;
     let triangleDiv;
     let heartDiv;
-    let deleteForm;
+    let backgroundColorSafe;
     let figures = [];
+    let safeMagicImage = [];
     let backgroundImage;
     //let save: HTMLButtonElement; 
     window.addEventListener("load", handleLoad);
-    function handleLoad(_event) {
+    async function handleLoad(_event) {
         console.log("verknüpft");
-        deleteForm = true;
         let form = document.querySelector("div#chooseFormat");
         backgroundColor = document.querySelector("#chooseColor");
         circleDiv = document.getElementById("symbolOne");
@@ -49,13 +50,35 @@ var zauberbild;
         chooseBackground(_event);
         setInterval(animate, 100);
         createForms();
-        mainCanvas.addEventListener("click", deleteSymbol);
+        mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", mooveSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
     }
-    function saveImage(_event) {
+    async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
+        safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+        safeMagicImage.push(backgroundColorSafe);
+        for (let figur of figures) {
+            safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString());
+            if (figur instanceof zauberbild.Triangle) {
+                safeMagicImage.push("triangle");
+            }
+            if (figur instanceof zauberbild.Star) {
+                safeMagicImage.push("star");
+            }
+            if (figur instanceof zauberbild.Circle) {
+                safeMagicImage.push("circle");
+            }
+            if (figur instanceof zauberbild.Heart) {
+                safeMagicImage.push("heart");
+            }
+        }
+        JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
+        let response = await fetch(url + safeMagicImage);
+        let texte = await response.text();
+        console.log(texte);
+        //let data: Data = JSON.parse(texte); 
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
@@ -91,16 +114,25 @@ var zauberbild;
                 zauberbild.crc2.fillStyle = "lightgreen";
                 zauberbild.crc2.fill();
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                backgroundColorSafe = "lightgreen";
                 break;
             case "pink":
                 zauberbild.crc2.fillStyle = "lightpink";
                 zauberbild.crc2.fill();
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                backgroundColorSafe = "lightpink";
                 break;
             case "lightblue":
                 zauberbild.crc2.fillStyle = "lightblue";
                 zauberbild.crc2.fill();
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                backgroundColorSafe = "lightblue";
+                break;
+            case "lavendel":
+                zauberbild.crc2.fillStyle = "lightblue";
+                zauberbild.crc2.fill();
+                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                backgroundColorSafe = "lavendel";
                 break;
         }
         backgroundImage = zauberbild.crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
@@ -227,8 +259,10 @@ var zauberbild;
     }
     function placeSymbol(_event) {
         console.log("MouseUp");
-        dragDrop = false;
-        figures.push(objectDragDrop);
+        if (dragDrop == true) {
+            dragDrop = false;
+            figures.push(objectDragDrop);
+        }
     }
     function deleteSymbol(_event) {
         let mousePosY = _event.clientY;

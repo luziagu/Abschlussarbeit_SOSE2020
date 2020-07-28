@@ -3,7 +3,7 @@ import * as Url from "url";
 import * as Mongo from "mongodb"; 
 
 
-export namespace zauberbild {
+export namespace haushaltshilfe {
     interface Order {
         [type: string]: string | string[] | undefined; 
     }
@@ -95,3 +95,4 @@ export namespace zauberbild {
 
     
 }
+
