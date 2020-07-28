@@ -195,6 +195,9 @@ var zauberbild;
                 symbol.move(1 / 20);
             symbol.draw(zauberbild.crc2);
         }
+        if (dragDrop == true) {
+            objectDragDrop.draw(zauberbild.crc2);
+        }
     }
     function dragSymbol(_event) {
         if (dragDrop == true) {
@@ -223,6 +226,7 @@ var zauberbild;
         }
     }
     function placeSymbol(_event) {
+        console.log("MouseUp");
         dragDrop = false;
         figures.push(objectDragDrop);
     }
