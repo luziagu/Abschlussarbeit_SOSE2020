@@ -86,6 +86,7 @@ namespace zauberbild {
         mainCanvas.addEventListener("click", deleteSymbol);
         mainCanvas.addEventListener("mousedown", mooveSymbol); 
         mainCanvas.addEventListener("mouseup", placeSymbol); 
+        mainCanvas.addEventListener("mousemove", dragSymbol); 
         
         
     }
@@ -319,6 +320,15 @@ namespace zauberbild {
         
     }
 
+    function dragSymbol(_event: MouseEvent): void {
+        if (dragDrop == true) {
+            objectDragDrop.position.x = _event.clientX; 
+            objectDragDrop.position.y = _event.clientY; 
+
+        }
+
+    }
+
     function mooveSymbol(_event: MouseEvent): void {
         console.log("Mousedowm"); 
 
@@ -351,15 +361,6 @@ namespace zauberbild {
                 
             }        
               
-
-            
-        }
-
-        if (dragDrop == true) {
-
-            objectDragDrop.position.x = _event.clientX; 
-            objectDragDrop.position.y = _event.clientY; 
-            objectDragDrop.draw(crc2); 
 
             
         }

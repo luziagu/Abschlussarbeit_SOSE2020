@@ -52,6 +52,7 @@ var zauberbild;
         mainCanvas.addEventListener("click", deleteSymbol);
         mainCanvas.addEventListener("mousedown", mooveSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
+        mainCanvas.addEventListener("mousemove", dragSymbol);
     }
     function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
@@ -195,6 +196,12 @@ var zauberbild;
             symbol.draw(zauberbild.crc2);
         }
     }
+    function dragSymbol(_event) {
+        if (dragDrop == true) {
+            objectDragDrop.position.x = _event.clientX;
+            objectDragDrop.position.y = _event.clientY;
+        }
+    }
     function mooveSymbol(_event) {
         console.log("Mousedowm");
         dragDrop = true;
@@ -213,11 +220,6 @@ var zauberbild;
                 figures.splice(index, 1);
                 objectDragDrop = figur;
             }
-        }
-        if (dragDrop == true) {
-            objectDragDrop.position.x = _event.clientX;
-            objectDragDrop.position.y = _event.clientY;
-            objectDragDrop.draw(zauberbild.crc2);
         }
     }
     function placeSymbol(_event) {
