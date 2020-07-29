@@ -62,7 +62,7 @@ var zauberbild;
             safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
             safeMagicImage.push(backgroundColorSafe);
             for (let figur of figures) {
-                safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString());
+                safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
                 if (figur instanceof zauberbild.Triangle) {
                     safeMagicImage.push("triangle");
                 }
@@ -84,6 +84,18 @@ var zauberbild;
         console.log(texte);
         alert(texte);
         //let data: Data = JSON.parse(texte); 
+    }
+    async function showTitles(_response) {
+        let titles = _response.split(",");
+        for (let title of titles) {
+            if (title == "") {
+            }
+            else {
+                let option = document.createElement("option");
+                option.setAttribute("name", title);
+                option.value = title;
+            }
+        }
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");

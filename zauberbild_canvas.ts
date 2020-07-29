@@ -102,7 +102,7 @@ namespace zauberbild {
         
 
             for (let figur of figures) {
-                safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString()); 
+                safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString()); 
 
                 if (figur instanceof Triangle) {
                 safeMagicImage.push("triangle"); 
@@ -139,6 +139,20 @@ namespace zauberbild {
 
         
 
+    }
+
+    async function showTitles(_response: string): Promise<void> {
+        let titles: string [] = _response.split(","); 
+        for (let title of titles) {
+            if (title == ""){
+
+            }
+            else {
+                let option: HTMLOptionElement = document.createElement("option");
+                option.setAttribute("name", title); 
+                option.value = title;
+            }
+        }
     }
 
     function chooseCanvas(_event: Event): void {
