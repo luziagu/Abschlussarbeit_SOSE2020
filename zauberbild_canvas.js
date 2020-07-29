@@ -57,30 +57,31 @@ var zauberbild;
     }
     async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
-        safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-        safeMagicImage.push(backgroundColorSafe);
         if (nameOfPicture != null) {
-            safeMagicImage.push(nameOfPicture);
-        }
-        for (let figur of figures) {
-            safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString());
-            if (figur instanceof zauberbild.Triangle) {
-                safeMagicImage.push("triangle");
-            }
-            if (figur instanceof zauberbild.Star) {
-                safeMagicImage.push("star");
-            }
-            if (figur instanceof zauberbild.Circle) {
-                safeMagicImage.push("circle");
-            }
-            if (figur instanceof zauberbild.Heart) {
-                safeMagicImage.push("heart");
+            //safeMagicImage.push(nameOfPicture); 
+            safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+            safeMagicImage.push(backgroundColorSafe);
+            for (let figur of figures) {
+                safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString());
+                if (figur instanceof zauberbild.Triangle) {
+                    safeMagicImage.push("triangle");
+                }
+                if (figur instanceof zauberbild.Star) {
+                    safeMagicImage.push("star");
+                }
+                if (figur instanceof zauberbild.Circle) {
+                    safeMagicImage.push("circle");
+                }
+                if (figur instanceof zauberbild.Heart) {
+                    safeMagicImage.push("heart");
+                }
             }
         }
         let dataServer = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
         let query = new URLSearchParams(dataServer);
-        let response = await fetch(url + "?" + dataServer + "&" + query.toString());
+        let response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
         let texte = await response.text();
+        console.log(texte);
         alert(texte);
         //let data: Data = JSON.parse(texte); 
     }
@@ -311,5 +312,38 @@ var zauberbild;
         newSymbol.draw(crc2);
     }*/
     //}
+    /*async function showDatabaseContent(_event: Event): Promise<void> {
+
+        console.log("Ich wurde geklickt");
+        let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#savedPictures");
+        let response: Response = await fetch(serverUrl + "?" + "getmagicPicture=yes");
+        
+        databaseContent.innerHTML = "";
+        let responseText: string = await response.text();
+        let replace: string = responseText.replace(/\\|{|}|"|/g, "");
+        console.log(replace);
+        for (let entry of replace) {
+            switch (entry) {
+                case ("_"):
+                    databaseContent.innerHTML += "<br>"  + entry;
+                    break;
+                case ("["):
+                    break;
+                case ("]"):
+                    break;
+                case (","):
+                    databaseContent.innerHTML += "<br>";
+                    break;
+                case (":"):
+                    databaseContent.innerHTML += entry + " ";
+                    break;
+                default:
+                    databaseContent.innerHTML += "" + entry;
+                    break;
+            }
+        }
+        console.log(responseText);
+
+    }*/
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=zauberbild_canvas.js.map

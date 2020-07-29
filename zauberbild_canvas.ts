@@ -37,8 +37,6 @@ namespace zauberbild {
         console.log("verknüpft");
 
         
-
-        
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
     
@@ -92,44 +90,48 @@ namespace zauberbild {
 
         let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
 
-        safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
-        safeMagicImage.push(backgroundColorSafe); 
-
+        
+    
         if (nameOfPicture != null) {
 
-            safeMagicImage.push(nameOfPicture); 
-        }
+            //safeMagicImage.push(nameOfPicture); 
+            safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
+            safeMagicImage.push(backgroundColorSafe); 
+
+       
         
 
-        for (let figur of figures) {
-            safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString()); 
+            for (let figur of figures) {
+                safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString()); 
 
-            if (figur instanceof Triangle) {
+                if (figur instanceof Triangle) {
                 safeMagicImage.push("triangle"); 
 
-            }
+                }
 
-            if (figur instanceof Star) {
+                if (figur instanceof Star) {
                 safeMagicImage.push("star"); 
 
-            }
+                }
 
-            if (figur instanceof Circle) {
+                if (figur instanceof Circle) {
                 safeMagicImage.push("circle"); 
 
-            }
+                }
 
-            if (figur instanceof Heart) {
+                if (figur instanceof Heart) {
                 safeMagicImage.push("heart"); 
 
+                }
             }
 
         }
 
         let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
         let query: URLSearchParams = new URLSearchParams(dataServer); 
-        let response: Response = await fetch(url + "?" + dataServer + "&" + query.toString()); 
+        let response: Response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString()); 
         let texte: string = await response.text(); 
+        console.log(texte); 
         alert(texte); 
         //let data: Data = JSON.parse(texte); 
 
@@ -529,6 +531,39 @@ namespace zauberbild {
 
    
 
+    /*async function showDatabaseContent(_event: Event): Promise<void> {
+
+        console.log("Ich wurde geklickt"); 
+        let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#savedPictures");
+        let response: Response = await fetch(serverUrl + "?" + "getmagicPicture=yes");
+        
+        databaseContent.innerHTML = "";
+        let responseText: string = await response.text();
+        let replace: string = responseText.replace(/\\|{|}|"|/g, "");
+        console.log(replace);
+        for (let entry of replace) {
+            switch (entry) {
+                case ("_"):
+                    databaseContent.innerHTML += "<br>"  + entry;
+                    break;
+                case ("["):
+                    break;
+                case ("]"):
+                    break;
+                case (","):
+                    databaseContent.innerHTML += "<br>";
+                    break;
+                case (":"):
+                    databaseContent.innerHTML += entry + " ";
+                    break;
+                default:
+                    databaseContent.innerHTML += "" + entry;
+                    break;
+            }
+        }
+        console.log(responseText);
+
+    }*/
 
     
 
