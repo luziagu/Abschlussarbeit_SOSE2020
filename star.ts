@@ -61,7 +61,6 @@ namespace zauberbild {
 
             _crc.restore(); 
 
-            _crc.arc(this.position.x, this.position.y, 20, 0, 2 * Math.PI, false);
 
         }
 

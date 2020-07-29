@@ -43,13 +43,7 @@ namespace zauberbild {
     
         }
 
-        draggable(): void {
-            let isdragged: boolean = true; 
-            
-
-
-            
-        }
+        
 
         
 

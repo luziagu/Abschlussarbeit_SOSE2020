@@ -84,6 +84,23 @@ div {
     grid-row: 2;
    
 }
+#chooseColorForSymbol {
+
+    position: relative;
+    top: 20px; 
+    left: 720px; 
+    height: 90px; 
+    width: 150px;
+
+}
+
+#chooseChangingSymbol {
+    position: relative;
+    top: -72px; 
+    left: 550px; 
+    height: 90px; 
+    width: 150px;
+}
 
 
 #chooseFormat {
@@ -121,11 +138,7 @@ input, label {
 
 }
 
-.buttonOk {
-    position: relative;
-    top: 40px; 
-    left: 0px; 
-}
+
 
 #savedPictures {
 
@@ -138,13 +151,7 @@ input, label {
 
 }
 
-#titlePicture {
-    
-    position: fixed;
-    top: 700px; 
-    left: 500px; 
 
-}
 
 button{
     transition-duration: 0.4s;
@@ -168,13 +175,13 @@ button:hover{
 #buttonSafe {
 
     position: fixed; 
-    left: 500px; 
+    left: 410px; 
     top: 650px; 
 }
 
 #buttonDelete {
 
     position: fixed;
-    left: 360px; 
+    left: 270px; 
     top: 650px; 
 }

@@ -27,9 +27,6 @@ var zauberbild;
             _crc.stroke();
             _crc.restore();
         }
-        draggable() {
-            let isdragged = true;
-        }
     }
     zauberbild.Circle = Circle;
 })(zauberbild || (zauberbild = {}));

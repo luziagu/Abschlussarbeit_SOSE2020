@@ -15,7 +15,6 @@ namespace zauberbild {
     let dragDrop: boolean = false; 
     let objectDragDrop: Form;  
     let saveButton: HTMLButtonElement; 
-   
     let deleteButton: HTMLButtonElement;
      
     let backgroundColor: HTMLSelectElement;
@@ -48,8 +47,6 @@ namespace zauberbild {
         triangleDiv = <HTMLDivElement>document.getElementById("symbolThree"); 
         heartDiv = <HTMLDivElement>document.getElementById("symbolFour"); 
 
-
-       
         mainCanvas = <HTMLCanvasElement> document.getElementById("mainCanvasDraw"); 
         crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
 
@@ -70,26 +67,21 @@ namespace zauberbild {
         saveButton = <HTMLButtonElement>document.getElementById("buttonSafe"); 
 
         form.addEventListener("change", chooseCanvas); 
-
-        
         backgroundColor.addEventListener("change", chooseBackground);
 
-        
-        
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas); 
         saveButton.addEventListener("click", saveImage); 
+
         chooseBackground(_event);
         setInterval(animate, 100); 
         createForms(); 
         
-
-        
         mainCanvas.addEventListener("dblclick", deleteSymbol);
-        mainCanvas.addEventListener("mousedown", mooveSymbol); 
+        mainCanvas.addEventListener("mousedown", pickSymbol); 
         mainCanvas.addEventListener("mouseup", placeSymbol); 
         mainCanvas.addEventListener("mousemove", dragSymbol); 
         
@@ -134,10 +126,11 @@ namespace zauberbild {
 
         }
 
-        JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
-        let response: Response = await fetch(url + "?" + safeMagicImage); 
+        let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
+        let query: URLSearchParams = new URLSearchParams(dataServer); 
+        let response: Response = await fetch(url + "?" + dataServer + "&" + query.toString()); 
         let texte: string = await response.text(); 
-        console.log(texte); 
+        alert(texte); 
         //let data: Data = JSON.parse(texte); 
 
 
@@ -156,7 +149,7 @@ namespace zauberbild {
         switch (id) {
             
             case "format1":
-                crc2.canvas.width = 200; 
+                mainCanvas.width = 200; 
                 crc2.canvas.height = 200; 
                 
 
@@ -203,7 +196,7 @@ namespace zauberbild {
 
                 break;
             case "green":
-                crc2.fillStyle = "lightgreen"; 
+                crc2.fillStyle = "rgb(152, 192, 148)"; 
                 crc2.fill(); 
                 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
                 backgroundColorSafe = "lightgreen"; 
@@ -228,7 +221,7 @@ namespace zauberbild {
                 break; 
             case "lavendel":
            
-                crc2.fillStyle = "lightblue"; 
+                crc2.fillStyle = "rgb(212, 177, 189)"; 
                 crc2.fill(); 
                 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
                 backgroundColorSafe = "lavendel"; 
@@ -397,7 +390,7 @@ namespace zauberbild {
 
     }
 
-    function mooveSymbol(_event: MouseEvent): void {
+    function pickSymbol(_event: MouseEvent): void {
         console.log("Mousedowm"); 
 
 
@@ -492,14 +485,26 @@ namespace zauberbild {
 
     function clearCanvas(): void {
 
+       
+
        crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);   
        figures = []; 
+
+       let clearBackground: boolean = false; 
+       if (clearBackground == false) {
+
+            crc2.fillStyle = "white"; 
+            crc2.fill(); 
+            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
+            crc2.restore(); 
+
+       }
+       
        crc2.save(); 
        
-       crc2.fillStyle = "white"; 
-       crc2.fill(); 
-       crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-       crc2.restore(); 
+       
+
+       
 
           
     }

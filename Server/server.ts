@@ -18,29 +18,29 @@ export namespace haushaltshilfe {
     connectToDatabase(databaseUrl); 
 
     function startServer(_port: number | string): void {
-        let server: Http.Server = Http.createServer(); 
+        let server: Http.Server = Http.createServer(); // Für Server wird Port erstellt
         console.log(server); 
 
 
         console.log("Server starting on port:" + _port);   
 
-        server.listen(_port); 
-        server.addListener("request", handleRequest); 
+        server.listen(_port); //Server hört auf Port und der Port wird geöffnet
+        server.addListener("request", handleRequest); // Ein Event Request wird auf den Server gesetzt, der dann die Funktion HandleRequest aufruft
     }
 
     async function connectToDatabase(_url: string): Promise<void> {
 
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
-        orders = mongoClient.db("Haushaltshilfe").collection("orders");
+        await mongoClient.connect(); //MongoDB soll verbunden werden
+        orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
         console.log("Database connection", orders != undefined); 
     }
 
     let anyOrder: string[] = []; 
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void>  {
         console.log("what's up?"); 
-        console.log(_request.url); 
+        console.log(_request.url);  //Wie mit der Request umgegangen wird 
 
         _response.setHeader("content-type", "text/html; charset=utf-8"); 
         _response.setHeader("Access-Control-Allow-Origin", "*"); 
@@ -50,11 +50,11 @@ export namespace haushaltshilfe {
                // _response.write(key + ":" + url.query[key]); 
             //}
 
-            if (_request.url == "/?getorders=yes") { //Wenn ein url angefraht wird, dann..
+            if (_request.url == "/?getmagicPicture=yes") { //Wenn ein url angefraht wird, dann..
                 let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
                 let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
                 await mongoClient.connect(); // Mongo client wird verbindet. 
-                let orders: Mongo.Collection = mongoClient.db("Haushaltshilfe").collection("orders"); //Hier wird der CLient Household und in dieser die collection Orders erstellt. 
+                let orders: Mongo.Collection = mongoClient.db("Zauberbild").collection("magicPicture"); //Hier wird der CLient Household und in dieser die collection Orders erstellt. 
                 let mongoCursor: Mongo.Cursor<any> = orders.find();
                 await mongoCursor.forEach(retrieveOrder); //Es soll gewartet werden und die Funktion retrieveOrder wird dann für jeden Aufruf von Cursor aufgerufen.  
                 let jsonString: string = JSON.stringify(anyOrder);

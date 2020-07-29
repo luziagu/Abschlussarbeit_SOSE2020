@@ -42,7 +42,6 @@ var zauberbild;
             _crc.closePath();
             _crc.fill();
             _crc.restore();
-            _crc.arc(this.position.x, this.position.y, 20, 0, 2 * Math.PI, false);
         }
     }
     zauberbild.Star = Star;

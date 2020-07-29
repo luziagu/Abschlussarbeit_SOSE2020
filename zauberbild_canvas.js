@@ -51,7 +51,7 @@ var zauberbild;
         setInterval(animate, 100);
         createForms();
         mainCanvas.addEventListener("dblclick", deleteSymbol);
-        mainCanvas.addEventListener("mousedown", mooveSymbol);
+        mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
     }
@@ -77,10 +77,11 @@ var zauberbild;
                 safeMagicImage.push("heart");
             }
         }
-        JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
-        let response = await fetch(url + "?" + safeMagicImage);
+        let dataServer = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
+        let query = new URLSearchParams(dataServer);
+        let response = await fetch(url + "?" + dataServer + "&" + query.toString());
         let texte = await response.text();
-        console.log(texte);
+        alert(texte);
         //let data: Data = JSON.parse(texte); 
     }
     function chooseCanvas(_event) {
@@ -89,7 +90,7 @@ var zauberbild;
         let id = target.id;
         switch (id) {
             case "format1":
-                zauberbild.crc2.canvas.width = 200;
+                mainCanvas.width = 200;
                 zauberbild.crc2.canvas.height = 200;
                 break;
             case "format2":
@@ -114,7 +115,7 @@ var zauberbild;
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
                 break;
             case "green":
-                zauberbild.crc2.fillStyle = "lightgreen";
+                zauberbild.crc2.fillStyle = "rgb(152, 192, 148)";
                 zauberbild.crc2.fill();
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
                 backgroundColorSafe = "lightgreen";
@@ -132,7 +133,7 @@ var zauberbild;
                 backgroundColorSafe = "lightblue";
                 break;
             case "lavendel":
-                zauberbild.crc2.fillStyle = "lightblue";
+                zauberbild.crc2.fillStyle = "rgb(212, 177, 189)";
                 zauberbild.crc2.fill();
                 zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
                 backgroundColorSafe = "lavendel";
@@ -240,7 +241,7 @@ var zauberbild;
             objectDragDrop.position.y = _event.clientY;
         }
     }
-    function mooveSymbol(_event) {
+    function pickSymbol(_event) {
         console.log("Mousedowm");
         dragDrop = true;
         let mousePosY = _event.clientY;
@@ -289,11 +290,14 @@ var zauberbild;
     function clearCanvas() {
         zauberbild.crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         figures = [];
+        let clearBackground = false;
+        if (clearBackground == false) {
+            zauberbild.crc2.fillStyle = "white";
+            zauberbild.crc2.fill();
+            zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+            zauberbild.crc2.restore();
+        }
         zauberbild.crc2.save();
-        zauberbild.crc2.fillStyle = "white";
-        zauberbild.crc2.fill();
-        zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
-        zauberbild.crc2.restore();
     }
     //function selectSymbol(_event: MouseEvent): void {
     //console.log("Der MainCanvas wurde geklickt"); 
