@@ -21,10 +21,8 @@ namespace zauberbild {
 
             
             _crc.save();
-          
-            _crc.scale(1, 1); 
-            
             _crc.translate(this.position.x, this.position.y); 
+            _crc.scale(1, 1); 
             _crc.fillStyle = "pink";
             _crc.beginPath();
             _crc.moveTo(0, 20);
@@ -45,16 +43,16 @@ namespace zauberbild {
             this.position.add(offset); 
 
             if (this.position.x < 0) {
-                this.position.x += crc2.canvas.width;
+                this.position.x += crcMain.canvas.width;
             }
             if (this.position.y < 0) {
-                this.position.y += crc2.canvas.height;
+                this.position.y += crcMain.canvas.height;
             }
-            if (this.position.x > crc2.canvas.width) {
-                this.position.x -= crc2.canvas.width;
+            if (this.position.x > crcMain.canvas.width) {
+                this.position.x -= crcMain.canvas.width;
             }
-            if (this.position.y > crc2.canvas.height) {
-                this.position.y -= crc2.canvas.height;
+            if (this.position.y > crcMain.canvas.height) {
+                this.position.y -= crcMain.canvas.height;
             }
         }
 

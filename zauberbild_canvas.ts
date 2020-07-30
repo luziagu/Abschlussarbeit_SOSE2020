@@ -1,126 +1,151 @@
 namespace zauberbild {
 
-    console.log("verknüpft"); 
-    
-    export let crc2: CanvasRenderingContext2D; 
-    export let crc3: CanvasRenderingContext2D; 
-    export let crc4: CanvasRenderingContext2D; 
-    export let crc5: CanvasRenderingContext2D; 
-    export let crc6: CanvasRenderingContext2D; 
+    console.log("verknüpft");
+
+    export let crcMain: CanvasRenderingContext2D;
+    export let crc3: CanvasRenderingContext2D;
+    export let crc4: CanvasRenderingContext2D;
+    export let crc5: CanvasRenderingContext2D;
+    export let crc6: CanvasRenderingContext2D;
 
 
-    let url: string = "https://haushaltshilfe-app.herokuapp.com/"; 
-    let mainCanvas: HTMLCanvasElement; 
+    let url: string = "https://haushaltshilfe-app.herokuapp.com/";
+    let mainCanvas: HTMLCanvasElement;
 
-    let dragDrop: boolean = false; 
-    let objectDragDrop: Form;  
-    let saveButton: HTMLButtonElement; 
+    let dragDrop: boolean = true;
+    let objectDragDrop: Form = new Circle (new Vector(0, 0));
+    let saveButton: HTMLButtonElement;
     let deleteButton: HTMLButtonElement;
-     
+
     let backgroundColor: HTMLSelectElement;
-    let circleDiv: HTMLDivElement; 
-    let starDiv: HTMLDivElement; 
-    let triangleDiv: HTMLDivElement; 
-    let heartDiv: HTMLDivElement; 
-    let backgroundColorSafe: string; 
-     
+    let chooseChangingSymbol: HTMLSelectElement;
+    let chooseColorForSymbol: HTMLSelectElement;
+    let circleDiv: HTMLDivElement;
+    let starDiv: HTMLDivElement;
+    let triangleDiv: HTMLDivElement;
+    let heartDiv: HTMLDivElement;
+    let backgroundColorSafe: string;
+
 
     let figures: Form[] = [];
-    let safeMagicImage: string[] = []; 
-    let backgroundImage: ImageData; 
+    let safeMagicImage: string[] = [];
+    let backgroundImage: ImageData;
     //let save: HTMLButtonElement; 
-    
+
     window.addEventListener("load", handleLoad);
 
     async function handleLoad(_event: Event): Promise<void> {
 
         console.log("verknüpft");
 
-        
+
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
-    
-        circleDiv = <HTMLDivElement>document.getElementById("symbolOne"); 
-        starDiv = <HTMLDivElement>document.getElementById("symbolTwo"); 
-        triangleDiv = <HTMLDivElement>document.getElementById("symbolThree"); 
-        heartDiv = <HTMLDivElement>document.getElementById("symbolFour"); 
+        chooseChangingSymbol = <HTMLSelectElement>document.getElementById("chooseChangingSymbol");
+        chooseColorForSymbol = <HTMLSelectElement>document.getElementById("chooseColorForSymbol");
 
-        mainCanvas = <HTMLCanvasElement> document.getElementById("mainCanvasDraw"); 
-        crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
+        circleDiv = <HTMLDivElement>document.getElementById("symbolOne");
+        starDiv = <HTMLDivElement>document.getElementById("symbolTwo");
+        triangleDiv = <HTMLDivElement>document.getElementById("symbolThree");
+        heartDiv = <HTMLDivElement>document.getElementById("symbolFour");
 
-        let canvasCircle: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("circle"); 
-        crc3 = <CanvasRenderingContext2D>canvasCircle.getContext("2d"); 
+        mainCanvas = <HTMLCanvasElement>document.getElementById("mainCanvasDraw");
+        crcMain = <CanvasRenderingContext2D>mainCanvas.getContext("2d");
 
-        let canvasStar: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("star"); 
-        crc4 = <CanvasRenderingContext2D>canvasStar.getContext("2d"); 
+        let canvasCircle: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("circle");
+        crc3 = <CanvasRenderingContext2D>canvasCircle.getContext("2d");
 
-        let canvasTriangle: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("triangle"); 
-        crc5 = <CanvasRenderingContext2D>canvasTriangle.getContext("2d"); 
+        let canvasStar: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("star");
+        crc4 = <CanvasRenderingContext2D>canvasStar.getContext("2d");
 
-        let canvasHeart: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("heart"); 
-        crc6 = <CanvasRenderingContext2D>canvasHeart.getContext("2d"); 
+        let canvasTriangle: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("triangle");
+        crc5 = <CanvasRenderingContext2D>canvasTriangle.getContext("2d");
+
+        let canvasHeart: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("heart");
+        crc6 = <CanvasRenderingContext2D>canvasHeart.getContext("2d");
 
 
         deleteButton = <HTMLButtonElement>document.getElementById("buttonDelete");
-        saveButton = <HTMLButtonElement>document.getElementById("buttonSafe"); 
+        saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");
 
-        form.addEventListener("change", chooseCanvas); 
+        form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
+        chooseChangingSymbol.addEventListener("change", chooseSymbolForChange);
+        chooseColorForSymbol.addEventListener("change", chooseSymbolForChange);
 
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
-        deleteButton.addEventListener("click", clearCanvas); 
-        saveButton.addEventListener("click", saveImage); 
+        deleteButton.addEventListener("click", clearCanvas);
+        saveButton.addEventListener("click", saveImage);
 
         chooseBackground(_event);
-        setInterval(animate, 100); 
-        createForms(); 
-        
+        setInterval(animate, 100);
+        createForms();
+
         mainCanvas.addEventListener("dblclick", deleteSymbol);
-        mainCanvas.addEventListener("mousedown", pickSymbol); 
-        mainCanvas.addEventListener("mouseup", placeSymbol); 
-        mainCanvas.addEventListener("mousemove", dragSymbol); 
-        
-        
+        mainCanvas.addEventListener("mousedown", pickSymbol);
+        mainCanvas.addEventListener("mouseup", placeSymbol);
+        mainCanvas.addEventListener("mousemove", dragSymbol);
+
+
+    }
+
+    function chooseSymbolForChange(_event: Event): void {
+
+        console.log("Symbol wurde ausgewählt");
+        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
+        let valueSymbol: string = target.value;
+        let choosenColor: string = target.value;
+
+
+        if (valueSymbol == "starChange" && choosenColor == "pink") {
+
+            console.log("ich wurde ausgeführt");
+            crc4.fillStyle = "pink";
+
+        }
+
+
+
     }
 
     async function saveImage(_event: MouseEvent): Promise<void> {
 
         let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
 
-        
-    
+
+
         if (nameOfPicture != null) {
 
             //safeMagicImage.push(nameOfPicture); 
-            safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
-            safeMagicImage.push(backgroundColorSafe); 
+            safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+            safeMagicImage.push(backgroundColorSafe);
 
-       
-        
+
+
 
             for (let figur of figures) {
-                safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString()); 
+                safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
 
                 if (figur instanceof Triangle) {
-                safeMagicImage.push("triangle"); 
+                    safeMagicImage.push("triangle");
 
                 }
 
                 if (figur instanceof Star) {
-                safeMagicImage.push("star"); 
+                    safeMagicImage.push("star");
 
                 }
 
                 if (figur instanceof Circle) {
-                safeMagicImage.push("circle"); 
+                    safeMagicImage.push("circle");
 
                 }
 
                 if (figur instanceof Heart) {
-                safeMagicImage.push("heart"); 
+                    safeMagicImage.push("heart");
 
                 }
             }
@@ -128,422 +153,337 @@ namespace zauberbild {
         }
 
         let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
-        let query: URLSearchParams = new URLSearchParams(dataServer); 
-        let response: Response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString()); 
-        let texte: string = await response.text(); 
-        console.log(texte); 
-        alert(texte); 
+        let query: URLSearchParams = new URLSearchParams(dataServer);
+        let response: Response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
+        let texte: string = await response.text();
+        console.log(texte);
+        alert(texte);
         //let data: Data = JSON.parse(texte); 
 
 
 
-        
+
 
     }
 
     async function showTitles(_response: string): Promise<void> {
-        let titles: string [] = _response.split(","); 
+        let titles: string[] = _response.split(",");
         for (let title of titles) {
-            if (title == ""){
+            if (title == "") {
 
             }
             else {
                 let option: HTMLOptionElement = document.createElement("option");
-                option.setAttribute("name", title); 
+                option.setAttribute("name", title);
                 option.value = title;
             }
         }
     }
 
     function chooseCanvas(_event: Event): void {
- 
-        console.log("ich wurde geklickt"); 
-        let target: HTMLElement = <HTMLElement>_event.target; 
+
+        console.log("ich wurde geklickt");
+        let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
-        
+
 
         switch (id) {
-            
+
             case "format1":
-                mainCanvas.width = 200; 
-                crc2.canvas.height = 200; 
-                
+                mainCanvas.width = 200;
+                crcMain.canvas.height = 200;
+
 
 
                 break;
             case "format2":
-                crc2.canvas.width = 200; 
-                crc2.canvas.height = 500; 
-              
-                
-                break; 
+                crcMain.canvas.width = 200;
+                crcMain.canvas.height = 500;
+
+
+                break;
             case "format3":
-                crc2.canvas.width = 500; 
-                crc2.canvas.height = 500; 
-               
-                
-                break; 
+                crcMain.canvas.width = 500;
+                crcMain.canvas.height = 500;
+
+
+                break;
 
         }
 
-      
-      
+
+
     }
 
-    function chooseBackground (_event: Event): void {
+    function chooseBackground(_event: Event): void {
 
-        console.log("choose color"); 
-         
-        console.log(figures); 
+        console.log("choose color");
+
+        console.log(figures);
 
 
-        let target: HTMLSelectElement = <HTMLSelectElement>_event.target; 
+        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
-        
+
 
         switch (value) {
-            
+
             case "yellow":
-                crc2.fillStyle = "lightyellow"; 
-                crc2.fill(); 
-                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-                
+                crcMain.fillStyle = "lightyellow";
+                crcMain.fill();
+                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+
 
 
                 break;
             case "green":
-                crc2.fillStyle = "rgb(152, 192, 148)"; 
-                crc2.fill(); 
-                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-                backgroundColorSafe = "lightgreen"; 
+                crcMain.fillStyle = "rgb(152, 192, 148)";
+                crcMain.fill();
+                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                backgroundColorSafe = "lightgreen";
 
-                    
-                break; 
+
+                break;
             case "pink":
-                crc2.fillStyle = "lightpink"; 
-                crc2.fill(); 
-                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-                backgroundColorSafe = "lightpink"; 
-                        
-                
-                break; 
+                crcMain.fillStyle = "lightpink";
+                crcMain.fill();
+                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                backgroundColorSafe = "lightpink";
+
+
+                break;
             case "lightblue":
-           
-                crc2.fillStyle = "lightblue"; 
-                crc2.fill(); 
-                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-                backgroundColorSafe = "lightblue"; 
-                                                
-                break; 
+
+                crcMain.fillStyle = "lightblue";
+                crcMain.fill();
+                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                backgroundColorSafe = "lightblue";
+
+                break;
             case "lavendel":
-           
-                crc2.fillStyle = "rgb(212, 177, 189)"; 
-                crc2.fill(); 
-                crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-                backgroundColorSafe = "lavendel"; 
-                                                        
-                break; 
-        
+
+                crcMain.fillStyle = "rgb(212, 177, 189)";
+                crcMain.fill();
+                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                backgroundColorSafe = "lavendel";
+
+                break;
+
 
         }
 
 
 
-        backgroundImage = crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+        backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
 
 
 
     }
 
-    
+
 
     /*function animation() {
         return setInterval(createForms, 50);
     }*/
 
-    function createForms (): void {
-       
-        let symbol: number = 1;
-       //Stern
-     
-        let x: number = 80; 
-        let y: number = 20; 
-        let position: Vector = new Vector(x, y);
+    function createForms(): void {
 
-        let star: Star = new Star(position);
+        //Stern
+        let star: Star = new Star(new Vector(crc4.canvas.width / 2, crc4.canvas.height / 2));
         star.draw(crc4);
-        //figures.push(star);
 
         //Circle
-        for (let i: number = 0; i < symbol; i++) {
-        let x: number = 35; 
-        let y: number = 35; 
-        let position: Vector = new Vector(x, y);
-        let circle:  Circle = new Circle(position);
+        let circle: Circle = new Circle(new Vector(crc3.canvas.width / 2, crc3.canvas.height / 2));
         circle.draw(crc3);
-        //figures.push(circle);
-        }
 
         //Dreieck
-        for (let i: number = 0; i < symbol; i++) {
-            let x: number = 50; 
-            let y: number = 47; 
-            let position: Vector = new Vector(x, y);
-            let triangle:  Triangle = new Triangle(position);
-            triangle.draw(crc5);
-            //figures.push(triangle);
-            }
-    
-    
-        //Herz
-        for (let i: number = 0; i < symbol; i++) {
-            let x: number = 30; 
-            let y: number = 20; 
-            let position: Vector = new Vector(x, y);
-            let heart:  Heart = new Heart (position);
-            heart.draw(crc6);
-            //figures.push(heart);
-            }
+        let triangle: Triangle = new Triangle(new Vector(crc5.canvas.width / 2, crc5.canvas.height / 2));
+        triangle.draw(crc5);
 
+        //Herz
+        let heart: Heart = new Heart(new Vector(crc6.canvas.width / 2, crc6.canvas.height / 2));
+        heart.draw(crc6);
     }
 
     export function drawSymbolInMainCanvas(_event: MouseEvent): void {
 
+        console.log("Ein Symbol wurde geklickt");
 
-        console.log("Ein Symbol wurde geklickt"); 
-        
-         
-        let target: HTMLElement = <HTMLElement>_event.target; 
-        let id: string = target.id; 
-
-        //if (target.id) { 
-        //    drawSymbol = true; 
-        //}
-
-        let x: number = 50; 
-        let y: number = 50; 
-        
-
-
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
+        let positionForCanvas: Vector = new Vector(crcMain.canvas.width / 2, crcMain.canvas.height / 2);
+        let symbol: Form;
         switch (id) {
             case "star":
-        
-                
-                let positionStar: Vector = new Vector(x, y);
-                let star:  Star = new Star(positionStar); 
-                
-                star.draw(crc2);
-                figures.push(star);
-                        
-
+                symbol = new Star(positionForCanvas);
                 break;
             case "circle":
-
-               
-                let positionCircle: Vector = new Vector(x, y);
-                let circle:  Circle = new Circle(positionCircle);
-                circle.draw(crc2);
-                figures.push(circle);
-                
-              
-                
-                break; 
+                symbol = new Circle(positionForCanvas);
+                break;
             case "heart":
-
-            
-                let positionHeart: Vector = new Vector(x, y);
-                let heart:  Heart = new Heart(positionHeart);
-                heart.draw(crc2);
-                figures.push(heart);
-                
-               
-                
-                break; 
+                symbol = new Heart(positionForCanvas);
+                break;
             case "triangle":
-                    
-                let position: Vector = new Vector(x, y);
-                let triangle:  Triangle = new Triangle(position);
-                triangle.draw(crc2);
-                figures.push(triangle);     
-                break; 
-
+                symbol = new Triangle(positionForCanvas);
+                break;
+            default:
+                return;
         }
-
-
+        figures.push(symbol);
+        symbol.draw(crcMain);
     }
 
     function animate(_event: MouseEvent): void {
 
-        
-        crc2.putImageData(backgroundImage, 0, 0);
+        crcMain.putImageData(backgroundImage, 0, 0);
 
         for (let symbol of figures) {
-            if (symbol instanceof Heart) 
+            /*if (symbol instanceof Heart) 
             symbol.move(1 / 20); 
             else if (symbol instanceof Triangle)
             symbol.move(1 / 20); 
             else if (symbol instanceof Circle)
             symbol.move (1 / 50 ); 
             else if (symbol instanceof Star)
-            symbol.move (1 / 20 );
-            symbol.draw(crc2); 
+            symbol.move (1 / 20 );*/
+            symbol.draw(crcMain);
         }
 
         if (dragDrop == true) {
-            objectDragDrop.draw(crc2); 
+            objectDragDrop.draw(crcMain);
         }
 
-        
+
     }
 
     function dragSymbol(_event: MouseEvent): void {
 
+        //let position: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
         if (dragDrop == true) {
-            objectDragDrop.position.x = _event.clientX; 
-            objectDragDrop.position.y = _event.clientY; 
-
+            objectDragDrop.position.x = _event.clientX - mainCanvas.getBoundingClientRect().left;
+            objectDragDrop.position.y = _event.clientY - mainCanvas.getBoundingClientRect().top;
         }
 
     }
 
     function pickSymbol(_event: MouseEvent): void {
-        console.log("Mousedowm"); 
+        console.log("Mousedowm");
 
+        dragDrop = true;
 
-        dragDrop = true; 
+        let mousePosY: number = _event.clientY;
+        let mousePosX: number = _event.clientX;
+        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect();
 
-        let mousePosY: number = _event.clientY; 
-        let mousePosX: number = _event.clientX; 
-        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect(); 
-
-        let offsetX: number = mousePosX - canvasRect.left; 
-        let offsetY: number = mousePosY - canvasRect.top; 
-
-        console.log(offsetX, offsetY); 
+        let offsetX: number = mousePosX - canvasRect.left;
+        let offsetY: number = mousePosY - canvasRect.top;
 
         for (let figur of figures) {
 
-            if (figur.position.x - figur.radius < offsetX && 
+            if (figur.position.x - figur.radius < offsetX &&
                 figur.position.x + figur.radius > offsetX &&
                 figur.position.y - figur.radius < offsetY &&
                 figur.position.y + figur.radius > offsetY) {
-
-                let index: number = figures.indexOf(figur); 
+                console.log(figur);
+                let index: number = figures.indexOf(figur);
                 figures.splice(index, 1);
-
-                objectDragDrop = figur; 
-
-                
-
-                
-            }        
-              
-
-            
+                objectDragDrop = figur;
+            }
         }
-
-        
-              
-        
-
     }
 
     function placeSymbol(_event: MouseEvent): void {
 
-        console.log("MouseUp"); 
+        console.log("MouseUp");
 
-       
         if (dragDrop == true) {
 
-            dragDrop = false; 
-            figures.push(objectDragDrop); 
-
+            dragDrop = false;
+            figures.push(objectDragDrop);
         }
-        
-
 
     }
 
     function deleteSymbol(_event: MouseEvent): void {
 
-        let mousePosY: number = _event.clientY; 
-        let mousePosX: number = _event.clientX; 
-        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect(); 
+        let mousePosY: number = _event.clientY;
+        let mousePosX: number = _event.clientX;
+        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect();
 
-        let offsetX: number = mousePosX - canvasRect.left; 
-        let offsetY: number = mousePosY - canvasRect.top; 
+        let offsetX: number = mousePosX - canvasRect.left;
+        let offsetY: number = mousePosY - canvasRect.top;
 
-        console.log(offsetX, offsetY); 
+        console.log(offsetX, offsetY);
 
         for (let figur of figures) {
 
-            if (figur.position.x - figur.radius < offsetX && 
+            if (figur.position.x - figur.radius < offsetX &&
                 figur.position.x + figur.radius > offsetX &&
                 figur.position.y - figur.radius < offsetY &&
                 figur.position.y + figur.radius > offsetY) {
 
-                let index: number = figures.indexOf(figur); 
+                let index: number = figures.indexOf(figur);
                 figures.splice(index, 1);
 
-                console.log("Es funktioniert"); 
+                console.log("Es funktioniert");
 
-                console.log(index); 
+                console.log(index);
             }
-                
-                
-              
 
-            
+
+
+
+
         }
     }
 
-  
+
 
     function clearCanvas(): void {
 
-       
 
-       crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);   
-       figures = []; 
 
-       let clearBackground: boolean = false; 
-       if (clearBackground == false) {
+        crcMain.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        figures = [];
 
-            crc2.fillStyle = "white"; 
-            crc2.fill(); 
-            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
-            crc2.restore(); 
+        let clearBackground: boolean = false;
+        if (clearBackground == false) {
 
-       }
-       
-       crc2.save(); 
-       
-       
+            crcMain.fillStyle = "white";
+            crcMain.fill();
+            crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+            crcMain.restore();
 
-       
+        }
 
-          
+        crcMain.save();
+
+
+
+
+
+
     }
 
     //function selectSymbol(_event: MouseEvent): void {
-        //console.log("Der MainCanvas wurde geklickt"); 
+    //console.log("Der MainCanvas wurde geklickt"); 
 
-        /*let target: HTMLElement = <HTMLElement>_event.target; 
-        let symbol  = target.appendChild; 
+    /*let target: HTMLElement = <HTMLElement>_event.target; 
+    let symbol  = target.appendChild; 
 
-        
-        if (symbol) {
+    
+    if (symbol) {
 
-            let newSymbol: Triangle = new Triangle();
-            newSymbol.draw(crc2); 
-        }*/
-       
-        
+        let newSymbol: Triangle = new Triangle();
+        newSymbol.draw(crc2); 
+    }*/
+
+
 
 
     //}
 
-   
+
 
     /*async function showDatabaseContent(_event: Event): Promise<void> {
 
@@ -579,7 +519,7 @@ namespace zauberbild {
 
     }*/
 
-    
+
 
 
 

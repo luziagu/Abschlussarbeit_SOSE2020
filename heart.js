@@ -14,8 +14,10 @@ var zauberbild;
         }
         draw(_crc) {
             _crc.save();
-            _crc.scale(0.5, 0.5);
             _crc.translate(this.position.x, this.position.y);
+            _crc.translate(-40, -40);
+            _crc.scale(0.5, 0.5);
+            console.log(this.position.x, this.position.y);
             _crc.fillStyle = "HSL(0,53%,58%)";
             _crc.beginPath();
             _crc.moveTo(75, 40);

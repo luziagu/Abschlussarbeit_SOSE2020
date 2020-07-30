@@ -39,9 +39,10 @@ namespace zauberbild {
             this.rotate(); 
             _crc.beginPath();
             _crc.save(); 
-            _crc.scale(0.3, 0.3); 
             _crc.translate(this.position.x, this.position.y);
-            _crc.rotate(this.rotation * Math.PI / 70); 
+            _crc.translate(-30, -30);
+            _crc.scale(0.3, 0.3); 
+            //_crc.rotate(this.rotation * Math.PI / 70); 
             
             _crc.fillStyle = "rgb(253, 224, 144)";
             

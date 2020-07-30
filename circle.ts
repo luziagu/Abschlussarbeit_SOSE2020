@@ -23,13 +23,13 @@ namespace zauberbild {
             
 
             _crc.save();
-            _crc.scale(0.7, 0.7); 
             _crc.translate(this.position.x, this.position.y); 
+            _crc.scale(0.7, 0.7); 
     
             var radius: number = 30;
 
             _crc.beginPath();
-            _crc.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI, false);
+            _crc.arc(0 , 0 , radius, 0, 2 * Math.PI, false);
             _crc.fillStyle = "lightblue";
             _crc.closePath();
             _crc.fill();

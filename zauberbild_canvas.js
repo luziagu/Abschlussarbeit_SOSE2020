@@ -4,11 +4,13 @@ var zauberbild;
     console.log("verknüpft");
     let url = "https://haushaltshilfe-app.herokuapp.com/";
     let mainCanvas;
-    let dragDrop = false;
-    let objectDragDrop;
+    let dragDrop = true;
+    let objectDragDrop = new zauberbild.Circle(new zauberbild.Vector(0, 0));
     let saveButton;
     let deleteButton;
     let backgroundColor;
+    let chooseChangingSymbol;
+    let chooseColorForSymbol;
     let circleDiv;
     let starDiv;
     let triangleDiv;
@@ -23,12 +25,14 @@ var zauberbild;
         console.log("verknüpft");
         let form = document.querySelector("div#chooseFormat");
         backgroundColor = document.querySelector("#chooseColor");
+        chooseChangingSymbol = document.getElementById("chooseChangingSymbol");
+        chooseColorForSymbol = document.getElementById("chooseColorForSymbol");
         circleDiv = document.getElementById("symbolOne");
         starDiv = document.getElementById("symbolTwo");
         triangleDiv = document.getElementById("symbolThree");
         heartDiv = document.getElementById("symbolFour");
         mainCanvas = document.getElementById("mainCanvasDraw");
-        zauberbild.crc2 = mainCanvas.getContext("2d");
+        zauberbild.crcMain = mainCanvas.getContext("2d");
         let canvasCircle = document.getElementById("circle");
         zauberbild.crc3 = canvasCircle.getContext("2d");
         let canvasStar = document.getElementById("star");
@@ -41,6 +45,8 @@ var zauberbild;
         saveButton = document.getElementById("buttonSafe");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
+        chooseChangingSymbol.addEventListener("change", chooseSymbolForChange);
+        chooseColorForSymbol.addEventListener("change", chooseSymbolForChange);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -54,6 +60,16 @@ var zauberbild;
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
+    }
+    function chooseSymbolForChange(_event) {
+        console.log("Symbol wurde ausgewählt");
+        let target = _event.target;
+        let valueSymbol = target.value;
+        let choosenColor = target.value;
+        if (valueSymbol == "starChange" && choosenColor == "pink") {
+            console.log("ich wurde ausgeführt");
+            zauberbild.crc4.fillStyle = "pink";
+        }
     }
     async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
@@ -104,15 +120,15 @@ var zauberbild;
         switch (id) {
             case "format1":
                 mainCanvas.width = 200;
-                zauberbild.crc2.canvas.height = 200;
+                zauberbild.crcMain.canvas.height = 200;
                 break;
             case "format2":
-                zauberbild.crc2.canvas.width = 200;
-                zauberbild.crc2.canvas.height = 500;
+                zauberbild.crcMain.canvas.width = 200;
+                zauberbild.crcMain.canvas.height = 500;
                 break;
             case "format3":
-                zauberbild.crc2.canvas.width = 500;
-                zauberbild.crc2.canvas.height = 500;
+                zauberbild.crcMain.canvas.width = 500;
+                zauberbild.crcMain.canvas.height = 500;
                 break;
         }
     }
@@ -123,135 +139,102 @@ var zauberbild;
         let value = target.value;
         switch (value) {
             case "yellow":
-                zauberbild.crc2.fillStyle = "lightyellow";
-                zauberbild.crc2.fill();
-                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                zauberbild.crcMain.fillStyle = "lightyellow";
+                zauberbild.crcMain.fill();
+                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
                 break;
             case "green":
-                zauberbild.crc2.fillStyle = "rgb(152, 192, 148)";
-                zauberbild.crc2.fill();
-                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                zauberbild.crcMain.fillStyle = "rgb(152, 192, 148)";
+                zauberbild.crcMain.fill();
+                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
                 backgroundColorSafe = "lightgreen";
                 break;
             case "pink":
-                zauberbild.crc2.fillStyle = "lightpink";
-                zauberbild.crc2.fill();
-                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                zauberbild.crcMain.fillStyle = "lightpink";
+                zauberbild.crcMain.fill();
+                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
                 backgroundColorSafe = "lightpink";
                 break;
             case "lightblue":
-                zauberbild.crc2.fillStyle = "lightblue";
-                zauberbild.crc2.fill();
-                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                zauberbild.crcMain.fillStyle = "lightblue";
+                zauberbild.crcMain.fill();
+                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
                 backgroundColorSafe = "lightblue";
                 break;
             case "lavendel":
-                zauberbild.crc2.fillStyle = "rgb(212, 177, 189)";
-                zauberbild.crc2.fill();
-                zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
+                zauberbild.crcMain.fillStyle = "rgb(212, 177, 189)";
+                zauberbild.crcMain.fill();
+                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
                 backgroundColorSafe = "lavendel";
                 break;
         }
-        backgroundImage = zauberbild.crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+        backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
     /*function animation() {
         return setInterval(createForms, 50);
     }*/
     function createForms() {
-        let symbol = 1;
         //Stern
-        let x = 80;
-        let y = 20;
-        let position = new zauberbild.Vector(x, y);
-        let star = new zauberbild.Star(position);
+        let star = new zauberbild.Star(new zauberbild.Vector(zauberbild.crc4.canvas.width / 2, zauberbild.crc4.canvas.height / 2));
         star.draw(zauberbild.crc4);
-        //figures.push(star);
         //Circle
-        for (let i = 0; i < symbol; i++) {
-            let x = 35;
-            let y = 35;
-            let position = new zauberbild.Vector(x, y);
-            let circle = new zauberbild.Circle(position);
-            circle.draw(zauberbild.crc3);
-            //figures.push(circle);
-        }
+        let circle = new zauberbild.Circle(new zauberbild.Vector(zauberbild.crc3.canvas.width / 2, zauberbild.crc3.canvas.height / 2));
+        circle.draw(zauberbild.crc3);
         //Dreieck
-        for (let i = 0; i < symbol; i++) {
-            let x = 50;
-            let y = 47;
-            let position = new zauberbild.Vector(x, y);
-            let triangle = new zauberbild.Triangle(position);
-            triangle.draw(zauberbild.crc5);
-            //figures.push(triangle);
-        }
+        let triangle = new zauberbild.Triangle(new zauberbild.Vector(zauberbild.crc5.canvas.width / 2, zauberbild.crc5.canvas.height / 2));
+        triangle.draw(zauberbild.crc5);
         //Herz
-        for (let i = 0; i < symbol; i++) {
-            let x = 30;
-            let y = 20;
-            let position = new zauberbild.Vector(x, y);
-            let heart = new zauberbild.Heart(position);
-            heart.draw(zauberbild.crc6);
-            //figures.push(heart);
-        }
+        let heart = new zauberbild.Heart(new zauberbild.Vector(zauberbild.crc6.canvas.width / 2, zauberbild.crc6.canvas.height / 2));
+        heart.draw(zauberbild.crc6);
     }
     function drawSymbolInMainCanvas(_event) {
         console.log("Ein Symbol wurde geklickt");
         let target = _event.target;
         let id = target.id;
-        //if (target.id) { 
-        //    drawSymbol = true; 
-        //}
-        let x = 50;
-        let y = 50;
+        let positionForCanvas = new zauberbild.Vector(zauberbild.crcMain.canvas.width / 2, zauberbild.crcMain.canvas.height / 2);
+        let symbol;
         switch (id) {
             case "star":
-                let positionStar = new zauberbild.Vector(x, y);
-                let star = new zauberbild.Star(positionStar);
-                star.draw(zauberbild.crc2);
-                figures.push(star);
+                symbol = new zauberbild.Star(positionForCanvas);
                 break;
             case "circle":
-                let positionCircle = new zauberbild.Vector(x, y);
-                let circle = new zauberbild.Circle(positionCircle);
-                circle.draw(zauberbild.crc2);
-                figures.push(circle);
+                symbol = new zauberbild.Circle(positionForCanvas);
                 break;
             case "heart":
-                let positionHeart = new zauberbild.Vector(x, y);
-                let heart = new zauberbild.Heart(positionHeart);
-                heart.draw(zauberbild.crc2);
-                figures.push(heart);
+                symbol = new zauberbild.Heart(positionForCanvas);
                 break;
             case "triangle":
-                let position = new zauberbild.Vector(x, y);
-                let triangle = new zauberbild.Triangle(position);
-                triangle.draw(zauberbild.crc2);
-                figures.push(triangle);
+                symbol = new zauberbild.Triangle(positionForCanvas);
                 break;
+            default:
+                return;
         }
+        figures.push(symbol);
+        symbol.draw(zauberbild.crcMain);
     }
     zauberbild.drawSymbolInMainCanvas = drawSymbolInMainCanvas;
     function animate(_event) {
-        zauberbild.crc2.putImageData(backgroundImage, 0, 0);
+        zauberbild.crcMain.putImageData(backgroundImage, 0, 0);
         for (let symbol of figures) {
-            if (symbol instanceof zauberbild.Heart)
-                symbol.move(1 / 20);
-            else if (symbol instanceof zauberbild.Triangle)
-                symbol.move(1 / 20);
-            else if (symbol instanceof zauberbild.Circle)
-                symbol.move(1 / 50);
-            else if (symbol instanceof zauberbild.Star)
-                symbol.move(1 / 20);
-            symbol.draw(zauberbild.crc2);
+            /*if (symbol instanceof Heart)
+            symbol.move(1 / 20);
+            else if (symbol instanceof Triangle)
+            symbol.move(1 / 20);
+            else if (symbol instanceof Circle)
+            symbol.move (1 / 50 );
+            else if (symbol instanceof Star)
+            symbol.move (1 / 20 );*/
+            symbol.draw(zauberbild.crcMain);
         }
         if (dragDrop == true) {
-            objectDragDrop.draw(zauberbild.crc2);
+            objectDragDrop.draw(zauberbild.crcMain);
         }
     }
     function dragSymbol(_event) {
+        //let position: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
         if (dragDrop == true) {
-            objectDragDrop.position.x = _event.clientX;
-            objectDragDrop.position.y = _event.clientY;
+            objectDragDrop.position.x = _event.clientX - mainCanvas.getBoundingClientRect().left;
+            objectDragDrop.position.y = _event.clientY - mainCanvas.getBoundingClientRect().top;
         }
     }
     function pickSymbol(_event) {
@@ -262,12 +245,12 @@ var zauberbild;
         let canvasRect = mainCanvas.getBoundingClientRect();
         let offsetX = mousePosX - canvasRect.left;
         let offsetY = mousePosY - canvasRect.top;
-        console.log(offsetX, offsetY);
         for (let figur of figures) {
             if (figur.position.x - figur.radius < offsetX &&
                 figur.position.x + figur.radius > offsetX &&
                 figur.position.y - figur.radius < offsetY &&
                 figur.position.y + figur.radius > offsetY) {
+                console.log(figur);
                 let index = figures.indexOf(figur);
                 figures.splice(index, 1);
                 objectDragDrop = figur;
@@ -301,16 +284,16 @@ var zauberbild;
         }
     }
     function clearCanvas() {
-        zauberbild.crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        zauberbild.crcMain.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         figures = [];
         let clearBackground = false;
         if (clearBackground == false) {
-            zauberbild.crc2.fillStyle = "white";
-            zauberbild.crc2.fill();
-            zauberbild.crc2.fillRect(0, 0, zauberbild.crc2.canvas.width, zauberbild.crc2.canvas.height);
-            zauberbild.crc2.restore();
+            zauberbild.crcMain.fillStyle = "white";
+            zauberbild.crcMain.fill();
+            zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+            zauberbild.crcMain.restore();
         }
-        zauberbild.crc2.save();
+        zauberbild.crcMain.save();
     }
     //function selectSymbol(_event: MouseEvent): void {
     //console.log("Der MainCanvas wurde geklickt"); 

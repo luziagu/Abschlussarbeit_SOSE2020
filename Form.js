@@ -19,13 +19,13 @@ var zauberbild;
             offset.y *= _timeslice;
             this.position.add(offset);
             if (this.position.x < 0)
-                this.position.x += (zauberbild.crc2.canvas.width);
+                this.position.x += (zauberbild.crcMain.canvas.width);
             if (this.position.y < 0)
-                this.position.y += zauberbild.crc2.canvas.height;
-            if (this.position.x > (zauberbild.crc2.canvas.width))
-                this.position.x -= (zauberbild.crc2.canvas.width);
-            if (this.position.y > zauberbild.crc2.canvas.height)
-                this.position.y -= zauberbild.crc2.canvas.height;
+                this.position.y += zauberbild.crcMain.canvas.height;
+            if (this.position.x > (zauberbild.crcMain.canvas.width))
+                this.position.x -= (zauberbild.crcMain.canvas.width);
+            if (this.position.y > zauberbild.crcMain.canvas.height)
+                this.position.y -= zauberbild.crcMain.canvas.height;
         }
     }
     zauberbild.Form = Form;

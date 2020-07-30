@@ -22,8 +22,11 @@ namespace zauberbild {
             public draw(_crc: CanvasRenderingContext2D): void {
                 
                 _crc.save(); 
-                _crc.scale(0.5, 0.5); 
                 _crc.translate(this.position.x, this.position.y);
+                _crc.translate(-40, -40);
+                _crc.scale(0.5, 0.5); 
+
+                console.log(this.position.x, this.position.y); 
 
 
                 _crc.fillStyle = "HSL(0,53%,58%)";

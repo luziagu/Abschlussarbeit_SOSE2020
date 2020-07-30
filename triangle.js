@@ -14,8 +14,8 @@ var zauberbild;
         }
         draw(_crc) {
             _crc.save();
-            _crc.scale(1, 1);
             _crc.translate(this.position.x, this.position.y);
+            _crc.scale(1, 1);
             _crc.fillStyle = "pink";
             _crc.beginPath();
             _crc.moveTo(0, 20);
@@ -32,16 +32,16 @@ var zauberbild;
             offset.y *= _timeslice * 1.2;
             this.position.add(offset);
             if (this.position.x < 0) {
-                this.position.x += zauberbild.crc2.canvas.width;
+                this.position.x += zauberbild.crcMain.canvas.width;
             }
             if (this.position.y < 0) {
-                this.position.y += zauberbild.crc2.canvas.height;
+                this.position.y += zauberbild.crcMain.canvas.height;
             }
-            if (this.position.x > zauberbild.crc2.canvas.width) {
-                this.position.x -= zauberbild.crc2.canvas.width;
+            if (this.position.x > zauberbild.crcMain.canvas.width) {
+                this.position.x -= zauberbild.crcMain.canvas.width;
             }
-            if (this.position.y > zauberbild.crc2.canvas.height) {
-                this.position.y -= zauberbild.crc2.canvas.height;
+            if (this.position.y > zauberbild.crcMain.canvas.height) {
+                this.position.y -= zauberbild.crcMain.canvas.height;
             }
         }
     }
