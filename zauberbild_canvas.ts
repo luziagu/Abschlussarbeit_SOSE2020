@@ -12,8 +12,8 @@ namespace zauberbild {
     let url: string = "https://haushaltshilfe-app.herokuapp.com/";
     let mainCanvas: HTMLCanvasElement;
 
-    let dragDrop: boolean = true;
-    let objectDragDrop: Form = new Circle (new Vector(0, 0));
+    let dragDrop: boolean = false;
+    let objectDragDrop: Form; 
     let saveButton: HTMLButtonElement;
     let deleteButton: HTMLButtonElement;
 
@@ -192,39 +192,23 @@ namespace zauberbild {
             case "format1":
                 mainCanvas.width = 200;
                 crcMain.canvas.height = 200;
-
-
-
                 break;
             case "format2":
                 crcMain.canvas.width = 200;
                 crcMain.canvas.height = 500;
-
-
                 break;
             case "format3":
                 crcMain.canvas.width = 500;
                 crcMain.canvas.height = 500;
-
-
                 break;
-
         }
-
-
-
     }
 
     function chooseBackground(_event: Event): void {
 
         console.log("choose color");
-
-        console.log(figures);
-
-
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
-
 
         switch (value) {
 
@@ -232,41 +216,30 @@ namespace zauberbild {
                 crcMain.fillStyle = "lightyellow";
                 crcMain.fill();
                 crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-
-
-
                 break;
             case "green":
                 crcMain.fillStyle = "rgb(152, 192, 148)";
                 crcMain.fill();
                 crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                 backgroundColorSafe = "lightgreen";
-
-
                 break;
             case "pink":
                 crcMain.fillStyle = "lightpink";
                 crcMain.fill();
                 crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                 backgroundColorSafe = "lightpink";
-
-
                 break;
             case "lightblue":
-
                 crcMain.fillStyle = "lightblue";
                 crcMain.fill();
                 crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                 backgroundColorSafe = "lightblue";
-
                 break;
             case "lavendel":
-
                 crcMain.fillStyle = "rgb(212, 177, 189)";
                 crcMain.fill();
                 crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                 backgroundColorSafe = "lavendel";
-
                 break;
 
 
@@ -338,14 +311,14 @@ namespace zauberbild {
         crcMain.putImageData(backgroundImage, 0, 0);
 
         for (let symbol of figures) {
-            /*if (symbol instanceof Heart) 
+            if (symbol instanceof Heart) 
             symbol.move(1 / 20); 
             else if (symbol instanceof Triangle)
             symbol.move(1 / 20); 
             else if (symbol instanceof Circle)
             symbol.move (1 / 50 ); 
             else if (symbol instanceof Star)
-            symbol.move (1 / 20 );*/
+            symbol.move (1 / 20 );
             symbol.draw(crcMain);
         }
 
@@ -367,7 +340,7 @@ namespace zauberbild {
     }
 
     function pickSymbol(_event: MouseEvent): void {
-        console.log("Mousedowm");
+        console.log("Mousedown");
 
         dragDrop = true;
 
@@ -397,7 +370,6 @@ namespace zauberbild {
         console.log("MouseUp");
 
         if (dragDrop == true) {
-
             dragDrop = false;
             figures.push(objectDragDrop);
         }
@@ -405,15 +377,12 @@ namespace zauberbild {
     }
 
     function deleteSymbol(_event: MouseEvent): void {
-
         let mousePosY: number = _event.clientY;
         let mousePosX: number = _event.clientX;
         let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect();
 
         let offsetX: number = mousePosX - canvasRect.left;
         let offsetY: number = mousePosY - canvasRect.top;
-
-        console.log(offsetX, offsetY);
 
         for (let figur of figures) {
 
@@ -426,22 +395,11 @@ namespace zauberbild {
                 figures.splice(index, 1);
 
                 console.log("Es funktioniert");
-
-                console.log(index);
             }
-
-
-
-
-
         }
     }
 
-
-
     function clearCanvas(): void {
-
-
 
         crcMain.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         figures = [];
@@ -453,17 +411,9 @@ namespace zauberbild {
             crcMain.fill();
             crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
             crcMain.restore();
-
         }
-
         crcMain.save();
-
-
-
-
-
-
-    }
+   }
 
     //function selectSymbol(_event: MouseEvent): void {
     //console.log("Der MainCanvas wurde geklickt"); 

@@ -4,8 +4,8 @@ var zauberbild;
     console.log("verknüpft");
     let url = "https://haushaltshilfe-app.herokuapp.com/";
     let mainCanvas;
-    let dragDrop = true;
-    let objectDragDrop = new zauberbild.Circle(new zauberbild.Vector(0, 0));
+    let dragDrop = false;
+    let objectDragDrop;
     let saveButton;
     let deleteButton;
     let backgroundColor;
@@ -134,7 +134,6 @@ var zauberbild;
     }
     function chooseBackground(_event) {
         console.log("choose color");
-        console.log(figures);
         let target = _event.target;
         let value = target.value;
         switch (value) {
@@ -216,14 +215,14 @@ var zauberbild;
     function animate(_event) {
         zauberbild.crcMain.putImageData(backgroundImage, 0, 0);
         for (let symbol of figures) {
-            /*if (symbol instanceof Heart)
-            symbol.move(1 / 20);
-            else if (symbol instanceof Triangle)
-            symbol.move(1 / 20);
-            else if (symbol instanceof Circle)
-            symbol.move (1 / 50 );
-            else if (symbol instanceof Star)
-            symbol.move (1 / 20 );*/
+            if (symbol instanceof zauberbild.Heart)
+                symbol.move(1 / 20);
+            else if (symbol instanceof zauberbild.Triangle)
+                symbol.move(1 / 20);
+            else if (symbol instanceof zauberbild.Circle)
+                symbol.move(1 / 50);
+            else if (symbol instanceof zauberbild.Star)
+                symbol.move(1 / 20);
             symbol.draw(zauberbild.crcMain);
         }
         if (dragDrop == true) {
@@ -238,7 +237,7 @@ var zauberbild;
         }
     }
     function pickSymbol(_event) {
-        console.log("Mousedowm");
+        console.log("Mousedown");
         dragDrop = true;
         let mousePosY = _event.clientY;
         let mousePosX = _event.clientX;
@@ -270,7 +269,6 @@ var zauberbild;
         let canvasRect = mainCanvas.getBoundingClientRect();
         let offsetX = mousePosX - canvasRect.left;
         let offsetY = mousePosY - canvasRect.top;
-        console.log(offsetX, offsetY);
         for (let figur of figures) {
             if (figur.position.x - figur.radius < offsetX &&
                 figur.position.x + figur.radius > offsetX &&
@@ -279,7 +277,6 @@ var zauberbild;
                 let index = figures.indexOf(figur);
                 figures.splice(index, 1);
                 console.log("Es funktioniert");
-                console.log(index);
             }
         }
     }
