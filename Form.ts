@@ -6,8 +6,12 @@ namespace zauberbild {
         public rotation: number; 
         public radius: number;   
         public velocity: Vector;
+        public color: string; 
+        
 
         constructor(_position?: Vector) {
+
+            this.color = ""; 
 
             // console.log("Moveable");
             if (_position)

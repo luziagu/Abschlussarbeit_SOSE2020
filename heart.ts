@@ -13,6 +13,8 @@ namespace zauberbild {
                 this.velocity = new Vector(0, 0);
         
                 this.radius = 25;
+
+                this.color = "HSL(0,53%,58%)"; 
         
         
                 this.velocity = new Vector(0, 0);
@@ -26,10 +28,7 @@ namespace zauberbild {
                 _crc.translate(-40, -40);
                 _crc.scale(0.5, 0.5); 
 
-                console.log(this.position.x, this.position.y); 
-
-
-                _crc.fillStyle = "HSL(0,53%,58%)";
+                _crc.fillStyle =  this.color;
                 _crc.beginPath();
                 _crc.moveTo(75, 40);
                 _crc.bezierCurveTo(75, 37, 70, 25, 50, 25);

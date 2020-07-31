@@ -9,6 +9,7 @@ var zauberbild;
             else
                 this.velocity = new zauberbild.Vector(0, 0);
             this.radius = 25;
+            this.color = "lightblue";
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
@@ -19,7 +20,7 @@ var zauberbild;
             var radius = 30;
             _crc.beginPath();
             _crc.arc(0, 0, radius, 0, 2 * Math.PI, false);
-            _crc.fillStyle = "lightblue";
+            _crc.fillStyle = this.color;
             _crc.closePath();
             _crc.fill();
             _crc.lineWidth = 0;

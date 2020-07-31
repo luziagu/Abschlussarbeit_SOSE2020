@@ -13,13 +13,14 @@ namespace zauberbild {
     let mainCanvas: HTMLCanvasElement;
 
     let dragDrop: boolean = false;
-    let objectDragDrop: Form; 
+    let objectDragDrop: Form;
     let saveButton: HTMLButtonElement;
     let deleteButton: HTMLButtonElement;
+    export let colorpicker: string = "";
 
     let backgroundColor: HTMLSelectElement;
-    let chooseChangingSymbol: HTMLSelectElement;
-    let chooseColorForSymbol: HTMLSelectElement;
+    let changeSymbol: HTMLSelectElement;
+
     let circleDiv: HTMLDivElement;
     let starDiv: HTMLDivElement;
     let triangleDiv: HTMLDivElement;
@@ -41,8 +42,7 @@ namespace zauberbild {
 
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
-        chooseChangingSymbol = <HTMLSelectElement>document.getElementById("chooseChangingSymbol");
-        chooseColorForSymbol = <HTMLSelectElement>document.getElementById("chooseColorForSymbol");
+        changeSymbol = <HTMLSelectElement>document.getElementById("changeSymbol");
 
         circleDiv = <HTMLDivElement>document.getElementById("symbolOne");
         starDiv = <HTMLDivElement>document.getElementById("symbolTwo");
@@ -70,8 +70,8 @@ namespace zauberbild {
 
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
-        chooseChangingSymbol.addEventListener("change", chooseSymbolForChange);
-        chooseColorForSymbol.addEventListener("change", chooseSymbolForChange);
+        changeSymbol.addEventListener("change", chooseSymbolForChange);
+
 
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -96,19 +96,31 @@ namespace zauberbild {
 
         console.log("Symbol wurde ausgewählt");
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
-        let valueSymbol: string = target.value;
-        let choosenColor: string = target.value;
+        let value: string = target.value;
 
+        let chooseLastSymbol: any = figures[figures.length - 1 ];
+                
+        switch (value) {
 
-        if (valueSymbol == "starChange" && choosenColor == "pink") {
+            case "yellow":
+                chooseLastSymbol.color = "yellow"; 
+                figures.splice(1); 
 
-            console.log("ich wurde ausgeführt");
-            crc4.fillStyle = "pink";
-
+                break;
+            case "green":
+                figures.splice(1);
+                chooseLastSymbol.color = "lightgreen"; 
+                
+                break;
+            case "pink":
+                chooseLastSymbol.color = "pink";
+                break;
+            case "lightblue":
+                chooseLastSymbol.color = "lightblue";
+                break;
         }
 
-
-
+        backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 
     async function saveImage(_event: MouseEvent): Promise<void> {
@@ -131,22 +143,18 @@ namespace zauberbild {
 
                 if (figur instanceof Triangle) {
                     safeMagicImage.push("triangle");
-
                 }
 
                 if (figur instanceof Star) {
                     safeMagicImage.push("star");
-
                 }
 
                 if (figur instanceof Circle) {
                     safeMagicImage.push("circle");
-
                 }
 
                 if (figur instanceof Heart) {
                     safeMagicImage.push("heart");
-
                 }
             }
 
@@ -190,18 +198,22 @@ namespace zauberbild {
         switch (id) {
 
             case "format1":
-                mainCanvas.width = 200;
+                crcMain.canvas.width = 200;
                 crcMain.canvas.height = 200;
+
                 break;
             case "format2":
                 crcMain.canvas.width = 200;
                 crcMain.canvas.height = 500;
+
                 break;
             case "format3":
                 crcMain.canvas.width = 500;
                 crcMain.canvas.height = 500;
+
                 break;
         }
+        backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 
     function chooseBackground(_event: Event): void {
@@ -311,14 +323,14 @@ namespace zauberbild {
         crcMain.putImageData(backgroundImage, 0, 0);
 
         for (let symbol of figures) {
-            if (symbol instanceof Heart) 
-            symbol.move(1 / 20); 
+            if (symbol instanceof Heart)
+                symbol.move(1 / 20);
             else if (symbol instanceof Triangle)
-            symbol.move(1 / 20); 
+                symbol.move(1 / 20);
             else if (symbol instanceof Circle)
-            symbol.move (1 / 50 ); 
+                symbol.move(1 / 50);
             else if (symbol instanceof Star)
-            symbol.move (1 / 20 );
+                symbol.move(1 / 20);
             symbol.draw(crcMain);
         }
 
@@ -413,7 +425,7 @@ namespace zauberbild {
             crcMain.restore();
         }
         crcMain.save();
-   }
+    }
 
     //function selectSymbol(_event: MouseEvent): void {
     //console.log("Der MainCanvas wurde geklickt"); 

@@ -84,23 +84,16 @@ div {
     grid-row: 2;
    
 }
-#chooseColorForSymbol {
 
-    position: relative;
-    top: 20px; 
-    left: 720px; 
+#changeSymbol {
+    position: static; 
+    top: -40px; 
     height: 90px; 
     width: 150px;
 
 }
 
-#chooseChangingSymbol {
-    position: relative;
-    top: -72px; 
-    left: 550px; 
-    height: 90px; 
-    width: 150px;
-}
+
 
 
 #chooseFormat {

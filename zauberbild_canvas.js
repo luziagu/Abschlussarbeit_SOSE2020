@@ -8,9 +8,9 @@ var zauberbild;
     let objectDragDrop;
     let saveButton;
     let deleteButton;
+    zauberbild.colorpicker = "";
     let backgroundColor;
-    let chooseChangingSymbol;
-    let chooseColorForSymbol;
+    let changeSymbol;
     let circleDiv;
     let starDiv;
     let triangleDiv;
@@ -25,8 +25,7 @@ var zauberbild;
         console.log("verknüpft");
         let form = document.querySelector("div#chooseFormat");
         backgroundColor = document.querySelector("#chooseColor");
-        chooseChangingSymbol = document.getElementById("chooseChangingSymbol");
-        chooseColorForSymbol = document.getElementById("chooseColorForSymbol");
+        changeSymbol = document.getElementById("changeSymbol");
         circleDiv = document.getElementById("symbolOne");
         starDiv = document.getElementById("symbolTwo");
         triangleDiv = document.getElementById("symbolThree");
@@ -45,8 +44,7 @@ var zauberbild;
         saveButton = document.getElementById("buttonSafe");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
-        chooseChangingSymbol.addEventListener("change", chooseSymbolForChange);
-        chooseColorForSymbol.addEventListener("change", chooseSymbolForChange);
+        changeSymbol.addEventListener("change", chooseSymbolForChange);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -64,12 +62,25 @@ var zauberbild;
     function chooseSymbolForChange(_event) {
         console.log("Symbol wurde ausgewählt");
         let target = _event.target;
-        let valueSymbol = target.value;
-        let choosenColor = target.value;
-        if (valueSymbol == "starChange" && choosenColor == "pink") {
-            console.log("ich wurde ausgeführt");
-            zauberbild.crc4.fillStyle = "pink";
+        let value = target.value;
+        let chooseLastSymbol = figures[figures.length - 1];
+        switch (value) {
+            case "yellow":
+                chooseLastSymbol.color = "yellow";
+                figures.splice(1);
+                break;
+            case "green":
+                figures.splice(1);
+                chooseLastSymbol.color = "lightgreen";
+                break;
+            case "pink":
+                chooseLastSymbol.color = "pink";
+                break;
+            case "lightblue":
+                chooseLastSymbol.color = "lightblue";
+                break;
         }
+        backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
     async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
@@ -119,7 +130,7 @@ var zauberbild;
         let id = target.id;
         switch (id) {
             case "format1":
-                mainCanvas.width = 200;
+                zauberbild.crcMain.canvas.width = 200;
                 zauberbild.crcMain.canvas.height = 200;
                 break;
             case "format2":
@@ -131,6 +142,7 @@ var zauberbild;
                 zauberbild.crcMain.canvas.height = 500;
                 break;
         }
+        backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
     function chooseBackground(_event) {
         console.log("choose color");

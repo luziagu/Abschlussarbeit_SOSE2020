@@ -17,6 +17,8 @@ namespace zauberbild {
             this.velocity = new Vector(0, 0);
     
             this.radius = 25;
+
+            this.color = "rgb(253, 224, 144)"; 
     
     
             this.velocity = new Vector(0, 0);
@@ -44,7 +46,7 @@ namespace zauberbild {
             _crc.scale(0.3, 0.3); 
             //_crc.rotate(this.rotation * Math.PI / 70); 
             
-            _crc.fillStyle = "rgb(253, 224, 144)";
+            _crc.fillStyle = this. color;
             
             _crc.moveTo(108, 0.0);
             _crc.lineTo(141, 70);

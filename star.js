@@ -11,6 +11,7 @@ var zauberbild;
             else
                 this.velocity = new zauberbild.Vector(0, 0);
             this.radius = 25;
+            this.color = "rgb(253, 224, 144)";
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
@@ -28,7 +29,7 @@ var zauberbild;
             _crc.translate(-30, -30);
             _crc.scale(0.3, 0.3);
             //_crc.rotate(this.rotation * Math.PI / 70); 
-            _crc.fillStyle = "rgb(253, 224, 144)";
+            _crc.fillStyle = this.color;
             _crc.moveTo(108, 0.0);
             _crc.lineTo(141, 70);
             _crc.lineTo(218, 78.3);

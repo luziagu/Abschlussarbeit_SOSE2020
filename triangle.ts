@@ -12,7 +12,7 @@ namespace zauberbild {
             this.velocity = new Vector(0, 0);
     
             this.radius = 25;
-    
+            this.color = "pink";
             this.velocity = new Vector(0, 0);
             this.velocity = Vector.getRandom(5, 10);
         }
@@ -23,7 +23,7 @@ namespace zauberbild {
             _crc.save();
             _crc.translate(this.position.x, this.position.y); 
             _crc.scale(1, 1); 
-            _crc.fillStyle = "pink";
+            _crc.fillStyle = this.color;
             _crc.beginPath();
             _crc.moveTo(0, 20);
             _crc.lineTo(-10, 20);
