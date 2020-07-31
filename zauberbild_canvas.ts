@@ -166,7 +166,7 @@ namespace zauberbild {
         let response: Response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
         let texte: string = await response.text();
         console.log(texte);
-        alert(texte);
+        alert("Bild wurde gespeichert");
         //let data: Data = JSON.parse(texte); 
 
 

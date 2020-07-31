@@ -87,12 +87,9 @@ export namespace haushaltshilfe {
     
     }
 
-
-
     function storeOrder(_order: Order): void {
         orders.insert(_order); 
     }
-
-    
+ 
 }
 

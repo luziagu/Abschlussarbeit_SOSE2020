@@ -109,7 +109,7 @@ var zauberbild;
         let response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
         let texte = await response.text();
         console.log(texte);
-        alert(texte);
+        alert("Bild wurde gespeichert");
         //let data: Data = JSON.parse(texte); 
     }
     /*async function showTitles(_response: string): Promise<void> {
