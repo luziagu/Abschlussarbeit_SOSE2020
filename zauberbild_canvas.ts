@@ -134,6 +134,7 @@ namespace zauberbild {
             //safeMagicImage.push(nameOfPicture); 
             safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
             safeMagicImage.push(backgroundColorSafe);
+         
 
 
 
@@ -174,7 +175,7 @@ namespace zauberbild {
 
     }
 
-    async function showTitles(_response: string): Promise<void> {
+    /*async function showTitles(_response: string): Promise<void> {
         let titles: string[] = _response.split(",");
         for (let title of titles) {
             if (title == "") {
@@ -186,7 +187,7 @@ namespace zauberbild {
                 option.value = title;
             }
         }
-    }
+    }*/
 
     function chooseCanvas(_event: Event): void {
 

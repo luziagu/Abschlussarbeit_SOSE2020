@@ -112,18 +112,19 @@ var zauberbild;
         alert(texte);
         //let data: Data = JSON.parse(texte); 
     }
-    async function showTitles(_response) {
-        let titles = _response.split(",");
+    /*async function showTitles(_response: string): Promise<void> {
+        let titles: string[] = _response.split(",");
         for (let title of titles) {
             if (title == "") {
+
             }
             else {
-                let option = document.createElement("option");
+                let option: HTMLOptionElement = document.createElement("option");
                 option.setAttribute("name", title);
                 option.value = title;
             }
         }
-    }
+    }*/
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
         let target = _event.target;
