@@ -49,14 +49,14 @@ export namespace haushaltshilfe {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             let spliturl: string[] = _request.url.split("&");
 
-            if (spliturl[0] == "/?saveImage") {
+            if (spliturl[0] == "/?getmagicPicture=yes") {
                 orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten der collection zuordnen
                 await (orders).insertOne(url.query);
                 _response.write("Picture saved");
 
             }
 
-            if (spliturl[0] == "/?getImage") {               //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
+            if (spliturl[0] == "/?getmagicPicture=yes") {               //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
                 //Bilddaten anfordern, raussuchen
 
 
