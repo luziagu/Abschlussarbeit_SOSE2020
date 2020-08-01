@@ -82,17 +82,15 @@ namespace zauberbild {
         deleteButton.addEventListener("click", clearCanvas);
         saveButton.addEventListener("click", saveImage);
 
-        chooseBackground(_event);
-        setInterval(animate, 100);
-        createForms();
-        getTitles();
-
         mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
 
-
+        chooseBackground(_event);
+        setInterval(animate, 100);
+        createForms();
+        getTitles();
     }
 
     function chooseSymbolForChange(_event: Event): void {
@@ -188,8 +186,6 @@ namespace zauberbild {
         let response: Response = await fetch(url + "?getTitles&");
         let texte: string = await response.text();
         console.log(texte);
-
-
 
         showTitles(texte); 
     }
