@@ -11,6 +11,7 @@ var zauberbild;
     zauberbild.colorpicker = "";
     let backgroundColor;
     let changeSymbol;
+    let list;
     let circleDiv;
     let starDiv;
     let triangleDiv;
@@ -42,6 +43,7 @@ var zauberbild;
         zauberbild.crc6 = canvasHeart.getContext("2d");
         deleteButton = document.getElementById("buttonDelete");
         saveButton = document.getElementById("buttonSafe");
+        list = document.querySelector("datalist#titles");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
         changeSymbol.addEventListener("change", chooseSymbolForChange);
@@ -65,22 +67,19 @@ var zauberbild;
         let value = target.value;
         let chooseLastSymbol = figures[figures.length - 1];
         switch (value) {
-            case "yellow":
-                chooseLastSymbol.color = "yellow";
-                figures.splice(1);
-                break;
-            case "green":
-                figures.splice(1);
-                chooseLastSymbol.color = "lightgreen";
-                break;
             case "pink":
-                chooseLastSymbol.color = "pink";
+                chooseLastSymbol.color = "rgb(206, 108, 190)";
                 break;
-            case "lightblue":
-                chooseLastSymbol.color = "lightblue";
+            case "orange":
+                chooseLastSymbol.color = "rgb(235, 154, 88)";
+                break;
+            case "darkred":
+                chooseLastSymbol.color = "rgb(235, 68, 68)";
+                break;
+            case "blau":
+                chooseLastSymbol.color = "rgb(69, 56, 141)";
                 break;
         }
-        backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
     async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
@@ -106,25 +105,32 @@ var zauberbild;
         }
         let dataServer = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
         let query = new URLSearchParams(dataServer);
-        let response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
+        let response = await fetch(url + "?safeImage&name=" + nameOfPicture + "&" + query.toString());
         let texte = await response.text();
         console.log(texte);
         alert("Bild wurde gespeichert");
         //let data: Data = JSON.parse(texte); 
     }
-    /*async function showTitles(_response: string): Promise<void> {
-        let titles: string[] = _response.split(",");
-        for (let title of titles) {
+    async function showTitles(_response) {
+        let pretty = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let prettyArray = pretty.split(","); //server antwort aufteilen 
+        for (let title of prettyArray) {
             if (title == "") {
-
             }
             else {
-                let option: HTMLOptionElement = document.createElement("option");
+                let option = document.createElement("option");
                 option.setAttribute("name", title);
                 option.value = title;
+                list.appendChild(option);
             }
         }
-    }*/
+    }
+    async function getTitles() {
+        let response = await fetch(url + "?getTitles&");
+        let texte = await response.text();
+        console.log(texte);
+        showTitles(texte);
+    }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
         let target = _event.target;
@@ -182,9 +188,6 @@ var zauberbild;
         }
         backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
-    /*function animation() {
-        return setInterval(createForms, 50);
-    }*/
     function createForms() {
         //Stern
         let star = new zauberbild.Star(new zauberbild.Vector(zauberbild.crc4.canvas.width / 2, zauberbild.crc4.canvas.height / 2));
@@ -298,6 +301,7 @@ var zauberbild;
         figures = [];
         let clearBackground = false;
         if (clearBackground == false) {
+            backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
             zauberbild.crcMain.fillStyle = "white";
             zauberbild.crcMain.fill();
             zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
@@ -305,50 +309,5 @@ var zauberbild;
         }
         zauberbild.crcMain.save();
     }
-    //function selectSymbol(_event: MouseEvent): void {
-    //console.log("Der MainCanvas wurde geklickt"); 
-    /*let target: HTMLElement = <HTMLElement>_event.target;
-    let symbol  = target.appendChild;
-
-    
-    if (symbol) {
-
-        let newSymbol: Triangle = new Triangle();
-        newSymbol.draw(crc2);
-    }*/
-    //}
-    /*async function showDatabaseContent(_event: Event): Promise<void> {
-
-        console.log("Ich wurde geklickt");
-        let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#savedPictures");
-        let response: Response = await fetch(serverUrl + "?" + "getmagicPicture=yes");
-        
-        databaseContent.innerHTML = "";
-        let responseText: string = await response.text();
-        let replace: string = responseText.replace(/\\|{|}|"|/g, "");
-        console.log(replace);
-        for (let entry of replace) {
-            switch (entry) {
-                case ("_"):
-                    databaseContent.innerHTML += "<br>"  + entry;
-                    break;
-                case ("["):
-                    break;
-                case ("]"):
-                    break;
-                case (","):
-                    databaseContent.innerHTML += "<br>";
-                    break;
-                case (":"):
-                    databaseContent.innerHTML += entry + " ";
-                    break;
-                default:
-                    databaseContent.innerHTML += "" + entry;
-                    break;
-            }
-        }
-        console.log(responseText);
-
-    }*/
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=zauberbild_canvas.js.map

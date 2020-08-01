@@ -7,19 +7,25 @@ body{
 }
 
 h1 {
-    position: fixed;
-    left: 610px; 
-    top: 10px; 
+    position: static;
+
     text-align: center;
     font-size: 40px;
 }
 h1:hover{
     color: rgb(255, 183, 88); 
+    
 }
 
 p:hover{
 
     color: rgb(67, 119, 179); 
+
+}
+p{
+    position: static;
+
+    text-align: center;
 
 }
 
@@ -32,11 +38,9 @@ div {
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+    grid-gap: 3px;
     grid-auto-rows: minmax(100px, auto);
-    border: none; 
-   
-    
+    border: none;     
 }
 
 
@@ -86,22 +90,27 @@ div {
 }
 
 #changeSymbol {
-    position: static; 
-    top: -40px; 
+
+    position: relative;
+    top: -10px;
+    left: 110px; 
     height: 90px; 
-    width: 150px;
+    width: 180px;
 
 }
 
-
-
-
 #chooseFormat {
     position: relative;
-    top: 20px; 
-    left: 20px; 
-    height: 150px; 
+    top: -40px; 
+    left: 110px; 
+    height: 130px; 
     width: 180px;
+}
+#format1{
+    left: -22px; 
+}
+#format2{
+    left: -22px; 
 }
 
 input, label {
@@ -115,18 +124,18 @@ input, label {
 #chooseBackground{
 
     position: relative;
-    top: 40px; 
-    left: 20px; 
-    height: 150px; 
+    top: -30px; 
+    left: 110px; 
+    height: 100px; 
     width: 180px;
 }
 #chooseSymbol{
 
     position: relative;
-    top: 60px; 
-    left: 20px; 
-    height: 257px; 
-    width: 220px;
+    top: -20px; 
+    left: 100px; 
+    height: 249px; 
+    width: 206px;
     border: solid  rgb(197, 228, 161) 0.4px; 
 
 }
@@ -168,13 +177,13 @@ button:hover{
 #buttonSafe {
 
     position: fixed; 
-    left: 410px; 
+    left: 710px; 
     top: 650px; 
 }
 
 #buttonDelete {
 
     position: fixed;
-    left: 270px; 
+    left: 570px; 
     top: 650px; 
 }
