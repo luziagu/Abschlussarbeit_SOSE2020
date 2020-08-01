@@ -99,17 +99,17 @@ namespace zauberbild {
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
 
-        let chooseLastSymbol: any = figures[figures.length - 1 ];
-                
+        let chooseLastSymbol: any = figures[figures.length - 1];
+
         switch (value) {
 
             case "pink":
-                chooseLastSymbol.color = "rgb(206, 108, 190)"; 
+                chooseLastSymbol.color = "rgb(206, 108, 190)";
 
                 break;
             case "orange":
-                chooseLastSymbol.color = "rgb(235, 154, 88)"; 
-                
+                chooseLastSymbol.color = "rgb(235, 154, 88)";
+
                 break;
             case "darkred":
                 chooseLastSymbol.color = "rgb(235, 68, 68)";
@@ -129,7 +129,7 @@ namespace zauberbild {
             //safeMagicImage.push(nameOfPicture); 
             safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
             safeMagicImage.push(backgroundColorSafe);
-         
+
 
             for (let figur of figures) {
                 safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
@@ -164,13 +164,19 @@ namespace zauberbild {
 
     async function showTitles(_response: string): Promise<void> { //bildtitel in HTML (datalist) darstellen 
         let pretty: string = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
-        let prettyArray: string [] = pretty.split(","); //server antwort aufteilen 
+        let prettyArray: string[] = pretty.split(","); //server antwort aufteilen 
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+
+        }
         for (let title of prettyArray) {
             if (title == "") {
 
+
             }
 
-        else {
+
+            else {
                 let option: HTMLOptionElement = document.createElement("option");
                 option.setAttribute("name", title);
                 option.value = title;
@@ -184,7 +190,7 @@ namespace zauberbild {
         let texte: string = await response.text();
         console.log(texte);
 
-        showTitles(texte); 
+        showTitles(texte);
     }
 
     /*async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 

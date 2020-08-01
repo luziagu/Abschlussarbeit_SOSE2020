@@ -115,6 +115,9 @@ var zauberbild;
     async function showTitles(_response) {
         let pretty = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
         let prettyArray = pretty.split(","); //server antwort aufteilen 
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
         for (let title of prettyArray) {
             if (title == "") {
             }
