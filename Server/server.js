@@ -28,7 +28,7 @@ var haushaltshilfe;
         orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
         console.log("Database connection", orders != undefined);
     }
-    let anyOrder = [];
+    //let anyOrder: string[] = [];
     async function handleRequest(_request, _response) {
         console.log("what's up?");
         console.log(_request.url); //Wie mit der Request umgegangen wird 
@@ -36,9 +36,6 @@ var haushaltshilfe;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            //for (let key in url.query) {
-            // _response.write(key + ":" + url.query[key]); 
-            //}
             let spliturl = _request.url.split("&");
             if (spliturl[0] == "/?saveImage") {
                 orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten der collection zuordnen
@@ -69,15 +66,6 @@ var haushaltshilfe;
                 _response.write(answer);
                 anyOrder = [];
             }*/
-            if (spliturl[0] == "/?getTitles") { //Wenn ein url angefraht wird, dann..
-                let names = orders.find({}, { projection: name });
-                console.log(names);
-            }
-            else { // wenn nicht, dann soll eine Variable gebildet werden,
-                let jsonString = JSON.stringify(url.query);
-                _response.write(jsonString); //und diese als Antwort zurück geliefert werden
-                storeOrder(url.query); //Der url Query soll dann an die collection der Database geschickt/eingetragen werden
-            }
             //let jsonString: string = JSON.stringify(url.query); 
             //_response.write(jsonString); 
             storeOrder(url.query);

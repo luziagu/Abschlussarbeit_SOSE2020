@@ -38,7 +38,7 @@ export namespace haushaltshilfe {
         console.log("Database connection", orders != undefined);
     }
 
-    let anyOrder: string[] = [];
+    //let anyOrder: string[] = [];
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("what's up?");
         console.log(_request.url);  //Wie mit der Request umgegangen wird 
@@ -47,9 +47,6 @@ export namespace haushaltshilfe {
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            //for (let key in url.query) {
-            // _response.write(key + ":" + url.query[key]); 
-            //}
             let spliturl: string[] = _request.url.split("&");
 
             if (spliturl[0] == "/?saveImage") {
@@ -92,16 +89,7 @@ export namespace haushaltshilfe {
                 anyOrder = [];
             }*/
 
-            if (spliturl[0] == "/?getTitles") { //Wenn ein url angefraht wird, dann..
-                let names: Mongo.Cursor<any> = orders.find({}, { projection: name });
-
-
-                console.log(names);
-            } else { // wenn nicht, dann soll eine Variable gebildet werden,
-                let jsonString: string = JSON.stringify(url.query);
-                _response.write(jsonString); //und diese als Antwort zurück geliefert werden
-                storeOrder(url.query); //Der url Query soll dann an die collection der Database geschickt/eingetragen werden
-            }
+            
             //let jsonString: string = JSON.stringify(url.query); 
             //_response.write(jsonString); 
 
