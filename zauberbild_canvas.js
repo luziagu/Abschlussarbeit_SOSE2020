@@ -56,6 +56,7 @@ var zauberbild;
         chooseBackground(_event);
         setInterval(animate, 100);
         createForms();
+        getTitles();
         mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
@@ -130,6 +131,15 @@ var zauberbild;
         let texte = await response.text();
         console.log(texte);
         showTitles(texte);
+    }
+    async function getImage(_pictureTitle) {
+        let response = await fetch(url + "?getImage&" + _pictureTitle);
+    }
+    function choosenTitle(_event) {
+        let target = _event.target;
+        let value = target.value;
+        getImage(value);
+        //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");

@@ -85,6 +85,7 @@ namespace zauberbild {
         chooseBackground(_event);
         setInterval(animate, 100);
         createForms();
+        getTitles();
 
         mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", pickSymbol);
@@ -163,11 +164,6 @@ namespace zauberbild {
         console.log(texte);
         alert("Bild wurde gespeichert");
         //let data: Data = JSON.parse(texte); 
-
-
-
-
-
     }
 
     async function showTitles(_response: string): Promise<void> { //bildtitel in HTML (datalist) darstellen 
@@ -197,6 +193,23 @@ namespace zauberbild {
 
         showTitles(texte); 
     }
+
+    async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 
+        let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
+
+    }
+
+    function choosenTitle(_event: Event): void {
+        let target: HTMLOptionElement = <HTMLOptionElement>_event.target;
+        let value: string = target.value;
+        getImage(value);
+
+
+        //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
+
+    }
+
+
     function chooseCanvas(_event: Event): void {
 
         console.log("ich wurde geklickt");
@@ -265,13 +278,7 @@ namespace zauberbild {
 
 
         }
-
-
-
         backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
-
-
-
     }
 
     function createForms(): void {
