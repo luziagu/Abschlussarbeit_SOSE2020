@@ -124,8 +124,10 @@ namespace zauberbild {
 
         let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
         if (nameOfPicture == null || nameOfPicture == "") {
-            alert("Du musst deinem Bild einen namen geben, damit es gespeichert werden kann"); 
-        }
+            alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
+            prompt("Bennene dein Zauberbild: ");
+        } else 
+
         if (nameOfPicture != null) {
 
             //safeMagicImage.push(nameOfPicture); 
@@ -165,16 +167,17 @@ namespace zauberbild {
     }
 
     async function showTitles(_response: string): Promise<void> { //bildtitel in HTML (datalist) darstellen 
-        let pretty: string = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
-        let prettyArray: string[] = pretty.split(","); //server antwort aufteilen 
+        let databaseContent: HTMLInputElement = <HTMLInputElement>document.querySelector("#namePic"); 
+        let replace: string = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let prettyArray: string[] = replace.split(","); //server antwort aufteilen 
+        databaseContent.innerHTML = "";
         while (list.firstChild) {
             list.removeChild(list.firstChild);
 
         }
         for (let title of prettyArray) {
             if (title == "") {
-
-
+                databaseContent.innerHTML += "<br>"  + title;
             }
 
 

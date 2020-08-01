@@ -85,9 +85,10 @@ var zauberbild;
     async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
         if (nameOfPicture == null || nameOfPicture == "") {
-            alert("Du musst deinem Bild einen namen geben, damit es gespeichert werden kann");
+            alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
+            prompt("Bennene dein Zauberbild: ");
         }
-        if (nameOfPicture != null) {
+        else if (nameOfPicture != null) {
             //safeMagicImage.push(nameOfPicture); 
             safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
             safeMagicImage.push(backgroundColorSafe);
@@ -116,13 +117,16 @@ var zauberbild;
         //let data: Data = JSON.parse(texte); 
     }
     async function showTitles(_response) {
-        let pretty = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
-        let prettyArray = pretty.split(","); //server antwort aufteilen 
+        let databaseContent = document.querySelector("#namePic");
+        let replace = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let prettyArray = replace.split(","); //server antwort aufteilen 
+        databaseContent.innerHTML = "";
         while (list.firstChild) {
             list.removeChild(list.firstChild);
         }
         for (let title of prettyArray) {
             if (title == "") {
+                databaseContent.innerHTML += "<br>" + title;
             }
             else {
                 let option = document.createElement("option");

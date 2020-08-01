@@ -46,7 +46,7 @@ var haushaltshilfe;
                 //Bilddaten anfordern, raussuchen
             }
             if (spliturl[0] == "/?getTitles") { //alle Titel aus Datenbank raussuchen
-                let names = orders.find({}, { projection: { name: 1 } });
+                let names = orders.find({}, { projection: { _id: 0, name: true } });
                 await names.forEach(showOrders);
                 let jsonString = JSON.stringify(allPictures);
                 jsonString.toString();
