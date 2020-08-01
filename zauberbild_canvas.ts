@@ -123,7 +123,9 @@ namespace zauberbild {
     async function saveImage(_event: MouseEvent): Promise<void> {
 
         let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
-
+        if (nameOfPicture == null || nameOfPicture == "") {
+            alert("Du musst deinem Bild einen namen geben, damit es gespeichert werden kann"); 
+        }
         if (nameOfPicture != null) {
 
             //safeMagicImage.push(nameOfPicture); 

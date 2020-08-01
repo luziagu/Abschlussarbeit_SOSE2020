@@ -54,20 +54,6 @@ var haushaltshilfe;
                 _response.write(names.toString());
                 console.log(names);
             }
-            /*if (_request.url == "/?getmagicPicture=yes") { //Wenn ein url angefraht wird, dann..
-                let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
-                await mongoClient.connect(); // Mongo client wird verbindet.
-                let orders: Mongo.Collection = mongoClient.db("Zauberbild").collection("magicPicture"); //Hier wird der CLient Household und in dieser die collection Orders erstellt.
-                let mongoCursor: Mongo.Cursor<any> = orders.find();
-                await mongoCursor.forEach(retrieveOrder); //Es soll gewartet werden und die Funktion retrieveOrder wird dann für jeden Aufruf von Cursor aufgerufen.
-                let jsonString: string = JSON.stringify(anyOrder);
-                let answer: string = jsonString.toString();
-                _response.write(answer);
-                anyOrder = [];
-            }*/
-            //let jsonString: string = JSON.stringify(url.query); 
-            //_response.write(jsonString); 
             storeOrder(url.query);
         }
         _response.end(); //Antwort wird verschickt

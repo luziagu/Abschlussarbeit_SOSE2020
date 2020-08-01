@@ -53,12 +53,10 @@ export namespace haushaltshilfe {
                 orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten der collection zuordnen
                 await (orders).insertOne(url.query);
                 _response.write("Picture saved");
-
             }
 
             if (spliturl[0] == "/?getmagicPicture=yes") {               //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
                 //Bilddaten anfordern, raussuchen
-
 
             }
 
@@ -75,36 +73,10 @@ export namespace haushaltshilfe {
                 console.log(names);
 
             }
-
-            /*if (_request.url == "/?getmagicPicture=yes") { //Wenn ein url angefraht wird, dann..
-                let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
-                await mongoClient.connect(); // Mongo client wird verbindet. 
-                let orders: Mongo.Collection = mongoClient.db("Zauberbild").collection("magicPicture"); //Hier wird der CLient Household und in dieser die collection Orders erstellt. 
-                let mongoCursor: Mongo.Cursor<any> = orders.find();
-                await mongoCursor.forEach(retrieveOrder); //Es soll gewartet werden und die Funktion retrieveOrder wird dann für jeden Aufruf von Cursor aufgerufen.  
-                let jsonString: string = JSON.stringify(anyOrder);
-                let answer: string = jsonString.toString();
-                _response.write(answer);
-                anyOrder = [];
-            }*/
-
-            
-            //let jsonString: string = JSON.stringify(url.query); 
-            //_response.write(jsonString); 
-
             storeOrder(url.query);
-
-
         }
-
         _response.end(); //Antwort wird verschickt
-
     }
-
-
-
-
     /*function retrieveOrder(_order: Order): void {
         let jsonString: string = JSON.stringify(_order);
         anyOrder.push(jsonString); // In das Array soll dann der jsonString gepusht werden 
@@ -114,14 +86,9 @@ export namespace haushaltshilfe {
     function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
-
-    
-
     function showOrders(_item: Object): void {
         let jsonString: string = JSON.stringify(_item);
         allPictures.push(jsonString);
     }
-
-
 }
 

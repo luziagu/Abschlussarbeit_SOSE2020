@@ -84,6 +84,9 @@ var zauberbild;
     }
     async function saveImage(_event) {
         let nameOfPicture = prompt("Bennene dein Zauberbild: ");
+        if (nameOfPicture == null || nameOfPicture == "") {
+            alert("Du musst deinem Bild einen namen geben, damit es gespeichert werden kann");
+        }
         if (nameOfPicture != null) {
             //safeMagicImage.push(nameOfPicture); 
             safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
