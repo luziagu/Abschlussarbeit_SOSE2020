@@ -99,7 +99,7 @@ namespace zauberbild {
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
 
-        let chooseLastSymbol: any= figures[figures.length - 1 ];
+        let chooseLastSymbol: any = figures[figures.length - 1 ];
                 
         switch (value) {
 
@@ -123,8 +123,6 @@ namespace zauberbild {
     async function saveImage(_event: MouseEvent): Promise<void> {
 
         let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
-
-
 
         if (nameOfPicture != null) {
 
@@ -172,7 +170,6 @@ namespace zauberbild {
 
             }
 
-
         else {
                 let option: HTMLOptionElement = document.createElement("option");
                 option.setAttribute("name", title);
@@ -190,7 +187,7 @@ namespace zauberbild {
         showTitles(texte); 
     }
 
-    async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 
+    /*async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 
         let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
 
     }
@@ -203,7 +200,7 @@ namespace zauberbild {
 
         //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
 
-    }
+    }*/
 
 
     function chooseCanvas(_event: Event): void {

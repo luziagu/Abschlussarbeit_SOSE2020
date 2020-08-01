@@ -132,15 +132,20 @@ var zauberbild;
         console.log(texte);
         showTitles(texte);
     }
-    async function getImage(_pictureTitle) {
-        let response = await fetch(url + "?getImage&" + _pictureTitle);
+    /*async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank
+        let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
+
     }
-    function choosenTitle(_event) {
-        let target = _event.target;
-        let value = target.value;
+
+    function choosenTitle(_event: Event): void {
+        let target: HTMLOptionElement = <HTMLOptionElement>_event.target;
+        let value: string = target.value;
         getImage(value);
+
+
         //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
-    }
+
+    }*/
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
         let target = _event.target;
