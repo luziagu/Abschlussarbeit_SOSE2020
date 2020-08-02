@@ -137,10 +137,10 @@ namespace zauberbild {
             //safeMagicImage.push(nameOfPicture); 
             safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
             safeMagicImage.push(backgroundColorSafe);
-
-
+           
             for (let figur of figures) {
                 safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
+                safeMagicImage.push(figur.color); 
 
                 if (figur instanceof Triangle) {
                     safeMagicImage.push("triangle");
