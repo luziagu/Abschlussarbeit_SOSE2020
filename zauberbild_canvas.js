@@ -179,7 +179,7 @@ var zauberbild;
             switch (prettyArray[i]) {
                 case "triangle":
                     let position = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let triangle = new zauberbild.Triangle(position, info[6]);
+                    let triangle = new zauberbild.Triangle(position, info[3]);
                     triangle.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(triangle);
@@ -193,7 +193,7 @@ var zauberbild;
                     break;
                 case "heart":
                     let positionHeart = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let heart = new zauberbild.Triangle(positionHeart, info[6]);
+                    let heart = new zauberbild.Triangle(positionHeart, info[5]);
                     heart.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(heart);
