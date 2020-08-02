@@ -62,7 +62,7 @@ export namespace zauberbild {
 
             if (spliturl[0] == "/?getTitles") {   //alle Titel aus Datenbank raussuchen
 
-                let names: Mongo.Cursor<any> = orders.find({}, { projection: { _id: 0, name: true } });
+                let names: Mongo.Cursor<any> = orders.find({}, { projection: { _id: 0, name: true }});
                 await names.forEach(showOrders); 
                 let jsonString: String = JSON.stringify(allPictures);
                 jsonString.toString();
