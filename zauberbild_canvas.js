@@ -121,7 +121,7 @@ var zauberbild;
     }
     async function showTitles(_response) {
         let databaseContent = document.querySelector("#namePic");
-        let replace = _response.replace(/\\|\[|OBJECT|object|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let replace = _response.replace(/\\|\[|Object|object|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
         let prettyArray = replace.split(","); //server antwort aufteilen 
         databaseContent.innerHTML = "";
         while (list.firstChild) {
