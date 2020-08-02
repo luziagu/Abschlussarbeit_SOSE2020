@@ -111,7 +111,6 @@ namespace zauberbild {
 
             case "pink":
                 chooseLastSymbol.color = "rgb(206, 108, 190)";
-
                 break;
             case "orange":
                 chooseLastSymbol.color = "rgb(235, 154, 88)";
@@ -240,7 +239,7 @@ namespace zauberbild {
 
                 case "triangle":
                     let position: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let triangle: Triangle = new Triangle(position, info[5]);
+                    let triangle: Triangle = new Triangle(position, info[11]);
                     triangle.draw(crcMain);
                     info = [];
                     figures.push(triangle);
@@ -248,7 +247,7 @@ namespace zauberbild {
 
                 case "circle":
                     let positionCircle: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let circle: Triangle = new Triangle(positionCircle, info[5]);
+                    let circle: Triangle = new Triangle(positionCircle, info[11]);
                     circle.draw(crcMain);
                     info = [];
                     figures.push(circle);
@@ -256,7 +255,7 @@ namespace zauberbild {
 
                 case "heart":
                     let positionHeart: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let heart: Triangle = new Triangle(positionHeart, info[5]);
+                    let heart: Triangle = new Triangle(positionHeart, info[11]);
                     heart.draw(crcMain);
                     info = [];
                     figures.push(heart);
@@ -264,7 +263,7 @@ namespace zauberbild {
 
                 case "star":
                     let positionStar: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let star: Triangle = new Triangle(positionStar, info[5]);
+                    let star: Triangle = new Triangle(positionStar, info[11]);
                     star.draw(crcMain);
                     info = [];
                     figures.push(star);

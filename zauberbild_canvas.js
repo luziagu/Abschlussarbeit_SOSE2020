@@ -179,28 +179,28 @@ var zauberbild;
             switch (prettyArray[i]) {
                 case "triangle":
                     let position = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let triangle = new zauberbild.Triangle(position, info[5]);
+                    let triangle = new zauberbild.Triangle(position, info[11]);
                     triangle.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(triangle);
                     break;
                 case "circle":
                     let positionCircle = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let circle = new zauberbild.Triangle(positionCircle, info[5]);
+                    let circle = new zauberbild.Triangle(positionCircle, info[11]);
                     circle.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(circle);
                     break;
                 case "heart":
                     let positionHeart = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let heart = new zauberbild.Triangle(positionHeart, info[5]);
+                    let heart = new zauberbild.Triangle(positionHeart, info[11]);
                     heart.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(heart);
                     break;
                 case "star":
                     let positionStar = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let star = new zauberbild.Triangle(positionStar, info[5]);
+                    let star = new zauberbild.Triangle(positionStar, info[11]);
                     star.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(star);
