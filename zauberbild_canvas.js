@@ -47,7 +47,9 @@ var zauberbild;
         list = document.querySelector("datalist#titles");
         inputTitle = document.querySelector("#namePic");
         form.addEventListener("change", chooseCanvas);
-        backgroundColor.addEventListener("change", chooseBackground);
+        backgroundColor.addEventListener("change", function () {
+            chooseBackground();
+        });
         changeSymbol.addEventListener("change", chooseSymbolForChange);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -60,7 +62,7 @@ var zauberbild;
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
-        chooseBackground(_event);
+        chooseBackground();
         setInterval(animate, 100);
         createForms();
         getTitles();
@@ -152,6 +154,47 @@ var zauberbild;
         let replace = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
         let prettyArray = replace.split(",");
         console.log(prettyArray);
+        mainCanvas.width = parseInt(prettyArray[3]);
+        mainCanvas.height = parseInt(prettyArray[4]);
+        backgroundColorSafe = prettyArray[5];
+        chooseBackground(prettyArray[5]);
+        let info = [];
+        prettyArray.splice(0, 6);
+        for (let i = 0; i < prettyArray.length; i++) {
+            switch (prettyArray[i]) {
+                case "triangle":
+                    let position = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let triangle = new zauberbild.Triangle(position, info[3]);
+                    triangle.draw(zauberbild.crcMain);
+                    info = [];
+                    figures.push(triangle);
+                    break;
+                case "circle":
+                    let positionCircle = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let circle = new zauberbild.Triangle(positionCircle);
+                    circle.draw(zauberbild.crcMain);
+                    info = [];
+                    figures.push(circle);
+                    break;
+                case "heart":
+                    let positionHeart = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let heart = new zauberbild.Triangle(positionHeart);
+                    heart.draw(zauberbild.crcMain);
+                    info = [];
+                    figures.push(heart);
+                    break;
+                case "star":
+                    let positionStar = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let star = new zauberbild.Triangle(positionStar);
+                    star.draw(zauberbild.crcMain);
+                    info = [];
+                    figures.push(star);
+                    break;
+                default:
+                    info.push(prettyArray[i]);
+                    break;
+            }
+        }
     }
     function choosenTitle(_event) {
         let value = inputTitle.value;
@@ -178,40 +221,47 @@ var zauberbild;
         }
         backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
-    function chooseBackground(_event) {
+    function chooseBackground(_color) {
         console.log("choose color");
         let target = _event.target;
         let value = target.value;
-        switch (value) {
-            case "yellow":
-                zauberbild.crcMain.fillStyle = "lightyellow";
-                zauberbild.crcMain.fill();
-                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                break;
-            case "green":
-                zauberbild.crcMain.fillStyle = "rgb(152, 192, 148)";
-                zauberbild.crcMain.fill();
-                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                backgroundColorSafe = "lightgreen";
-                break;
-            case "pink":
-                zauberbild.crcMain.fillStyle = "lightpink";
-                zauberbild.crcMain.fill();
-                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                backgroundColorSafe = "lightpink";
-                break;
-            case "lightblue":
-                zauberbild.crcMain.fillStyle = "lightblue";
-                zauberbild.crcMain.fill();
-                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                backgroundColorSafe = "lightblue";
-                break;
-            case "lavendel":
-                zauberbild.crcMain.fillStyle = "rgb(212, 177, 189)";
-                zauberbild.crcMain.fill();
-                zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                backgroundColorSafe = "lavendel";
-                break;
+        if (_color) {
+            zauberbild.crcMain.fillStyle = _color;
+            zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.width);
+            backgroundColorSafe = _color;
+        }
+        else {
+            switch (value) {
+                case "yellow":
+                    zauberbild.crcMain.fillStyle = "lightyellow";
+                    zauberbild.crcMain.fill();
+                    zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    break;
+                case "green":
+                    zauberbild.crcMain.fillStyle = "rgb(152, 192, 148)";
+                    zauberbild.crcMain.fill();
+                    zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    backgroundColorSafe = "lightgreen";
+                    break;
+                case "pink":
+                    zauberbild.crcMain.fillStyle = "lightpink";
+                    zauberbild.crcMain.fill();
+                    zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    backgroundColorSafe = "lightpink";
+                    break;
+                case "lightblue":
+                    zauberbild.crcMain.fillStyle = "lightblue";
+                    zauberbild.crcMain.fill();
+                    zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    backgroundColorSafe = "lightblue";
+                    break;
+                case "lavendel":
+                    zauberbild.crcMain.fillStyle = "rgb(212, 177, 189)";
+                    zauberbild.crcMain.fill();
+                    zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    backgroundColorSafe = "lavendel";
+                    break;
+            }
         }
         backgroundImage = zauberbild.crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }

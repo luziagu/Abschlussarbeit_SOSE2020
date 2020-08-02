@@ -2,7 +2,7 @@
 var zauberbild;
 (function (zauberbild) {
     class Star extends zauberbild.Form {
-        constructor(_position) {
+        constructor(_position, _color) {
             super(_position);
             this.drawSymbol = true;
             this.rotation = 0;
@@ -11,7 +11,10 @@ var zauberbild;
             else
                 this.velocity = new zauberbild.Vector(0, 0);
             this.radius = 25;
-            this.color = "rgb(253, 224, 144)";
+            if (_color)
+                this.color = _color;
+            else
+                this.color = "rgb(253, 224, 144)";
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }

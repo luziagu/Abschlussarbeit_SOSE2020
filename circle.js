@@ -2,14 +2,17 @@
 var zauberbild;
 (function (zauberbild) {
     class Circle extends zauberbild.Form {
-        constructor(_position) {
+        constructor(_position, _color) {
             super(_position);
             if (_position)
                 this.position = _position.copy();
             else
                 this.velocity = new zauberbild.Vector(0, 0);
             this.radius = 25;
-            this.color = "lightblue";
+            if (_color)
+                this.color = _color;
+            else
+                this.color = "lightblue";
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }

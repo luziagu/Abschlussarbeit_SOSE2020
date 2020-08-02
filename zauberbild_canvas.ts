@@ -71,10 +71,12 @@ namespace zauberbild {
         deleteButton = <HTMLButtonElement>document.getElementById("buttonDelete");
         saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");
         list = <HTMLDataListElement>document.querySelector("datalist#titles");
-        inputTitle = <HTMLInputElement>document.querySelector("#namePic"); 
+        inputTitle = <HTMLInputElement>document.querySelector("#namePic");
 
         form.addEventListener("change", chooseCanvas);
-        backgroundColor.addEventListener("change", chooseBackground);
+        backgroundColor.addEventListener("change", function (): void {
+            chooseBackground();
+        });
         changeSymbol.addEventListener("change", chooseSymbolForChange);
 
 
@@ -84,14 +86,14 @@ namespace zauberbild {
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas);
         saveButton.addEventListener("click", saveImage);
-        inputTitle.addEventListener("change", choosenTitle); 
+        inputTitle.addEventListener("change", choosenTitle);
 
         mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
 
-        chooseBackground(_event);
+        chooseBackground();
         setInterval(animate, 100);
         createForms();
         getTitles();
@@ -130,36 +132,36 @@ namespace zauberbild {
         if (nameOfPicture == null || nameOfPicture == "") {
             alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
             prompt("Bennene dein Zauberbild: ");
-        } else 
+        } else
 
-        if (nameOfPicture != null) {
+            if (nameOfPicture != null) {
 
-            //safeMagicImage.push(nameOfPicture); 
-            safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-            safeMagicImage.push(backgroundColorSafe);
-           
-            for (let figur of figures) {
-                safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
-                safeMagicImage.push(figur.color); 
+                //safeMagicImage.push(nameOfPicture); 
+                safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+                safeMagicImage.push(backgroundColorSafe);
 
-                if (figur instanceof Triangle) {
-                    safeMagicImage.push("triangle");
+                for (let figur of figures) {
+                    safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
+                    safeMagicImage.push(figur.color);
+
+                    if (figur instanceof Triangle) {
+                        safeMagicImage.push("triangle");
+                    }
+
+                    if (figur instanceof Star) {
+                        safeMagicImage.push("star");
+                    }
+
+                    if (figur instanceof Circle) {
+                        safeMagicImage.push("circle");
+                    }
+
+                    if (figur instanceof Heart) {
+                        safeMagicImage.push("heart");
+                    }
                 }
 
-                if (figur instanceof Star) {
-                    safeMagicImage.push("star");
-                }
-
-                if (figur instanceof Circle) {
-                    safeMagicImage.push("circle");
-                }
-
-                if (figur instanceof Heart) {
-                    safeMagicImage.push("heart");
-                }
             }
-
-        }
 
         let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
         let query: URLSearchParams = new URLSearchParams(dataServer);
@@ -171,7 +173,7 @@ namespace zauberbild {
     }
 
     async function showTitles(_response: string): Promise<void> { //bildtitel in HTML (datalist) darstellen 
-        let databaseContent: HTMLInputElement = <HTMLInputElement>document.querySelector("#namePic"); 
+        let databaseContent: HTMLInputElement = <HTMLInputElement>document.querySelector("#namePic");
         let replace: string = _response.replace(/\\|\[|Object|object|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
         let prettyArray: string[] = replace.split(","); //server antwort aufteilen 
         databaseContent.innerHTML = "";
@@ -179,7 +181,7 @@ namespace zauberbild {
             list.removeChild(list.firstChild);
 
         }
-        for (let title of prettyArray) { 
+        for (let title of prettyArray) {
             if (title == "") {
                 //databaseContent.innerHTML += "<br>"  + title;
 
@@ -205,11 +207,65 @@ namespace zauberbild {
 
     async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 
         let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
-        let texte: string = await response.text(); 
+        let texte: string = await response.text();
         let replace: string = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
         let prettyArray: string[] = replace.split(",");
-        console.log(prettyArray); 
-    
+        console.log(prettyArray);
+        mainCanvas.width = parseInt(prettyArray[3]);
+        mainCanvas.height = parseInt(prettyArray[4]);
+        backgroundColorSafe = prettyArray[5];
+        chooseBackground(prettyArray[5]);
+        let info: string[] = [];
+        prettyArray.splice(0, 6);
+
+
+        for (let i: number = 0; i < prettyArray.length; i++) {
+
+            switch (prettyArray[i]) {
+
+                case "triangle":
+                    let position: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let triangle: Triangle = new Triangle(position, info[3]);
+                    triangle.draw(crcMain);
+                    info = [];
+                    figures.push(triangle);
+                    break;
+
+                case "circle":
+                    let positionCircle: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let circle: Triangle = new Triangle(positionCircle);
+                    circle.draw(crcMain);
+                    info = [];
+                    figures.push(circle);
+                    break;
+
+                case "heart":
+                    let positionHeart: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let heart: Triangle = new Triangle(positionHeart);
+                    heart.draw(crcMain);
+                    info = [];
+                    figures.push(heart);
+                    break;
+
+                case "star":
+                    let positionStar: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let star: Triangle = new Triangle(positionStar);
+                    star.draw(crcMain);
+                    info = [];
+                    figures.push(star);
+                    break;
+
+                default:
+                    info.push(prettyArray[i]);
+                    break;
+
+            }
+        }
+
+
+
+
+
     }
 
     function choosenTitle(_event: Event): void {
@@ -250,46 +306,56 @@ namespace zauberbild {
         backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 
-    function chooseBackground(_event: Event): void {
+    function chooseBackground(_color?: string): void {
 
         console.log("choose color");
+
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
-
-        switch (value) {
-
-            case "yellow":
-                crcMain.fillStyle = "lightyellow";
-                crcMain.fill();
-                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                break;
-            case "green":
-                crcMain.fillStyle = "rgb(152, 192, 148)";
-                crcMain.fill();
-                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                backgroundColorSafe = "lightgreen";
-                break;
-            case "pink":
-                crcMain.fillStyle = "lightpink";
-                crcMain.fill();
-                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                backgroundColorSafe = "lightpink";
-                break;
-            case "lightblue":
-                crcMain.fillStyle = "lightblue";
-                crcMain.fill();
-                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                backgroundColorSafe = "lightblue";
-                break;
-            case "lavendel":
-                crcMain.fillStyle = "rgb(212, 177, 189)";
-                crcMain.fill();
-                crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                backgroundColorSafe = "lavendel";
-                break;
+        if (_color) {
+            crcMain.fillStyle = _color;
+            crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.width);
+            backgroundColorSafe = _color;
+        } else {
 
 
+
+            switch (value) {
+
+                case "yellow":
+                    crcMain.fillStyle = "lightyellow";
+                    crcMain.fill();
+                    crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    break;
+                case "green":
+                    crcMain.fillStyle = "rgb(152, 192, 148)";
+                    crcMain.fill();
+                    crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    backgroundColorSafe = "lightgreen";
+                    break;
+                case "pink":
+                    crcMain.fillStyle = "lightpink";
+                    crcMain.fill();
+                    crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    backgroundColorSafe = "lightpink";
+                    break;
+                case "lightblue":
+                    crcMain.fillStyle = "lightblue";
+                    crcMain.fill();
+                    crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    backgroundColorSafe = "lightblue";
+                    break;
+                case "lavendel":
+                    crcMain.fillStyle = "rgb(212, 177, 189)";
+                    crcMain.fill();
+                    crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    backgroundColorSafe = "lavendel";
+                    break;
+
+
+            }
         }
+
         backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 

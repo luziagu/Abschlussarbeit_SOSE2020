@@ -2,7 +2,7 @@
 namespace zauberbild {
         export class Heart extends Form { 
     
-            constructor(_position?: Vector) {
+            constructor(_position?: Vector, _color?: string) {
     
                 super(_position); 
         
@@ -14,6 +14,9 @@ namespace zauberbild {
         
                 this.radius = 25;
 
+                if (_color)
+                this.color = _color; 
+                else
                 this.color = "HSL(0,53%,58%)"; 
         
         

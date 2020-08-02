@@ -1,7 +1,7 @@
 namespace zauberbild {
     export class Triangle extends Form { 
 
-        constructor(_position?: Vector) {
+        constructor(_position?: Vector, _color?: string) {
 
             super(_position); 
     
@@ -12,7 +12,11 @@ namespace zauberbild {
             this.velocity = new Vector(0, 0);
     
             this.radius = 25;
+            if (_color)
+            this.color = _color; 
+            else
             this.color = "pink";
+
             this.velocity = new Vector(0, 0);
             this.velocity = Vector.getRandom(5, 10);
         }

@@ -4,7 +4,7 @@ namespace zauberbild {
         drawSymbol: boolean = true; 
         
 
-        constructor(_position?: Vector) {
+        constructor(_position?: Vector, _color?: string) {
             
 
             super(_position); 
@@ -18,6 +18,9 @@ namespace zauberbild {
     
             this.radius = 25;
 
+            if (_color)
+            this.color = _color; 
+            else
             this.color = "rgb(253, 224, 144)"; 
     
     
