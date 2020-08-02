@@ -175,9 +175,10 @@ namespace zauberbild {
             list.removeChild(list.firstChild);
 
         }
-        for (let title of prettyArray) {
-            if (title == "") {
+        for (let title of prettyArray) { 
+            if (title != "") {
                 databaseContent.innerHTML += "<br>"  + title;
+
             }
 
 

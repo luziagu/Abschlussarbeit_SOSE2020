@@ -125,7 +125,7 @@ var zauberbild;
             list.removeChild(list.firstChild);
         }
         for (let title of prettyArray) {
-            if (title == "") {
+            if (title != "") {
                 databaseContent.innerHTML += "<br>" + title;
             }
             else {

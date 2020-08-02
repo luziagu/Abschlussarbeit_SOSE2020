@@ -5,6 +5,9 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var haushaltshilfe;
 (function (haushaltshilfe) {
+    /*interface Order {
+        [type: string]: string | string[] | undefined;
+    }*/
     let orders;
     let allPictures = [];
     let port = process.env.PORT;
@@ -54,7 +57,6 @@ var haushaltshilfe;
                 _response.write(names.toString());
                 console.log(names);
             }
-            storeOrder(url.query);
         }
         _response.end(); //Antwort wird verschickt
     }
@@ -63,9 +65,9 @@ var haushaltshilfe;
         anyOrder.push(jsonString); // In das Array soll dann der jsonString gepusht werden
 
     }*/
-    function storeOrder(_order) {
+    /*function storeOrder(_order: Order): void {
         orders.insert(_order);
-    }
+    }*/
     function showOrders(_item) {
         let jsonString = JSON.stringify(_item);
         allPictures.push(jsonString);

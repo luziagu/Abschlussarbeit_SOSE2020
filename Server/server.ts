@@ -4,9 +4,9 @@ import * as Mongo from "mongodb";
 
 
 export namespace haushaltshilfe {
-    interface Order {
+    /*interface Order {
         [type: string]: string | string[] | undefined;
-    }
+    }*/
     let orders: Mongo.Collection;
     let allPictures: string[] = [];
     let port: number | string | undefined = process.env.PORT;
@@ -73,7 +73,6 @@ export namespace haushaltshilfe {
                 console.log(names);
 
             }
-            storeOrder(url.query);
         }
         _response.end(); //Antwort wird verschickt
     }
@@ -83,9 +82,9 @@ export namespace haushaltshilfe {
 
     }*/
 
-    function storeOrder(_order: Order): void {
+    /*function storeOrder(_order: Order): void {
         orders.insert(_order);
-    }
+    }*/ 
     function showOrders(_item: Object): void {
         let jsonString: string = JSON.stringify(_item);
         allPictures.push(jsonString);
