@@ -49,7 +49,7 @@ export namespace haushaltshilfe {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             let spliturl: string[] = _request.url.split("&");
 
-            if (spliturl[0] == "/?getmagicPicture=yes") {
+            if (spliturl[0] == "/?safeImage") {
                 orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten der collection zuordnen
                 await (orders).insertOne(url.query);
                 _response.write("Picture saved");
