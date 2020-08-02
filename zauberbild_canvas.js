@@ -236,6 +236,7 @@ var zauberbild;
                     zauberbild.crcMain.fillStyle = "white";
                     zauberbild.crcMain.fill();
                     zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    break;
                 case "yellow":
                     zauberbild.crcMain.fillStyle = "lightyellow";
                     zauberbild.crcMain.fill();

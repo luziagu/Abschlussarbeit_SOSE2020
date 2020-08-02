@@ -321,6 +321,7 @@ namespace zauberbild {
                     crcMain.fillStyle = "white";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    break;
 
                 case "yellow":
                     crcMain.fillStyle = "lightyellow";

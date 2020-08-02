@@ -177,13 +177,13 @@ button:hover{
 #buttonSafe {
 
     position: fixed; 
-    left: 710px; 
+    left: 1040px; 
     top: 650px; 
 }
 
 #buttonDelete {
 
     position: fixed;
-    left: 570px; 
+    left: 900px; 
     top: 650px; 
 }
