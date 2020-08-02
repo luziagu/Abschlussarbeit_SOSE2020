@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
-var haushaltshilfe;
-(function (haushaltshilfe) {
+var zauberbild;
+(function (zauberbild) {
     /*interface Order {
         [type: string]: string | string[] | undefined;
     }*/
@@ -49,7 +49,7 @@ var haushaltshilfe;
                 //Bilddaten anfordern, raussuchen
             }
             if (spliturl[0] == "/?getTitles") { //alle Titel aus Datenbank raussuchen
-                let names = orders.find({}, { projection: { _id: false, name: true } });
+                let names = orders.find({}, { projection: { _id: 0, name: true } });
                 await names.forEach(showOrders);
                 let jsonString = JSON.stringify(allPictures);
                 jsonString.toString();
@@ -72,5 +72,5 @@ var haushaltshilfe;
         let jsonString = JSON.stringify(_item);
         allPictures.push(jsonString);
     }
-})(haushaltshilfe = exports.haushaltshilfe || (exports.haushaltshilfe = {}));
+})(zauberbild = exports.zauberbild || (exports.zauberbild = {}));
 //# sourceMappingURL=server.js.map

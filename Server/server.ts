@@ -3,7 +3,7 @@ import * as Url from "url";
 import * as Mongo from "mongodb";
 
 
-export namespace haushaltshilfe {
+export namespace zauberbild {
     /*interface Order {
         [type: string]: string | string[] | undefined;
     }*/
@@ -62,7 +62,7 @@ export namespace haushaltshilfe {
 
             if (spliturl[0] == "/?getTitles") {   //alle Titel aus Datenbank raussuchen
 
-                let names: Mongo.Cursor<any> = orders.find({}, { projection: { _id: false, name: true } });
+                let names: Mongo.Cursor<any> = orders.find({}, { projection: { _id: 0, name: true } });
                 await names.forEach(showOrders); 
                 let jsonString: String = JSON.stringify(allPictures);
                 jsonString.toString();
