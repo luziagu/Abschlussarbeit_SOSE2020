@@ -172,7 +172,7 @@ namespace zauberbild {
 
     async function showTitles(_response: string): Promise<void> { //bildtitel in HTML (datalist) darstellen 
         let databaseContent: HTMLInputElement = <HTMLInputElement>document.querySelector("#namePic"); 
-        let replace: string = _response.replace(/\\|\[|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let replace: string = _response.replace(/\\|\[|OBJECT|object|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
         let prettyArray: string[] = replace.split(","); //server antwort aufteilen 
         databaseContent.innerHTML = "";
         while (list.firstChild) {
