@@ -181,7 +181,7 @@ namespace zauberbild {
         }
         for (let title of prettyArray) { 
             if (title == "") {
-                databaseContent.innerHTML += "<br>"  + title;
+                //databaseContent.innerHTML += "<br>"  + title;
 
             }
 
