@@ -301,7 +301,7 @@ namespace zauberbild {
         backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 
-    function chooseBackground( _color?: string): void {
+    function chooseBackground(_color?: string): void {
 
         console.log("choose color");
         let colors: HTMLInputElement = <HTMLInputElement>document.querySelector("select#chooseColor");
@@ -316,6 +316,11 @@ namespace zauberbild {
 
 
             switch (color) {
+
+                case "white": 
+                    crcMain.fillStyle = "white";
+                    crcMain.fill();
+                    crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
 
                 case "yellow":
                     crcMain.fillStyle = "lightyellow";

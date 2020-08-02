@@ -232,6 +232,10 @@ var zauberbild;
         }
         else {
             switch (color) {
+                case "white":
+                    zauberbild.crcMain.fillStyle = "white";
+                    zauberbild.crcMain.fill();
+                    zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
                 case "yellow":
                     zauberbild.crcMain.fillStyle = "lightyellow";
                     zauberbild.crcMain.fill();
