@@ -233,7 +233,7 @@ namespace zauberbild {
 
                 case "circle":
                     let positionCircle: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let circle: Triangle = new Triangle(positionCircle);
+                    let circle: Triangle = new Triangle(positionCircle, info[3]);
                     circle.draw(crcMain);
                     info = [];
                     figures.push(circle);
@@ -241,7 +241,7 @@ namespace zauberbild {
 
                 case "heart":
                     let positionHeart: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let heart: Triangle = new Triangle(positionHeart);
+                    let heart: Triangle = new Triangle(positionHeart, info[3]);
                     heart.draw(crcMain);
                     info = [];
                     figures.push(heart);
@@ -249,7 +249,7 @@ namespace zauberbild {
 
                 case "star":
                     let positionStar: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
-                    let star: Triangle = new Triangle(positionStar);
+                    let star: Triangle = new Triangle(positionStar, info[3]);
                     star.draw(crcMain);
                     info = [];
                     figures.push(star);

@@ -171,21 +171,21 @@ var zauberbild;
                     break;
                 case "circle":
                     let positionCircle = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let circle = new zauberbild.Triangle(positionCircle);
+                    let circle = new zauberbild.Triangle(positionCircle, info[3]);
                     circle.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(circle);
                     break;
                 case "heart":
                     let positionHeart = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let heart = new zauberbild.Triangle(positionHeart);
+                    let heart = new zauberbild.Triangle(positionHeart, info[3]);
                     heart.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(heart);
                     break;
                 case "star":
                     let positionStar = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
-                    let star = new zauberbild.Triangle(positionStar);
+                    let star = new zauberbild.Triangle(positionStar, info[3]);
                     star.draw(zauberbild.crcMain);
                     info = [];
                     figures.push(star);
