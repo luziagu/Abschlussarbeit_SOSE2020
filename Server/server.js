@@ -48,7 +48,7 @@ var zauberbild;
             }
             if (spliturl[0] == "/?getImage") { //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
                 //Bilddaten anfordern, raussuchen
-                let picture = orders.find({}, { projection: { _id: 0, name: spliturl[1] } });
+                let picture = orders.find({ name: spliturl[1] });
                 await picture.forEach(showOrders);
                 let jsonString = JSON.stringify(allPictures);
                 jsonString.toString();
