@@ -32,7 +32,7 @@ export namespace zauberbild {
     async function connectToDatabase(_url: string): Promise<void> {
 
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        mongoClient = new Mongo.MongoClient(_url, options); 
         await mongoClient.connect(); //MongoDB soll verbunden werden
         orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
         console.log("Database connection", orders != undefined);

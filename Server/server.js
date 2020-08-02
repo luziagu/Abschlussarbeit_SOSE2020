@@ -26,7 +26,7 @@ var zauberbild;
     }
     async function connectToDatabase(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(_url, options);
+        mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect(); //MongoDB soll verbunden werden
         orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
         console.log("Database connection", orders != undefined);
