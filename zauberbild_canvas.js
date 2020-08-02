@@ -17,6 +17,7 @@ var zauberbild;
     let triangleDiv;
     let heartDiv;
     let backgroundColorSafe;
+    let inputTitle;
     let figures = [];
     let safeMagicImage = [];
     let backgroundImage;
@@ -44,6 +45,7 @@ var zauberbild;
         deleteButton = document.getElementById("buttonDelete");
         saveButton = document.getElementById("buttonSafe");
         list = document.querySelector("datalist#titles");
+        inputTitle = document.querySelector("#namePic");
         form.addEventListener("change", chooseCanvas);
         backgroundColor.addEventListener("change", chooseBackground);
         changeSymbol.addEventListener("change", chooseSymbolForChange);
@@ -53,6 +55,7 @@ var zauberbild;
         heartDiv.addEventListener("click", drawSymbolInMainCanvas);
         deleteButton.addEventListener("click", clearCanvas);
         saveButton.addEventListener("click", saveImage);
+        inputTitle.addEventListener("change", choosenTitle);
         mainCanvas.addEventListener("dblclick", deleteSymbol);
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
@@ -125,7 +128,7 @@ var zauberbild;
             list.removeChild(list.firstChild);
         }
         for (let title of prettyArray) {
-            if (title != "") {
+            if (title == "") {
                 databaseContent.innerHTML += "<br>" + title;
             }
             else {
@@ -142,20 +145,16 @@ var zauberbild;
         console.log(texte);
         showTitles(texte);
     }
-    /*async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank
-        let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
-
+    async function getImage(_pictureTitle) {
+        let response = await fetch(url + "?getImage&" + _pictureTitle);
+        let texte = await response.text();
+        console.log(texte);
     }
-
-    function choosenTitle(_event: Event): void {
-        let target: HTMLOptionElement = <HTMLOptionElement>_event.target;
-        let value: string = target.value;
+    function choosenTitle(_event) {
+        let value = inputTitle.value;
         getImage(value);
-
-
         //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
-
-    }*/
+    }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");
         let target = _event.target;
