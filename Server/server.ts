@@ -56,10 +56,18 @@ export namespace zauberbild {
                 allPictures = [];
             }
 
-            if (spliturl[0] == "/?getmagicPicture=yes") {               //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
+            if (spliturl[0] == "/?getImage") {               //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
                 //Bilddaten anfordern, raussuchen
 
+                let picture: Mongo.Cursor<any> = orders.find({}, { projection: { _id: 0, name: spliturl[1]}});
+                await picture.forEach(showOrders); 
+                let jsonString: String = JSON.stringify(allPictures);
+                jsonString.toString();
+                _response.write(jsonString); 
+                _response.write(picture); 
+                allPictures = [];
             }
+
 
             if (spliturl[0] == "/?getTitles") {   //alle Titel aus Datenbank raussuchen
 
