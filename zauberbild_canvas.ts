@@ -206,7 +206,10 @@ namespace zauberbild {
     async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 
         let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
         let texte: string = await response.text(); 
-        console.log(texte); 
+        let replace: string = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
+        let prettyArray: string[] = replace.split(",");
+        console.log(prettyArray); 
+    
     }
 
     function choosenTitle(_event: Event): void {

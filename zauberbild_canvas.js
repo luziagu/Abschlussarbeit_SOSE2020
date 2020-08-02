@@ -148,7 +148,9 @@ var zauberbild;
     async function getImage(_pictureTitle) {
         let response = await fetch(url + "?getImage&" + _pictureTitle);
         let texte = await response.text();
-        console.log(texte);
+        let replace = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
+        let prettyArray = replace.split(",");
+        console.log(prettyArray);
     }
     function choosenTitle(_event) {
         let value = inputTitle.value;
