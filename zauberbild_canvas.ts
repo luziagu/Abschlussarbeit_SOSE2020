@@ -225,8 +225,8 @@ namespace zauberbild {
         let replace: string = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
         let prettyArray: string[] = replace.split(",");
         console.log(prettyArray);
-        mainCanvas.width = parseInt(prettyArray[3]);
-        mainCanvas.height = parseInt(prettyArray[4]);
+        crcMain.canvas.width = parseInt(prettyArray[3]);
+        crcMain.canvas.height = parseInt(prettyArray[4]);
         backgroundColorSafe = prettyArray[5];
         chooseBackground(prettyArray[5]);
         let info: string[] = [];
@@ -272,7 +272,6 @@ namespace zauberbild {
                 default:
                     info.push(prettyArray[i]);
                     break;
-
             }
         }
     }
