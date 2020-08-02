@@ -85,6 +85,21 @@ var zauberbild;
             case "blau":
                 chooseLastSymbol.color = "rgb(69, 56, 141)";
                 break;
+            case "lightblue":
+                chooseLastSymbol.color = "lightblue";
+                break;
+            case "lightrosa":
+                chooseLastSymbol.color = "rgb(218, 150, 201)";
+                break;
+            case "red":
+                chooseLastSymbol.color = "rgb(151, 80, 80)";
+                break;
+            case "green":
+                chooseLastSymbol.color = "rgb(118, 182, 112";
+                break;
+            case "darkgreen":
+                chooseLastSymbol.color = "rgb(56, 99, 52)";
+                break;
         }
     }
     async function saveImage(_event) {
@@ -199,7 +214,6 @@ var zauberbild;
     function choosenTitle(_event) {
         let value = inputTitle.value;
         getImage(value);
-        //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
     }
     function chooseCanvas(_event) {
         console.log("ich wurde geklickt");

@@ -123,6 +123,21 @@ namespace zauberbild {
             case "blau":
                 chooseLastSymbol.color = "rgb(69, 56, 141)";
                 break;
+            case "lightblue":
+                chooseLastSymbol.color = "lightblue";
+                break;
+            case "lightrosa":
+                chooseLastSymbol.color = "rgb(218, 150, 201)";
+                break;
+            case "red":
+                chooseLastSymbol.color = "rgb(151, 80, 80)";
+                break;
+            case "green":
+                chooseLastSymbol.color = "rgb(118, 182, 112";
+                break;
+            case "darkgreen":
+                chooseLastSymbol.color = "rgb(56, 99, 52)";
+                break;
         }
     }
 
@@ -266,10 +281,6 @@ namespace zauberbild {
     function choosenTitle(_event: Event): void {
         let value: string = inputTitle.value;
         getImage(value);
-
-
-        //gewählter Titel target und diesen als Übergabeparameter in die fkt getImage übergeben und fkt aufrufen
-
     }
 
 
@@ -278,8 +289,6 @@ namespace zauberbild {
         console.log("ich wurde geklickt");
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
-
-
         switch (id) {
 
             case "format1":
@@ -312,12 +321,9 @@ namespace zauberbild {
             crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.width);
             backgroundColorSafe = _color;
         } else {
-
-
-
             switch (color) {
 
-                case "white": 
+                case "white":
                     crcMain.fillStyle = "white";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
@@ -352,8 +358,6 @@ namespace zauberbild {
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                     backgroundColorSafe = "lavendel";
                     break;
-
-
             }
         }
 
@@ -426,8 +430,6 @@ namespace zauberbild {
         if (dragDrop == true) {
             objectDragDrop.draw(crcMain);
         }
-
-
     }
 
     function dragSymbol(_event: MouseEvent): void {
