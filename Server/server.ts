@@ -63,8 +63,7 @@ export namespace zauberbild {
                 await picture.forEach(showOrders); 
                 let jsonString: String = JSON.stringify(allPictures);
                 jsonString.toString();
-                _response.write(jsonString); 
-                _response.write(picture); 
+                _response.write(jsonString);
                 allPictures = [];
             }
 

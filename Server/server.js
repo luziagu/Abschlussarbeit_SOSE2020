@@ -53,7 +53,6 @@ var zauberbild;
                 let jsonString = JSON.stringify(allPictures);
                 jsonString.toString();
                 _response.write(jsonString);
-                _response.write(picture);
                 allPictures = [];
             }
             if (spliturl[0] == "/?getTitles") { //alle Titel aus Datenbank raussuchen
