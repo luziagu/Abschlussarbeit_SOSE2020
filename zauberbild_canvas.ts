@@ -261,11 +261,6 @@ namespace zauberbild {
 
             }
         }
-
-
-
-
-
     }
 
     function choosenTitle(_event: Event): void {
@@ -306,12 +301,12 @@ namespace zauberbild {
         backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 
-    function chooseBackground(_color?: string): void {
+    function chooseBackground( _color?: string): void {
 
         console.log("choose color");
+        let colors: HTMLInputElement = <HTMLInputElement>document.querySelector("select#chooseColor");
+        let color: string = colors.value;
 
-        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
-        let value: string = target.value;
         if (_color) {
             crcMain.fillStyle = _color;
             crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.width);
@@ -320,7 +315,7 @@ namespace zauberbild {
 
 
 
-            switch (value) {
+            switch (color) {
 
                 case "yellow":
                     crcMain.fillStyle = "lightyellow";

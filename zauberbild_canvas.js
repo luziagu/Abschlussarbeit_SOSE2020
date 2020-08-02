@@ -223,15 +223,15 @@ var zauberbild;
     }
     function chooseBackground(_color) {
         console.log("choose color");
-        let target = _event.target;
-        let value = target.value;
+        let colors = document.querySelector("select#chooseColor");
+        let color = colors.value;
         if (_color) {
             zauberbild.crcMain.fillStyle = _color;
             zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.width);
             backgroundColorSafe = _color;
         }
         else {
-            switch (value) {
+            switch (color) {
                 case "yellow":
                     zauberbild.crcMain.fillStyle = "lightyellow";
                     zauberbild.crcMain.fill();
