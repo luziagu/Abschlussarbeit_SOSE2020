@@ -255,12 +255,13 @@ var zauberbild;
                     zauberbild.crcMain.fillStyle = "lightyellow";
                     zauberbild.crcMain.fill();
                     zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    backgroundColorSafe = "lightyellow";
                     break;
                 case "green":
                     zauberbild.crcMain.fillStyle = "#98c094";
                     zauberbild.crcMain.fill();
                     zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                    backgroundColorSafe = "lightgreen";
+                    backgroundColorSafe = "#98c094";
                     break;
                 case "pink":
                     zauberbild.crcMain.fillStyle = "lightpink";

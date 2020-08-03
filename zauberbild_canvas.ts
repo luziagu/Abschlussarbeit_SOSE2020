@@ -331,12 +331,13 @@ namespace zauberbild {
                     crcMain.fillStyle = "lightyellow";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    backgroundColorSafe = "lightyellow"; 
                     break;
                 case "green":
                     crcMain.fillStyle = "#98c094";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                    backgroundColorSafe = "lightgreen";
+                    backgroundColorSafe = "#98c094";
                     break;
                 case "pink":
                     crcMain.fillStyle = "lightpink";
