@@ -5,9 +5,6 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var zauberbild;
 (function (zauberbild) {
-    /*interface Order {
-        [type: string]: string | string[] | undefined;
-    }*/
     let orders;
     let allPictures = [];
     let port = process.env.PORT;

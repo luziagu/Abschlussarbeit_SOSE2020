@@ -1,5 +1,4 @@
 namespace zauberbild {
-
     console.log("verknüpft");
 
     export let crcMain: CanvasRenderingContext2D;
@@ -8,29 +7,22 @@ namespace zauberbild {
     export let crc5: CanvasRenderingContext2D;
     export let crc6: CanvasRenderingContext2D;
 
-
     let url: string = "https://haushaltshilfe-app.herokuapp.com/";
     let mainCanvas: HTMLCanvasElement;
-
     let dragDrop: boolean = false;
     let objectDragDrop: Form;
     let saveButton: HTMLButtonElement;
     let deleteButton: HTMLButtonElement;
     export let colorpicker: string = "";
-
     let backgroundColor: HTMLSelectElement;
     let changeSymbol: HTMLSelectElement;
     let list: HTMLDataListElement;
-
     let circleDiv: HTMLDivElement;
     let starDiv: HTMLDivElement;
     let triangleDiv: HTMLDivElement;
     let heartDiv: HTMLDivElement;
     let backgroundColorSafe: string;
-
     let inputTitle: HTMLInputElement;
-
-
     let figures: Form[] = [];
     let safeMagicImage: string[] = [];
     let backgroundImage: ImageData;
@@ -77,7 +69,7 @@ namespace zauberbild {
         backgroundColor.addEventListener("change", function (): void {
             chooseBackground();
         });
-        changeSymbol.addEventListener("change", chooseSymbolForChange);
+        changeSymbol.addEventListener("change", changeColorOfSymbol);
 
 
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -99,28 +91,25 @@ namespace zauberbild {
         getTitles();
     }
 
-    function chooseSymbolForChange(_event: Event): void {
+    function changeColorOfSymbol(_event: Event): void {
 
         console.log("Symbol wurde ausgewählt");
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
-
         let chooseLastSymbol: any = figures[figures.length - 1];
 
         switch (value) {
-
             case "pink":
                 chooseLastSymbol.color = "#CE6CBE";
                 break;
             case "orange":
                 chooseLastSymbol.color = "#EB9A58";
-
                 break;
             case "darkred":
                 chooseLastSymbol.color = "#eb4444";
                 break;
-            case "blau":
-                chooseLastSymbol.color = "#45388d";
+            case "yellow":
+                chooseLastSymbol.color = "#ffd500";
                 break;
             case "lightblue":
                 chooseLastSymbol.color = "lightblue";
@@ -200,8 +189,6 @@ namespace zauberbild {
                 //databaseContent.innerHTML += "<br>"  + title;
 
             }
-
-
             else {
                 let option: HTMLOptionElement = document.createElement("option");
                 option.setAttribute("name", title);
@@ -215,7 +202,6 @@ namespace zauberbild {
         let response: Response = await fetch(url + "?getTitles&");
         let texte: string = await response.text();
         console.log(texte);
-
         showTitles(texte);
     }
 
@@ -232,42 +218,36 @@ namespace zauberbild {
         let info: string[] = [];
         prettyArray.splice(0, 6);
 
-
         for (let i: number = 0; i < prettyArray.length; i++) {
 
             switch (prettyArray[i]) {
-
                 case "triangle":
                     let position: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
                     let triangle: Triangle = new Triangle(position, info[2]);
                     triangle.draw(crcMain);
                     figures.push(triangle);
-                    info = [];
-                    
+                    info = [];                   
                     break;
                 case "circle":
                     let positionCircle: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
                     let circle: Circle = new  Circle(positionCircle, info[2]);
                     circle.draw(crcMain);
                     figures.push(circle);
-                    info = [];
-                    
+                    info = [];                   
                     break;
                 case "heart":
                     let positionHeart: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
                     let heart: Heart = new Heart(positionHeart, info[2]);
                     heart.draw(crcMain);
                     figures.push(heart);
-                    info = [];
-                    
+                    info = [];                   
                     break;
                 case "star":
                     let positionStar: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
                     let star: Star = new Star (positionStar, info[2]);
                     star.draw(crcMain);
                     figures.push(star); 
-                    info = [];
-                    
+                    info = [];                   
                     break;
                 default:
                     info.push(prettyArray[i]);
@@ -283,33 +263,27 @@ namespace zauberbild {
 
 
     function chooseCanvas(_event: Event): void {
-
         console.log("ich wurde geklickt");
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
         switch (id) {
-
             case "format1":
                 crcMain.canvas.width = 200;
                 crcMain.canvas.height = 200;
-
                 break;
             case "format2":
                 crcMain.canvas.width = 200;
                 crcMain.canvas.height = 500;
-
                 break;
             case "format3":
                 crcMain.canvas.width = 500;
                 crcMain.canvas.height = 500;
-
                 break;
         }
         backgroundImage = crcMain.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     }
 
     function chooseBackground(_color?: string): void {
-
         console.log("choose color");
         let colors: HTMLInputElement = <HTMLInputElement>document.querySelector("select#chooseColor");
         let color: string = colors.value;

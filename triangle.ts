@@ -5,7 +5,6 @@ namespace zauberbild {
 
             super(_position); 
     
-    
             if (_position)
             this.position = _position.copy();
             else 
@@ -21,9 +20,7 @@ namespace zauberbild {
             this.velocity = Vector.getRandom(5, 10);
         }
 
-        public draw(_crc: CanvasRenderingContext2D): void {
-
-            
+        public draw(_crc: CanvasRenderingContext2D): void {  
             _crc.save();
             _crc.translate(this.position.x, this.position.y); 
             _crc.scale(1, 1); 
@@ -36,8 +33,7 @@ namespace zauberbild {
             _crc.lineTo(0, 20);
             _crc.fill();
 
-            _crc.restore(); 
-            
+            _crc.restore();          
         }
 
         public move(_timeslice: number): void {
@@ -59,9 +55,5 @@ namespace zauberbild {
                 this.position.y -= crcMain.canvas.height;
             }
         }
-
-
-
     }
-
 }

@@ -4,7 +4,6 @@ var zauberbild;
     class Form {
         constructor(_position) {
             this.color = "";
-            // console.log("Moveable");
             if (_position)
                 this.position = _position.copy();
             else

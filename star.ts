@@ -6,7 +6,6 @@ namespace zauberbild {
 
         constructor(_position?: Vector, _color?: string) {
             
-
             super(_position); 
             
             this.rotation = 0; 
@@ -23,31 +22,23 @@ namespace zauberbild {
             else
             this.color = "#fde090"; 
     
-    
             this.velocity = new Vector(0, 0);
             this.velocity = Vector.getRandom(5, 10);
         }
 
 
-        public rotate(): void {
-
-            
+        public rotate(): void {  
             this.rotation += 1; 
-
         }
 
         public draw(_crc: CanvasRenderingContext2D): void {
-            
-            //if (drawSymbol = true){
-            //    CanvasRenderingContext2D
-            //}
             this.rotate(); 
             _crc.beginPath();
             _crc.save(); 
             _crc.translate(this.position.x, this.position.y);
             _crc.translate(-30, -30);
             _crc.scale(0.3, 0.3); 
-            //_crc.rotate(this.rotation * Math.PI / 70); 
+            _crc.rotate(this.rotation * Math.PI / 70); 
             
             _crc.fillStyle = this. color;
             
@@ -66,17 +57,6 @@ namespace zauberbild {
             _crc.fill();
 
             _crc.restore(); 
-
-
         }
-
-
-        
-
-       
-
-
-
     }
-
 }

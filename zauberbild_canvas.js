@@ -50,7 +50,7 @@ var zauberbild;
         backgroundColor.addEventListener("change", function () {
             chooseBackground();
         });
-        changeSymbol.addEventListener("change", chooseSymbolForChange);
+        changeSymbol.addEventListener("change", changeColorOfSymbol);
         circleDiv.addEventListener("click", drawSymbolInMainCanvas);
         starDiv.addEventListener("click", drawSymbolInMainCanvas);
         triangleDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -67,7 +67,7 @@ var zauberbild;
         createForms();
         getTitles();
     }
-    function chooseSymbolForChange(_event) {
+    function changeColorOfSymbol(_event) {
         console.log("Symbol wurde ausgewählt");
         let target = _event.target;
         let value = target.value;
@@ -82,8 +82,8 @@ var zauberbild;
             case "darkred":
                 chooseLastSymbol.color = "#eb4444";
                 break;
-            case "blau":
-                chooseLastSymbol.color = "#45388d";
+            case "yellow":
+                chooseLastSymbol.color = "#ffd500";
                 break;
             case "lightblue":
                 chooseLastSymbol.color = "lightblue";

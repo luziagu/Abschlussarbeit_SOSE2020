@@ -22,16 +22,13 @@ var zauberbild;
             this.rotation += 1;
         }
         draw(_crc) {
-            //if (drawSymbol = true){
-            //    CanvasRenderingContext2D
-            //}
             this.rotate();
             _crc.beginPath();
             _crc.save();
             _crc.translate(this.position.x, this.position.y);
             _crc.translate(-30, -30);
             _crc.scale(0.3, 0.3);
-            //_crc.rotate(this.rotation * Math.PI / 70); 
+            _crc.rotate(this.rotation * Math.PI / 70);
             _crc.fillStyle = this.color;
             _crc.moveTo(108, 0.0);
             _crc.lineTo(141, 70);

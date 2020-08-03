@@ -2,17 +2,12 @@ import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
 
-
 export namespace zauberbild {
-    /*interface Order {
-        [type: string]: string | string[] | undefined;
-    }*/
     let orders: Mongo.Collection;
     let allPictures: string[] = [];
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;
-
     let mongoClient: Mongo.MongoClient;
     let databaseUrl: string = "mongodb+srv://Luziagu:EIA2@eia2-lozyt.mongodb.net/EIA2?retryWrites=true&w=majority";
     startServer(port);
