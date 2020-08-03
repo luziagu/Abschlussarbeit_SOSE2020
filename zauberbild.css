@@ -112,6 +112,9 @@ div {
 #format2{
     left: -22px; 
 }
+#format3{
+    left: -6px; 
+}
 
 input, label {
     top: 10px; 
@@ -147,7 +150,7 @@ input, label {
     position: fixed;
     top: 115px; 
     left: 900px; 
-    height: 506px; 
+    height: 106px; 
     width: 260px;
     float: right;
 
@@ -178,12 +181,12 @@ button:hover{
 
     position: fixed; 
     left: 1040px; 
-    top: 650px; 
+    top: 250px; 
 }
 
 #buttonDelete {
 
     position: fixed;
     left: 900px; 
-    top: 650px; 
+    top: 250px; 
 }
