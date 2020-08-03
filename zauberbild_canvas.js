@@ -250,6 +250,7 @@ var zauberbild;
                     zauberbild.crcMain.fillStyle = "white";
                     zauberbild.crcMain.fill();
                     zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
+                    backgroundColorSafe = "white";
                     break;
                 case "yellow":
                     zauberbild.crcMain.fillStyle = "lightyellow";
@@ -279,7 +280,7 @@ var zauberbild;
                     zauberbild.crcMain.fillStyle = "#d4b1bd";
                     zauberbild.crcMain.fill();
                     zauberbild.crcMain.fillRect(0, 0, zauberbild.crcMain.canvas.width, zauberbild.crcMain.canvas.height);
-                    backgroundColorSafe = "lavendel";
+                    backgroundColorSafe = "#d4b1bd";
                     break;
             }
         }

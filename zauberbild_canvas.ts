@@ -325,6 +325,7 @@ namespace zauberbild {
                     crcMain.fillStyle = "white";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
+                    backgroundColorSafe = "white"; 
                     break;
 
                 case "yellow":
@@ -355,7 +356,7 @@ namespace zauberbild {
                     crcMain.fillStyle = "#d4b1bd";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
-                    backgroundColorSafe = "lavendel";
+                    backgroundColorSafe = "#d4b1bd";
                     break;
             }
         }
