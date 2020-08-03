@@ -110,32 +110,32 @@ namespace zauberbild {
         switch (value) {
 
             case "pink":
-                chooseLastSymbol.color = "rgb(206, 108, 190)";
+                chooseLastSymbol.color = "#CE6CBE";
                 break;
             case "orange":
-                chooseLastSymbol.color = "rgb(235, 154, 88)";
+                chooseLastSymbol.color = "#EB9A58";
 
                 break;
             case "darkred":
-                chooseLastSymbol.color = "rgb(235, 68, 68)";
+                chooseLastSymbol.color = "#eb4444";
                 break;
             case "blau":
-                chooseLastSymbol.color = "rgb(69, 56, 141)";
+                chooseLastSymbol.color = "#45388d";
                 break;
             case "lightblue":
                 chooseLastSymbol.color = "lightblue";
                 break;
             case "lightrosa":
-                chooseLastSymbol.color = "rgb(218, 150, 201)";
+                chooseLastSymbol.color = "#da96c9";
                 break;
             case "red":
-                chooseLastSymbol.color = "rgb(151, 80, 80)";
+                chooseLastSymbol.color = "#975050";
                 break;
             case "green":
-                chooseLastSymbol.color = "rgb(118, 182, 112";
+                chooseLastSymbol.color = "#76b670";
                 break;
             case "darkgreen":
-                chooseLastSymbol.color = "rgb(56, 99, 52)";
+                chooseLastSymbol.color = "#386334";
                 break;
         }
     }
@@ -329,7 +329,7 @@ namespace zauberbild {
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                     break;
                 case "green":
-                    crcMain.fillStyle = "rgb(152, 192, 148)";
+                    crcMain.fillStyle = "#98c094";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                     backgroundColorSafe = "lightgreen";
@@ -347,7 +347,7 @@ namespace zauberbild {
                     backgroundColorSafe = "lightblue";
                     break;
                 case "lavendel":
-                    crcMain.fillStyle = "rgb(212, 177, 189)";
+                    crcMain.fillStyle = "#d4b1bd";
                     crcMain.fill();
                     crcMain.fillRect(0, 0, crcMain.canvas.width, crcMain.canvas.height);
                     backgroundColorSafe = "lavendel";

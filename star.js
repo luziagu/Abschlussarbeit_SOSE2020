@@ -14,7 +14,7 @@ var zauberbild;
             if (_color)
                 this.color = _color;
             else
-                this.color = "rgb(253, 224, 144)";
+                this.color = "#fde090";
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }

@@ -12,7 +12,7 @@ var zauberbild;
             if (_color)
                 this.color = _color;
             else
-                this.color = "HSL(0,53%,58%)";
+                this.color = "e30600";
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity = zauberbild.Vector.getRandom(5, 10);
         }
