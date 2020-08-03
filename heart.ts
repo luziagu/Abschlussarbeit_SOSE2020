@@ -17,7 +17,7 @@ namespace zauberbild {
                 if (_color)
                 this.color = _color; 
                 else
-                this.color = "#cc0000"; 
+                this.color = "#975050"; 
         
         
                 this.velocity = new Vector(0, 0);
