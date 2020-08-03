@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="zauberbild.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script src="Vektor.js"></script>
+    <script src="Form.js"></script>
+    <script src="star.js"></script>
+    <script src="circle.js"></script>
+    <script src="triangle.js"></script>
+    <script src="heart.js"></script>
+    <script src="zauberbild_canvas.js"></script>
+    <title>Zauberbild</title>
+</head>
+<body>
+
+    <p>Abschlussarbeit von Luzia Gunzenhauser</p>
+    <h1>Zauberbild</h1>
+
+    <div id="chooseFormat">
+
+        <h3>Wähle dein Format</h3>
+
+        <input type="radio" name="Radiogroup" value="radio1" id="format1" />
+        <label for="format1">MINI</label> <br>
+        <input type="radio" name="Radiogroup" value="radio2" id="format2" />
+        <label for="format1">MIDI</label> <br>
+        <input type="radio" name="Radiogroup" value="radio3" id="format3" />
+        <label for="format1">ENORM</label> <br>
+
+
+    </div>
+
+    <div id="chooseBackground">
+        <h3>Wähle deinen Hintergrund</h3>
+
+        <select name="colors" id="chooseColor">
+        <option value="white">Weiß</option>
+        <option value="yellow">Gelb</option>
+        <option value="green">Grün</option>
+        <option value="pink">Pink</option>
+        <option value="lightblue">Hellblau</option>
+        <option value="lavendel">lavendel</option>
+        </select>   
+
+
+    </div>
+
+    <div id="chooseSymbol">
+
+        <h3>Und jetzt das Symbol</h3>
+        <div id="gridContainer">
+            <div id="symbolOne"> <canvas id="circle" height="84px" width="100px"></canvas></div>
+            <div id="symbolTwo"> <canvas id="star"height="84px" width="100px"></canvas></div>
+            <div id="symbolThree"><canvas id="triangle"height="84px" width="100px"></canvas></div>
+            <div id="symbolFour"><canvas id="heart"height="84px" width="100px"></canvas></div>
+
+        </div>
+        
+
+    </div>
+
+    <div id="changeSymbol">
+            <h3>Wähle die Farbe für dein Symbol</h3>
+    
+            <select name="colors" id="colorForSymbol">
+          
+                <option value="pink">Pink</option>
+                <option value="orange">Orange</option>
+                <option value="red">Rot</option>
+                <option value="darkred">Dunkelrot</option>
+                <option value="yellow">Gelb</option>
+                <option value="lightblue">Hellblau</option>
+                <option value="green">Grün</option>
+                <option value="darkgreen">Dunkelgrün</option>
+                <option value="lightpink">Rosa</option>
+ 
+            </select>  
+    </div>
+    
+    
+
+    <button id="buttonDelete"> Bild löschen</button>
+
+    <div id="mainCanvas">
+        <canvas id="mainCanvasDraw"></canvas>
+    </div>
+
+    <div id="savedPictures">
+
+        <h3>Gespeicherte Bilder</h3>
+
+        <input list="titles" placeholder="Suche Titel" id="namePic">
+        <datalist id="titles">
+            <option> 
+                title
+                
+            </option>
+        </datalist>
+    </div>
+
+    <span>
+        
+        <button id="buttonSafe">Speichern</button>
+    </span>
+    
+
+
+    
+</body>
+</html>
